@@ -13,9 +13,9 @@
 # ignore all .txt files in the doc/ directory
 # doc/**/*.txt
 
-VisualStudio_Project/*/bin/
-VisualStudio_Project/*/obj/
+VisualStudio_Project/**/bin/
+VisualStudio_Project/**/obj/
 
 VisualStudio_Project/packages/
 
-VisualStudio_Project/.vs/
+VisualStudio_Project/\.vs/
