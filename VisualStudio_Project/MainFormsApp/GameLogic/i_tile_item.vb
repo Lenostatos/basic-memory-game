@@ -1,7 +1,7 @@
 ﻿Namespace game_logic
 
     ''' <summary>
-    ''' Requires tile items to have an identifier and the ability to match themselves against other tile items.
+    ''' Defines an interface for tile items.
     ''' </summary>
     Public Interface i_tile_item
 

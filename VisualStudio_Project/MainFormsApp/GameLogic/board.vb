@@ -1,6 +1,6 @@
 ﻿Namespace game_logic
 
-    Public Class tile_design
+    Public Class board
 
 
 
