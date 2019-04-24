@@ -79,6 +79,9 @@
       <DependentUpon>Form1.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GameLogic\a_tile_item.vb" />
+    <Compile Include="GameLogic\i_tile_item.vb" />
+    <Compile Include="GameLogic\i_tile_item_design.vb" />
     <Compile Include="GameLogic\tile.vb" />
     <Compile Include="GameLogic\tile_design.vb" />
     <Compile Include="GameLogic\tile_item.vb" />
