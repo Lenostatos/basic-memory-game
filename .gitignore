@@ -18,4 +18,4 @@ VisualStudio_Project/*/obj/
 
 VisualStudio_Project/packages/
 
-*.VisualStudio_Project/vs/
+\.vs/
