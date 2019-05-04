@@ -7,13 +7,13 @@
 
         Implements i_tile_item
 
-        Protected Property _id As Integer
-
         Public ReadOnly Property id As Integer Implements i_tile_item.id
             Get
                 Return _id
             End Get
         End Property
+
+        Protected Property _id As Integer
 
         Public MustOverride ReadOnly Property design As i_tile_item_design Implements i_tile_item.design
 

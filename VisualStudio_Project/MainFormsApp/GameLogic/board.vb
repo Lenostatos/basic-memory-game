@@ -8,11 +8,13 @@ Namespace game_logic
     Public Class board
 
         Public ReadOnly Property num_cols As Integer ' The number of tiles per row.
+
         Public ReadOnly Property num_rows As Integer
             Get
                 Return System.Math.Ceiling(_tiles.Count / num_cols)
             End Get
         End Property
+
         Public ReadOnly Property num_tiles As Integer
             Get
                 Return _tiles.Count
@@ -21,6 +23,12 @@ Namespace game_logic
 
         Private Property _tiles As List(Of tile)
 
+        ''' <summary>
+        ''' Creates a new board from the passed tiles.
+        ''' All tiles are covered and put into a random order.
+        ''' </summary>
+        ''' <param name="width"></param>
+        ''' <param name="tiles"></param>
         Public Sub New(width As Integer, tiles As List(Of tile))
 
             If tiles Is Nothing Then Throw New ArgumentNullException("Attempted to initialize a board without tiles.")
@@ -33,10 +41,25 @@ Namespace game_logic
             Me.num_cols = width
             _tiles = tiles
 
+            shuffle_tiles()
+
+
         End Sub
 
+        ''' <summary>
+        ''' Shuffles the tiles on the board.
+        ''' </summary>
         Public Sub shuffle_tiles()
             _tiles = utility.functions.shuffle_collection(Of tile)(_tiles)
+        End Sub
+
+        ''' <summary>
+        ''' Covers all tiles on the board.
+        ''' </summary>
+        Public Sub cover_tiles()
+            For Each t As tile In _tiles
+                t.cover()
+            Next
         End Sub
 
         ''' <summary>
