@@ -101,11 +101,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="GameLogic\Test\i_test.vb" />
-    <Compile Include="GameLogic\Test\main.vb" />
-    <Compile Include="GameLogic\Test\test_chain.vb" />
+    <Compile Include="Test\i_test.vb" />
+    <Compile Include="Test\main.vb" />
+    <Compile Include="Test\test_chain.vb" />
     <Compile Include="GameLogic\Test\tile_test.vb" />
     <Compile Include="Utility\functions.vb" />
+    <Compile Include="Utility\Test\functions_shuffle_test.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainForm.resx">

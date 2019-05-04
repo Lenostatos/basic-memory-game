@@ -13,21 +13,30 @@
             ' Create a sequence of indices.
             Dim indices As New List(Of UInteger)(collection.Count)
             For i As UInteger = 0 To collection.Count - 1
-                indices.Item(i) = i
+                indices.Add(i)
             Next
 
             ' Pick random indices to create a new shuffled collection.
             Dim rand As New System.Random   ' RNG used for the shuffling
-            Dim random_index As UInteger
+            Dim random_number As UInteger
+            Dim picked_index As UInteger
             Dim shuffled_collection As New List(Of t)(collection.Count)
 
-            For Each item As t In shuffled_collection
+            While indices.Count > 0
 
-                random_index = rand.Next(maxValue:=indices.Count)
-                item = collection.ElementAt(random_index)
-                indices.RemoveAt(random_index)
+                ' Generate a random number.
+                random_number = rand.Next(maxValue:=indices.Count)
 
-            Next
+                ' Pick an index with it.
+                picked_index = indices(random_number)
+
+                ' Use the index to add an element to the shuffled collection
+                shuffled_collection.Add(collection(picked_index))
+
+                ' Remove the index from the "list of candidates"
+                indices.RemoveAt(random_number)
+
+            End While
 
             Return shuffled_collection
 

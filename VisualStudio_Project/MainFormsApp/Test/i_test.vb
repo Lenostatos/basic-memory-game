@@ -1,4 +1,4 @@
-﻿Namespace game_logic.test
+﻿Namespace test
 
     Public Interface i_test
 

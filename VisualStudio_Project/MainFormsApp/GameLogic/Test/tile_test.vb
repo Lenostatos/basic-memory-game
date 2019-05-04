@@ -2,9 +2,9 @@
 
     Public Class tile_test
 
-        Implements i_test
+        Implements MainFormsApp.test.i_test
 
-        Public Function run() As Boolean Implements i_test.run
+        Public Function run() As Boolean Implements MainFormsApp.test.i_test.run
 
             Dim tile As New tile(New tile_item(0, "fir"))
 
