@@ -7,10 +7,10 @@ Namespace game_logic
     ''' </summary>
     Public Class board
 
-        Public ReadOnly Property width As Integer ' The number of tiles per row.
+        Public ReadOnly Property num_cols As Integer ' The number of tiles per row.
         Public ReadOnly Property num_rows As Integer
             Get
-                Return System.Math.Ceiling(_tiles.Count / width)
+                Return System.Math.Ceiling(_tiles.Count / num_cols)
             End Get
         End Property
         Public ReadOnly Property num_tiles As Integer
@@ -30,16 +30,26 @@ Namespace game_logic
 
             If tiles.Count Mod 2 <> 0 Then Throw New ArgumentOutOfRangeException("Attempted to initialize a game with an uneven number of tiles.")
 
-            Me.width = width
+            Me.num_cols = width
             _tiles = tiles
 
         End Sub
 
-        Public Function tile_at(column As Integer, row As Integer) As tile
-            If column > width OrElse column < 1 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid column.")
-            If column > num_rows OrElse row < 1 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid row.")
+        Public Sub shuffle_tiles()
+            _tiles.
+        End Sub
 
-            Return _tiles.Item((row - 1) * width + column)
+        ''' <summary>
+        ''' Returns the tile at the specified column and row.
+        ''' </summary>
+        ''' <param name="column">A zero-based column index.</param>
+        ''' <param name="row">A zero-based row index.</param>
+        ''' <returns>The tile at the specified column and row.</returns>
+        Public Function tile_at(column As Integer, row As Integer) As tile
+            If column >= num_cols OrElse column < 0 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid column.")
+            If row >= num_rows OrElse row < 0 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid row.")
+
+            Return _tiles.Item(column + row * num_cols)
         End Function
 
     End Class
