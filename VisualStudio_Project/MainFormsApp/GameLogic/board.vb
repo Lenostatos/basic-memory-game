@@ -35,7 +35,7 @@ Namespace game_logic
 
         End Sub
 
-        Public Function get_tile(column As Integer, row As Integer) As tile
+        Public Function tile_at(column As Integer, row As Integer) As tile
             If column > width OrElse column < 1 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid column.")
             If column > num_rows OrElse row < 1 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid row.")
 
