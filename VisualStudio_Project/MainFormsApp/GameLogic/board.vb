@@ -36,7 +36,7 @@ Namespace game_logic
         End Sub
 
         Public Sub shuffle_tiles()
-            _tiles.
+            _tiles = utility.functions.shuffle_collection(Of tile)(_tiles)
         End Sub
 
         ''' <summary>
@@ -44,7 +44,7 @@ Namespace game_logic
         ''' </summary>
         ''' <param name="column">A zero-based column index.</param>
         ''' <param name="row">A zero-based row index.</param>
-        ''' <returns>The tile at the specified column and row.</returns>
+        ''' <returns></returns>
         Public Function tile_at(column As Integer, row As Integer) As tile
             If column >= num_cols OrElse column < 0 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid column.")
             If row >= num_rows OrElse row < 0 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid row.")
