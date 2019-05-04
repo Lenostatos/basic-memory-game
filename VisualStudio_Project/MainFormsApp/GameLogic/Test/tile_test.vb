@@ -1,4 +1,4 @@
-﻿Namespace test
+﻿Namespace game_logic.test
 
     Public Class tile_test
 
@@ -7,7 +7,6 @@
         Public Function run() As Boolean Implements i_test.run
 
             Dim tile As New game_logic.tile(New game_logic.i_tile_item)
-
 
         End Function
 

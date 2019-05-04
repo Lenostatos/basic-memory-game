@@ -1,4 +1,4 @@
-﻿Namespace test
+﻿Namespace game_logic.test
 
     Module main
 

@@ -1,4 +1,4 @@
-﻿Namespace test
+﻿Namespace game_logic.test
 
     ''' <summary>
     ''' Runs all the tests that have been passed to the constructor.
