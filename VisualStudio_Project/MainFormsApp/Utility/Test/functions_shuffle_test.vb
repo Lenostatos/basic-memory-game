@@ -17,6 +17,9 @@
                 If Not shuffled_numbers.Contains(i) Then Return False
             Next
 
+            ' TODO: shuffle a sorted list of numbers very often.
+            ' In let's say at least 90 percent of the cases the shuffled list has to be different from the original.
+
             Return True
 
         End Function

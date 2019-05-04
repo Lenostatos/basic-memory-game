@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameLogic\Test\tile_item.vb" />
+    <Compile Include="GameLogic\tile_set.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
