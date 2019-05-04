@@ -37,6 +37,7 @@
         ''' </summary>
         ''' <param name="other"></param>
         ''' <returns><code>True</code> if the items on the tiles match. Otherwise <code>False</code>.</returns>
+        ''' <see cref="i_tile_item"/>
         Public Function matches(other As tile) As Boolean
             Return item.matches(other.item)
         End Function
