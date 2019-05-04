@@ -72,6 +72,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameLogic\Test\tile_item.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -100,8 +101,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Test\i_test.vb" />
-    <Compile Include="Test\test_chain.vb" />
+    <Compile Include="GameLogic\Test\i_test.vb" />
+    <Compile Include="GameLogic\Test\main.vb" />
+    <Compile Include="GameLogic\Test\test_chain.vb" />
+    <Compile Include="GameLogic\Test\tile_test.vb" />
     <Compile Include="Utility\functions.vb" />
   </ItemGroup>
   <ItemGroup>

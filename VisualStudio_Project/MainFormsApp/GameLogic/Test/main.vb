@@ -4,7 +4,7 @@
 
         Public Sub main()
 
-            Dim main_test As test_chain = New test_chain()
+            Dim main_test As test_chain = New test_chain(New tile_test)
 
         End Sub
 
