@@ -72,8 +72,9 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameLogic\matching_tiles.vb" />
     <Compile Include="GameLogic\Test\tile_item.vb" />
-    <Compile Include="GameLogic\tile_set.vb" />
+    <Compile Include="GameLogic\tile_collection.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>

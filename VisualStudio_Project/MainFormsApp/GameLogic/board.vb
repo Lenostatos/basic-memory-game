@@ -72,7 +72,7 @@ Namespace game_logic
             If column >= num_cols OrElse column < 0 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid column.")
             If row >= num_rows OrElse row < 0 Then Throw New ArgumentOutOfRangeException("Attempted to get a tile in an invalid row.")
 
-            Return _tiles.Item(column + row * num_cols)
+            Return _tiles(column + row * num_cols)
         End Function
 
     End Class
