@@ -5,6 +5,8 @@
     ''' </summary>
     Public Class matching_tiles
 
+        Implements IEquatable(Of matching_tiles)
+
         Public ReadOnly Property tiles As List(Of tile)
             Get
                 Return _tiles
@@ -29,10 +31,13 @@
 
         End Sub
 
-        Public Function matches(other As matching_tiles) As Boolean
-            Return _tiles(0).matches(other.tiles(0))
+        Protected Function undercover_matches(other As matching_tiles) As Boolean
+            Return _tiles(0).undercover_matches(other.tiles(0))
         End Function
 
+        Public Function Equals(other As matching_tiles) As Boolean Implements IEquatable(Of matching_tiles).Equals
+            Return undercover_matches(other)
+        End Function
     End Class
 
 End Namespace
