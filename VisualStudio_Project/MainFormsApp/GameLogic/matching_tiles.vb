@@ -19,11 +19,9 @@
             If tiles.Count < 2 Then Throw New ArgumentException("Attempted to create a set of matching tiles from less than two tiles.")
 
             Dim previous As tile = tiles(0)
-            previous.uncover()
 
             For Each t As tile In tiles
-                t.uncover()
-                If Not t.matches(previous) Then Throw New ArgumentException("Attempted to create a set of matching tiles from tiles that do not match.")
+                If Not t.undercover_matches(previous) Then Throw New ArgumentException("Attempted to create a set of matching tiles from tiles that do not match.")
                 previous = t
             Next
 

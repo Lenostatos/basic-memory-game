@@ -2,9 +2,10 @@
 
     ''' <summary>
     ''' Represents a tile on the game board.
-    ''' Can be covered and uncovered.
-    ''' Shows an item when uncovered.
-    ''' When uncovered the tile can be matched against other uncovered tiles.
+    ''' It can be covered and uncovered.
+    ''' When uncovered the item on it can be looked at.
+    ''' When uncovered the tile can be regularly matched against other uncovered tiles.
+    ''' There is an irregular way for matching tiles.
     ''' </summary>
     Public Class tile
 
@@ -40,6 +41,16 @@
         ''' <see cref="i_tile_item"/>
         Public Function matches(other As tile) As Boolean
             Return item.matches(other.item)
+        End Function
+
+        ''' <summary>
+        ''' Compares two potentially covered tiles against each other.
+        ''' </summary>
+        ''' <param name="other"></param>
+        ''' <returns><code>True</code> if the items on the tiles match. Otherwise <code>False</code>.</returns>
+        ''' <see cref="i_tile_item"/>
+        Public Function undercover_matches(other As tile) As Boolean
+            Return _item.matches(other._item)
         End Function
 
         ''' <summary>
