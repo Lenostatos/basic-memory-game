@@ -35,7 +35,7 @@
             Return _tiles(0).undercover_matches(other.tiles(0))
         End Function
 
-        Public Function Equals(other As matching_tiles) As Boolean Implements IEquatable(Of matching_tiles).Equals
+        Public Shadows Function Equals(other As matching_tiles) As Boolean Implements IEquatable(Of matching_tiles).Equals
             Return undercover_matches(other)
         End Function
     End Class

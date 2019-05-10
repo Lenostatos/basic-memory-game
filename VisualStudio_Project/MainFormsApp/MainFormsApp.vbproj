@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameLogic\matching_tiles.vb" />
+    <Compile Include="GameLogic\player.vb" />
     <Compile Include="GameLogic\Test\tile_item.vb" />
     <Compile Include="GameLogic\tile_collection.vb" />
     <Compile Include="MainForm.vb">
