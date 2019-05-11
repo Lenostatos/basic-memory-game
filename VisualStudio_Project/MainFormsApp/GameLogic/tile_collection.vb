@@ -32,10 +32,8 @@
 
                     Dim return_tiles As New List(Of tile)(count_of_single_tiles)
 
-                    For Each tile_set As tile_tuple In Me
-                        For Each t As tile In tile_set
-                            return_tiles.Add(t)
-                        Next
+                    For Each tile_t As tile_tuple In Me
+                        return_tiles.AddRange(tile_t)
                     Next
 
                     Return return_tiles
