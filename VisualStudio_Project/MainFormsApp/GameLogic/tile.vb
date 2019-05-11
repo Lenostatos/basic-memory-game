@@ -15,6 +15,12 @@
             End Get
         End Property
 
+        Public ReadOnly Property id As Integer
+            Get
+                Return _id
+            End Get
+        End Property
+
         Public ReadOnly Property item As i_tile_item
             Get
                 If Not covered Then
@@ -25,10 +31,11 @@
             End Get
         End Property
 
-        Private _covered As Boolean
-        Private _item As i_tile_item
+        Private Property _covered As Boolean
+        Private Property _id As Integer
+        Private Property _item As i_tile_item
 
-        Public Sub New(item As i_tile_item, Optional covered As Boolean = True)
+        Public Sub New(item As i_tile_item, Optional id As Integer = 0, Optional covered As Boolean = True)
             _item = item
             _covered = covered
         End Sub
@@ -70,6 +77,10 @@
                 _covered = True
             End If
         End Sub
+
+        Public Overrides Function GetHashCode() As Integer
+            Return id
+        End Function
 
     End Class
 
