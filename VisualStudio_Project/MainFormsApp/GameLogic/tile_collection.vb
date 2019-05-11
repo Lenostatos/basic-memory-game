@@ -6,7 +6,7 @@
     ''' </summary>
     Public Class tile_collection
 
-        Inherits HashSet(Of matching_tiles)
+        Inherits HashSet(Of tile_tuple)
 
         ''' <summary>
         ''' Returns the total number of tiles in the collection.
@@ -14,7 +14,7 @@
         ''' <returns></returns>
         Public ReadOnly Property count_of_single_tiles As Integer
             Get
-                Return First.tiles.Count * Count
+                Return First.Count * Count
             End Get
         End Property
 
@@ -32,8 +32,8 @@
 
                     Dim return_tiles As New List(Of tile)(count_of_single_tiles)
 
-                    For Each tile_set As matching_tiles In Me
-                        For Each t As tile In tile_set.tiles
+                    For Each tile_set As tile_tuple In Me
+                        For Each t As tile In tile_set
                             return_tiles.Add(t)
                         Next
                     Next
@@ -44,8 +44,8 @@
             End Get
         End Property
 
-        Public Sub New(tile_sets As IEnumerable(Of matching_tiles))
-            MyBase.New(tile_sets, New filter_for_set_of_matching_tiles())
+        Public Sub New(tile_sets As IEnumerable(Of tile_tuple))
+            MyBase.New(tile_sets, New filter_for_set_of_tile_tuples())
         End Sub
 
         ''' <summary>
@@ -53,10 +53,10 @@
         ''' sets of matching tiles which contain the same amount
         ''' of tiles and do not show the same item.
         ''' </summary>
-        ''' <see cref="filter_for_set_of_matching_tiles.Equals(matching_tiles, matching_tiles)"/>
-        Private Class filter_for_set_of_matching_tiles
+        ''' <see cref="filter_for_set_of_tile_tuples.Equals(tile_tuple, tile_tuple)"/>
+        Private Class filter_for_set_of_tile_tuples
 
-            Implements IEqualityComparer(Of matching_tiles)
+            Implements IEqualityComparer(Of tile_tuple)
 
             Private _equal_by_number As New equality_comparer_of_matching_tiles_by_count_of_tiles()
             Private _equal_by_item As New equality_comparer_of_matching_tiles_by_tile_item()
@@ -69,7 +69,7 @@
             ''' <param name="x"></param>
             ''' <param name="y"></param>
             ''' <returns></returns>
-            Public Shadows Function Equals(x As matching_tiles, y As matching_tiles) As Boolean Implements IEqualityComparer(Of matching_tiles).Equals
+            Public Shadows Function Equals(x As tile_tuple, y As tile_tuple) As Boolean Implements IEqualityComparer(Of tile_tuple).Equals
                 If x Is Nothing OrElse y Is Nothing Then
                     Throw New ArgumentNullException()
                 Else
@@ -77,7 +77,7 @@
                 End If
             End Function
 
-            Public Shadows Function GetHashCode(obj As matching_tiles) As Integer Implements IEqualityComparer(Of matching_tiles).GetHashCode
+            Public Shadows Function GetHashCode(obj As tile_tuple) As Integer Implements IEqualityComparer(Of tile_tuple).GetHashCode
                 Throw New NotImplementedException()
             End Function
 

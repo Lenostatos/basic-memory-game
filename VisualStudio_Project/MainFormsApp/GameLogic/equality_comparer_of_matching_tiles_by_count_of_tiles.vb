@@ -16,7 +16,7 @@
             If obj Is Nothing Then
                 Throw New ArgumentNullException()
             Else
-                Return obj.tiles.Count
+                Return obj.Count
             End If
         End Function
     End Class

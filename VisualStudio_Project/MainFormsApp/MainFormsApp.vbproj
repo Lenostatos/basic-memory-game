@@ -80,6 +80,7 @@
     <Compile Include="GameLogic\player.vb" />
     <Compile Include="GameLogic\Test\tile_item.vb" />
     <Compile Include="GameLogic\tile_collection.vb" />
+    <Compile Include="GameLogic\tile_tuple.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>

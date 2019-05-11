@@ -13,12 +13,13 @@
         End Function
 
         Public Shadows Function GetHashCode(obj As matching_tiles) As Integer Implements IEqualityComparer(Of matching_tiles).GetHashCode
-            If obj Is Nothing Then
+            If obj Is Nothing OrElse obj.Count = 0 Then
                 Throw New ArgumentNullException()
             Else
-                Return obj.tiles.First.item.id
+                Return obj.First.item.id
             End If
         End Function
+
     End Class
 
 End Namespace

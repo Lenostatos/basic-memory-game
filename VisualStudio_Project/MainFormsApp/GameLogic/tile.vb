@@ -9,6 +9,8 @@
     ''' </summary>
     Public Class tile
 
+        Implements IEquatable(Of tile)
+
         Public ReadOnly Property covered As Boolean
             Get
                 Return _covered
@@ -80,6 +82,14 @@
 
         Public Overrides Function GetHashCode() As Integer
             Return id
+        End Function
+
+        Public Shadows Function Equals(other As tile) As Boolean Implements IEquatable(Of tile).Equals
+            If other Is Nothing Then
+                Return False
+            Else
+                Return id.Equals(other.id)
+            End If
         End Function
 
     End Class
