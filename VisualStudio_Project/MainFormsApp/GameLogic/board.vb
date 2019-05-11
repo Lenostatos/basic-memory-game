@@ -3,7 +3,7 @@
 Namespace game_logic
 
     ''' <summary>
-    ''' Models a board of memory tiles.
+    ''' Models a rectangular board of memory tiles.
     ''' </summary>
     Public Class board
 
@@ -11,68 +11,76 @@ Namespace game_logic
         ''' The number of tiles per row.
         ''' </summary>
         Public ReadOnly Property num_cols As Integer
+            Get
+                Return _num_cols
+            End Get
+        End Property
 
         ''' <summary>
         ''' The number of rows.
         ''' </summary>
         Public ReadOnly Property num_rows As Integer
             Get
-                Return System.Math.Ceiling(_tiles.Count / num_cols)
+                Return Math.Ceiling(_tile_groups.count_of_single_tiles / num_cols)
             End Get
         End Property
 
+        ''' <summary>
+        ''' Returns the number of tiles on the board.
+        ''' </summary>
+        ''' <returns></returns>
         Public ReadOnly Property num_tiles As Integer
             Get
-                Return _tiles.Count
+                Return _tile_groups.count_of_single_tiles
             End Get
         End Property
 
-        Private Property _tiles As List(Of tile)
+        Private Property _tile_groups As tile_collection
+        Private Property _num_cols As Integer
 
         ''' <summary>
         ''' Creates a new board from the passed tiles.
         ''' All tiles are covered and put into a random order.
         ''' </summary>
         ''' <param name="width"></param>
-        ''' <param name="tiles"></param>
-        Public Sub New(width As Integer, tiles As List(Of tile))
+        ''' <param name="tile_groups"></param>
+        Public Sub New(width As Integer, tile_groups As tile_collection)
 
-            If tiles Is Nothing Then Throw New ArgumentNullException(
+            If tile_groups Is Nothing Then Throw New ArgumentNullException(
                 "Attempted to initialize a board without tiles."
                 )
 
             If width < 1 Then Throw New ArgumentOutOfRangeException(
                 "Attempted to initialize a memory board with a width lower than 1."
                 )
-            If width > tiles.Count Then Throw New ArgumentOutOfRangeException(
+            If width > tile_groups.count_of_single_tiles Then Throw New ArgumentOutOfRangeException(
                 "Attempted to initialize a memory board with a width 
                 higher than the number of given tiles."
                 )
 
-            If tiles.Count Mod 2 <> 0 Then Throw New ArgumentOutOfRangeException(
-                "Attempted to initialize a game with an uneven number of tiles."
-                )
-
-            Me.num_cols = width
-            _tiles = tiles
+            _num_cols = width
+            _tile_groups = tile_groups
 
             shuffle_tiles()
 
+            For Each t As tile In _tile_groups.tiles
+                t.cover()
+            Next
 
         End Sub
 
         ''' <summary>
         ''' Shuffles the tiles on the board.
         ''' </summary>
-        Public Sub shuffle_tiles()
-            _tiles = utility.functions.shuffle_collection(Of tile)(_tiles)
+        Private Sub shuffle_tiles()
+            _tile_groups = utility.functions.shuffle_collection(Of tile)(_tile_groups)
         End Sub
 
         ''' <summary>
         ''' Covers all tiles on the board.
         ''' </summary>
         Public Sub cover_tiles()
-            For Each t As tile In _tiles
+            For Each t As tile In _tile_groups.tiles
                 t.cover()
             Next
         End Sub
@@ -92,7 +100,7 @@ Namespace game_logic
                 "Attempted to get a tile in an invalid row."
                 )
 
-            Return _tiles(column + row * num_cols)
+            Return _tile_groups.tiles(column + row * num_cols)
 
         End Function
 
@@ -104,11 +112,11 @@ Namespace game_logic
         ''' <returns></returns>
         Public Function tile_at(index As Integer) As tile
 
-            If index >= _tiles.Count OrElse index < 0 Then Throw New ArgumentOutOfRangeException(
+            If index >= _tile_groups.count_of_single_tiles OrElse index < 0 Then Throw New ArgumentOutOfRangeException(
                 "Attempted to get a tile at an invalid index."
                 )
 
-            Return _tiles(index)
+            Return _tile_groups.tiles(index)
 
         End Function
 

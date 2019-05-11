@@ -54,7 +54,7 @@
         End Function
 
         ''' <summary>
-        ''' Uncovers the tile if possible.
+        ''' Uncovers the tile. Does nothing if the tile is already uncovered.
         ''' </summary>
         Public Sub uncover()
             If covered Then
@@ -63,7 +63,7 @@
         End Sub
 
         ''' <summary>
-        ''' Covers the tile if possible.
+        ''' Covers the tile. Does nothing if the tile is already covered.
         ''' </summary>
         Public Sub cover()
             If Not covered Then

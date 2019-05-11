@@ -1,12 +1,22 @@
 ﻿Namespace game_logic
 
     ''' <summary>
-    ''' Models a collection of memory tiles within which every
-    ''' tile has the same number of matching "partner" tiles.
+    ''' Models a set of same-sized groups of memory tiles where
+    ''' within each group all tiles match with each other.
     ''' </summary>
     Public Class tile_collection
 
         Inherits HashSet(Of matching_tiles)
+
+        ''' <summary>
+        ''' Returns the total number of tiles in the collection.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property count_of_single_tiles As Integer
+            Get
+                Return First.tiles.Count * Count
+            End Get
+        End Property
 
         ''' <summary>
         ''' Returns all tiles in the collection as a list or
@@ -20,7 +30,7 @@
                     Return Nothing
                 Else
 
-                    Dim return_tiles As New List(Of tile)(First.tiles.Count * Count)
+                    Dim return_tiles As New List(Of tile)(count_of_single_tiles)
 
                     For Each tile_set As matching_tiles In Me
                         For Each t As tile In tile_set.tiles
