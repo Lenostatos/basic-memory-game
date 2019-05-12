@@ -11,15 +11,18 @@
 
         Implements IEquatable(Of tile)
 
-        Public ReadOnly Property covered As Boolean
-            Get
-                Return _covered
-            End Get
-        End Property
+        Public Const exception_message_looked_at_item_on_covered_tile As String =
+            "Attempted to look at an item on a covered tile."
 
         Public ReadOnly Property id As Integer
             Get
                 Return _id
+            End Get
+        End Property
+
+        Public ReadOnly Property covered As Boolean
+            Get
+                Return _covered
             End Get
         End Property
 
@@ -28,18 +31,23 @@
                 If Not covered Then
                     Return _item
                 Else
-                    Throw New InvalidOperationException("Attempted to look at an item on a covered tile.")
+                    Throw New InvalidOperationException(exception_message_looked_at_item_on_covered_tile)
                 End If
             End Get
         End Property
 
-        Private Property _covered As Boolean
         Private Property _id As Integer
+        Private Property _covered As Boolean
         Private Property _item As i_tile_item
 
-        Public Sub New(item As i_tile_item, Optional id As Integer = 0, Optional covered As Boolean = True)
+        Public Sub New(id As Integer, item As i_tile_item, Optional covered As Boolean = True)
+
+            If item Is Nothing Then Throw New ArgumentNullException()
+
+            _id = id
             _item = item
             _covered = covered
+
         End Sub
 
         ''' <summary>
