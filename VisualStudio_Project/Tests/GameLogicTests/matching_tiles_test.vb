@@ -8,24 +8,42 @@ Namespace game_logic_test
     Public Class matching_tiles_test
 
         <TestMethod>
-        <ExpectedException(GetType(Exception))>
-        Public Sub initialization_with_certain_tile_combinations_should_throw_()
+        Public Sub initialization_with_non_matching_tiles_should_throw_argumentexception()
 
             Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
-            Dim t_2 As New tile(0, New tile_item(1, New tile_item_design()))
+            Dim t_2 As New tile(1, New tile_item(1, New tile_item_design()))
 
-            Dim matches As New matching_tiles From {
-                t_1,
-                t_2
-            }
+            Try
+                Dim matches As New matching_tiles_experiment From {
+                    t_1,
+                    t_2
+                }
+            Catch ex As ArgumentException
+                StringAssert.Contains(ex.Message, matching_tiles_experiment.EXCEPTION_MESSAGE_ADDED_NON_MATCHING_TILE)
+                Return
+            End Try
 
-            t_1 = New tile(0, New tile_item(0, New tile_item_design()))
-            t_2 = New tile(1, New tile_item(0, New tile_item_design()))
+            Assert.Fail("The expected exception was not thrown.")
 
-            matches = New matching_tiles From {
-                t_1,
-                t_2
-            }
+        End Sub
+
+        <TestMethod>
+        Public Sub initialization_with_non_individual_tiles_should_throw_argumentexception()
+
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
+            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design()))
+
+            Try
+                Dim matches As New matching_tiles_experiment From {
+                    t_1,
+                    t_2
+                }
+            Catch ex As ArgumentException
+                StringAssert.Contains(ex.Message, matching_tiles_experiment.EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE)
+                Return
+            End Try
+
+            Assert.Fail("The expected exception was not thrown.")
 
         End Sub
 
