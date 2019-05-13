@@ -40,6 +40,10 @@
             End Get
         End Property
 
+        ''' <summary>
+        ''' Returns the tile's item iff the tile is uncovered.
+        ''' </summary>
+        ''' <returns></returns>
         Public ReadOnly Property item As i_tile_item
             Get
                 If Not covered Then
@@ -51,12 +55,23 @@
         End Property
 
         ''' <summary>
+        ''' Returns the tile's item regardless of whether the tile is covered or not.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property undercover_item As i_tile_item
+            Get
+                Return _item
+            End Get
+        End Property
+
+        ''' <summary>
         ''' Compares the tile against another tile.
         ''' </summary>
         ''' <param name="other"></param>
         ''' <returns><code>True</code> if the items on the tiles match. Otherwise <code>False</code>.</returns>
         ''' <see cref="i_tile_item"/>
         Public Function matches(other As tile) As Boolean
+            If other Is Nothing Then Throw New ArgumentNullException()
             Return item.matches(other.item)
         End Function
 
@@ -67,7 +82,8 @@
         ''' <returns><code>True</code> if the items on the tiles match. Otherwise <code>False</code>.</returns>
         ''' <see cref="i_tile_item"/>
         Public Function undercover_matches(other As tile) As Boolean
-            Return _item.matches(other._item)
+            If other Is Nothing Then Throw New ArgumentNullException()
+            Return undercover_item.matches(other.undercover_item)
         End Function
 
         ''' <summary>
@@ -99,6 +115,24 @@
                 Return id.Equals(other.id)
             End If
         End Function
+
+        Public Class equality_comparer_of_tiles_by_item
+
+            Implements IEqualityComparer(Of tile)
+
+            Public Shadows Function Equals(x As tile, y As tile) As Boolean Implements IEqualityComparer(Of tile).Equals
+                If x Is Nothing OrElse y Is Nothing Then
+                    Return False
+                Else
+                    Return x.undercover_matches(y)
+                End If
+            End Function
+
+            Public Shadows Function GetHashCode(obj As tile) As Integer Implements IEqualityComparer(Of tile).GetHashCode
+                Throw New NotImplementedException()
+            End Function
+
+        End Class
 
     End Class
 

@@ -78,6 +78,8 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameLogicTests\matching_tiles_test.vb" />
+    <Compile Include="GameLogicTests\tile_item_test.vb" />
     <Compile Include="GameLogicTests\tile_test.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
