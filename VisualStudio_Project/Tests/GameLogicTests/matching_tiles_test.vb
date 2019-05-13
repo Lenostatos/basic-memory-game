@@ -14,12 +14,12 @@ Namespace game_logic_test
             Dim t_2 As New tile(1, New tile_item(1, New tile_item_design()))
 
             Try
-                Dim matches As New matching_tiles_experiment From {
+                Dim matches As New matching_tiles From {
                     t_1,
                     t_2
                 }
             Catch ex As ArgumentException
-                StringAssert.Contains(ex.Message, matching_tiles_experiment.EXCEPTION_MESSAGE_ADDED_NON_MATCHING_TILE)
+                StringAssert.Contains(ex.Message, matching_tiles.EXCEPTION_MESSAGE_ADDED_NON_MATCHING_TILE)
                 Return
             End Try
 
@@ -34,12 +34,12 @@ Namespace game_logic_test
             Dim t_2 As New tile(0, New tile_item(0, New tile_item_design()))
 
             Try
-                Dim matches As New matching_tiles_experiment From {
+                Dim matches As New matching_tiles From {
                     t_1,
                     t_2
                 }
             Catch ex As ArgumentException
-                StringAssert.Contains(ex.Message, matching_tiles_experiment.EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE)
+                StringAssert.Contains(ex.Message, matching_tiles.EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE)
                 Return
             End Try
 
