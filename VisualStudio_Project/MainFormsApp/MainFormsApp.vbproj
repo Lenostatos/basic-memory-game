@@ -74,6 +74,7 @@
   <ItemGroup>
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_count_of_tiles.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_tile_item.vb" />
+    <Compile Include="GameLogic\game.vb" />
     <Compile Include="GameLogic\matching_tiles.vb" />
     <Compile Include="GameLogic\mechanic.vb" />
     <Compile Include="GameLogic\moderator.vb" />

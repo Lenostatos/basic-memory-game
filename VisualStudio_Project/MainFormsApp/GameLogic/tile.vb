@@ -3,16 +3,30 @@
     ''' <summary>
     ''' Represents a tile on the game board.
     ''' It can be covered and uncovered.
-    ''' When uncovered the item on it can be looked at.
+    ''' When uncovered the item on the tile can be looked at.
     ''' When uncovered the tile can be regularly matched against other uncovered tiles.
-    ''' There is an irregular way for matching tiles.
+    ''' Also provides an irregular way for matching tiles.
     ''' </summary>
     Public Class tile
 
         Implements IEquatable(Of tile)
 
-        Public Const exception_message_looked_at_item_on_covered_tile As String =
+        Public Const EXCEPTION_MESSAGE_LOOKED_AT_ITEM_ON_COVERED_TILE As String =
             "Attempted to look at an item on a covered tile."
+
+        Private Property _id As Integer
+        Private Property _covered As Boolean
+        Private Property _item As i_tile_item
+
+        Public Sub New(id As Integer, item As i_tile_item, Optional covered As Boolean = True)
+
+            If item Is Nothing Then Throw New ArgumentNullException()
+
+            _id = id
+            _item = item
+            _covered = covered
+
+        End Sub
 
         Public ReadOnly Property id As Integer
             Get
@@ -31,24 +45,10 @@
                 If Not covered Then
                     Return _item
                 Else
-                    Throw New InvalidOperationException(exception_message_looked_at_item_on_covered_tile)
+                    Throw New InvalidOperationException(EXCEPTION_MESSAGE_LOOKED_AT_ITEM_ON_COVERED_TILE)
                 End If
             End Get
         End Property
-
-        Private Property _id As Integer
-        Private Property _covered As Boolean
-        Private Property _item As i_tile_item
-
-        Public Sub New(id As Integer, item As i_tile_item, Optional covered As Boolean = True)
-
-            If item Is Nothing Then Throw New ArgumentNullException()
-
-            _id = id
-            _item = item
-            _covered = covered
-
-        End Sub
 
         ''' <summary>
         ''' Compares the tile against another tile.
