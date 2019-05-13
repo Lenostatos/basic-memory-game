@@ -23,7 +23,7 @@
 
         End Sub
 
-        Public Sub find_match(tiles As matching_tiles)
+        Public Sub find_match(tiles As tile_tuple)
             If tiles Is Nothing Then Throw New ArgumentNullException()
             _won_tiles.Add(tiles)
         End Sub

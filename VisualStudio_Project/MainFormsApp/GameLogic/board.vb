@@ -35,6 +35,12 @@ Namespace game_logic
             End Get
         End Property
 
+        Public ReadOnly Property tile_tuple_size As Integer
+            Get
+                Return _tile_groups.First().Count
+            End Get
+        End Property
+
         Private Property _tile_groups As tile_collection
         Private Property _num_cols As Integer
 
