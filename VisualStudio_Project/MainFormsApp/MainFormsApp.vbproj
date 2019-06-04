@@ -79,7 +79,7 @@
     <Compile Include="GameLogic\mechanic.vb" />
     <Compile Include="GameLogic\moderator.vb" />
     <Compile Include="GameLogic\player.vb" />
-    <Compile Include="GameLogic\tile_collection.vb" />
+    <Compile Include="GameLogic\tile_game_set.vb" />
     <Compile Include="GameLogic\tile_item.vb" />
     <Compile Include="GameLogic\tile_item_design.vb" />
     <Compile Include="GameLogic\tile_tuple.vb" />

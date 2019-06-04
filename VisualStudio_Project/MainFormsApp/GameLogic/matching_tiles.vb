@@ -6,6 +6,7 @@
     Public Class matching_tiles
 
         Implements ICollection(Of tile)
+        Implements IEquatable(Of matching_tiles)
 
         Public Const EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE As String =
             "Attempted to add an already existing tile to a set of matching tiles."
@@ -21,6 +22,7 @@
         Public Sub New(tiles As IEnumerable(Of tile))
 
             If tiles Is Nothing Then Throw New ArgumentNullException()
+            If tiles.Count = 0 Then Throw New ArgumentException()
 
             _tiles = New HashSet(Of tile)
 
@@ -38,6 +40,12 @@
 
         End Sub
 
+        Public ReadOnly Property tiles As IEnumerable(Of tile)
+            Get
+                Return _tiles
+            End Get
+        End Property
+
         ''' <summary>
         ''' Returns the item shared by all tiles of the group or Nothing if the group is empty.
         ''' </summary>
@@ -52,6 +60,11 @@
             End Get
         End Property
 
+        ''' <summary>
+        ''' Returns True if the item matches the other matching_tiles' item. False otherwise.
+        ''' </summary>
+        ''' <param name="other"></param>
+        ''' <returns></returns>
         Public Function undercover_matches_common_item(other As matching_tiles) As Boolean
             Return undercover_common_item.matches(other.undercover_common_item)
         End Function
@@ -106,6 +119,13 @@
             Return _tiles.GetEnumerator()
         End Function
 
+        Public Shadows Function Equals(other As matching_tiles) As Boolean Implements IEquatable(Of matching_tiles).Equals
+            If other Is Nothing Then
+                Return False
+            Else
+                Return undercover_matches_common_item(other)
+            End If
+        End Function
     End Class
 
 End Namespace
