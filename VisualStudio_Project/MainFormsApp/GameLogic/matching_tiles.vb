@@ -19,24 +19,33 @@
             _tiles = New HashSet(Of tile)
         End Sub
 
+        ''' <summary>
+        ''' Constructs a new set of matching tiles out of <paramref name="tiles"/>.
+        ''' </summary>
+        ''' <param name="tiles"></param>
+        ''' <exception cref="ArgumentException">Throws when tiles within <paramref name="tiles"/>
+        ''' do not all match with each other or when there are duplicates of tiles.</exception>
         Public Sub New(tiles As IEnumerable(Of tile))
 
             If tiles Is Nothing Then Throw New ArgumentNullException()
-            If tiles.Count = 0 Then Throw New ArgumentException()
 
             _tiles = New HashSet(Of tile)
 
-            Dim common_item As i_tile_item = tiles.First().undercover_item
+            If tiles.Count > 0 Then
 
-            For Each t As tile In tiles
+                Dim common_item As i_tile_item = tiles.First().undercover_item
 
-                If Not common_item.Equals(t.undercover_item) Then
-                    Throw New ArgumentException(EXCEPTION_MESSAGE_ADDED_NON_MATCHING_TILE)
-                ElseIf Not _tiles.Add(t) Then
-                    Throw New ArgumentException(EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE)
-                End If
+                For Each t As tile In tiles
 
-            Next
+                    If Not common_item.Equals(t.undercover_item) Then
+                        Throw New ArgumentException(EXCEPTION_MESSAGE_ADDED_NON_MATCHING_TILE)
+                    ElseIf Not _tiles.Add(t) Then
+                        Throw New ArgumentException(EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE)
+                    End If
+
+                Next
+
+            End If
 
         End Sub
 
@@ -81,6 +90,13 @@
             End Get
         End Property
 
+        ''' <summary>
+        ''' 
+        ''' </summary>
+        ''' <param name="t"></param>
+        ''' <exception cref="ArgumentException">Throws when tiles are added that do not
+        ''' match the already included tiles' items or when the added tile already exists
+        ''' in the set.</exception>
         Public Sub Add(t As tile) Implements ICollection(Of tile).Add
 
             If t Is Nothing Then Throw New ArgumentNullException()
@@ -125,6 +141,11 @@
             Else
                 Return undercover_matches_common_item(other)
             End If
+        End Function
+
+        Public Overrides Function GetHashCode() As Integer
+            If Count = 0 Then Throw New InvalidOperationException()
+            Return undercover_common_item.id
         End Function
     End Class
 

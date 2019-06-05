@@ -2,9 +2,9 @@
 
 Namespace game_logic
 
-    ''' <summary>
-    ''' Models a rectangular board of memory tiles.
-    ''' </summary>
+    '''' <summary>
+    '''' Models a rectangular board of memory tiles.
+    '''' </summary>
     'Public Class board
 
     '    ''' <summary>

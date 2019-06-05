@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameLogicTests\matching_tiles_test.vb" />
+    <Compile Include="GameLogicTests\matching_tiles_set_test.vb" />
     <Compile Include="GameLogicTests\tile_item_test.vb" />
     <Compile Include="GameLogicTests\tile_test.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

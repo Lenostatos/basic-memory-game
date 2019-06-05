@@ -8,6 +8,14 @@ Namespace game_logic_test
     Public Class matching_tiles_test
 
         <TestMethod>
+        Public Sub initialization_with_nothing_should_produce_empty_list()
+
+            Dim mt As New matching_tiles()
+            Assert.AreEqual(0, mt.tiles.Count)
+
+        End Sub
+
+        <TestMethod>
         Public Sub initialization_with_non_matching_tiles_should_throw_argumentexception()
 
             Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
