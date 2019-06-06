@@ -1,135 +1,160 @@
-﻿Imports System.Collections.Generic
+﻿Namespace game_logic
 
-Namespace game_logic
+    ''' <summary>
+    ''' Models a board of memory tiles as a simple list.
+    ''' Every tile on the board has the same number
+    ''' of matching tiles which is at least one.
+    ''' There are also at least two different items
+    ''' on the tiles.
+    ''' </summary>
+    Public Class board
 
-    '''' <summary>
-    '''' Models a rectangular board of memory tiles.
-    '''' </summary>
-    'Public Class board
+        Implements IReadOnlyList(Of tile)
 
-    '    ''' <summary>
-    '    ''' The number of tiles per row.
-    '    ''' </summary>
-    '    Public ReadOnly Property num_cols As Integer
-    '        Get
-    '            Return _num_cols
-    '        End Get
-    '    End Property
+        Public Const EXCEPTION_MESSAGE_NOT_ENOUGH_MATCHING_TILES As String =
+            "Attempted to use sets of matching tiles with less than two tiles each."
+        Public Const EXCEPTION_MESSAGE_NOT_ENOUGH_DIFFERENT_ITEMS As String =
+            "Attempted to use sets of matching tiles with overall less than two different items."
 
-    '    ''' <summary>
-    '    ''' The number of rows.
-    '    ''' </summary>
-    '    Public ReadOnly Property num_rows As Integer
-    '        Get
-    '            Return Math.Ceiling(_tile_groups.count_of_single_tiles / num_cols)
-    '        End Get
-    '    End Property
+        Private _mapping As List(Of tile)
 
-    '    ''' <summary>
-    '    ''' Returns the number of tiles on the board.
-    '    ''' </summary>
-    '    ''' <returns></returns>
-    '    Public ReadOnly Property num_tiles As Integer
-    '        Get
-    '            Return _tile_groups.count_of_single_tiles
-    '        End Get
-    '    End Property
+        ''' <summary>
+        ''' Places all the tiles on the board.
+        ''' </summary>
+        ''' <param name="tiles"></param>
+        Public Sub New(tiles As matching_tiles_set)
 
-    '    ''' <summary>
-    '    ''' Returns the number of tiles that match with each other.
-    '    ''' </summary>
-    '    ''' <returns></returns>
-    '    Public ReadOnly Property tile_tuple_size As Integer
-    '        Get
-    '            Return _tile_groups.First().Count
-    '        End Get
-    '    End Property
+            If tiles Is Nothing Then Throw New ArgumentNullException()
 
-    '    Private Property _tile_groups As tile_game_set
-    '    Private Property _num_cols As Integer
+            If tiles.Count < 2 Then
+                Throw New ArgumentException(EXCEPTION_MESSAGE_NOT_ENOUGH_DIFFERENT_ITEMS)
+            End If
 
-    '    ''' <summary>
-    '    ''' Creates a new board from the passed tiles.
-    '    ''' All tiles are covered and put into a random order.
-    '    ''' </summary>
-    '    ''' <param name="width"></param>
-    '    ''' <param name="tile_groups"></param>
-    '    Public Sub New(width As Integer, tile_groups As tile_game_set)
+            If tiles.size_of_matching_tile_groups < 2 Then
+                Throw New ArgumentException(EXCEPTION_MESSAGE_NOT_ENOUGH_MATCHING_TILES)
+            End If
 
-    '        If tile_groups Is Nothing Then Throw New ArgumentNullException(
-    '            "Attempted to initialize a board without tiles."
-    '            )
+            _mapping = tiles.tiles
 
-    '        If width < 1 Then Throw New ArgumentOutOfRangeException(
-    '            "Attempted to initialize a memory board with a width lower than 1."
-    '            )
-    '        If width > tile_groups.count_of_single_tiles Then Throw New ArgumentOutOfRangeException(
-    '            "Attempted to initialize a memory board with a width 
-    '            higher than the number of given tiles."
-    '            )
+        End Sub
 
-    '        _num_cols = width
-    '        _tile_groups = tile_groups
+        ''' <summary>
+        ''' Returns all tiles that are left on the board.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property tiles As IEnumerable(Of tile)
+            Get
 
-    '        shuffle_tiles()
+                Return _mapping.Where(Function(t As tile) t IsNot Nothing)
 
-    '        For Each t As tile In _tile_groups.tiles
-    '            t.cover()
-    '        Next
+            End Get
+        End Property
 
-    '    End Sub
+        ''' <summary>
+        ''' Returns all positions on the board, i.e. a tile
+        ''' or Nothing for each position.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property positions As List(Of tile)
+            Get
+                Return _mapping
+            End Get
+        End Property
 
-    '    ''' <summary>
-    '    ''' Shuffles the tiles on the board.
-    '    ''' </summary>
-    '    Private Sub shuffle_tiles()
-    '        _tile_groups = utility.functions.shuffle_collection(Of tile)(_tile_groups)
-    '    End Sub
+        Default Public ReadOnly Property Item(index As Integer) As tile Implements IReadOnlyList(Of tile).Item
+            Get
+                Return _mapping(index)
+            End Get
+        End Property
 
-    '    ''' <summary>
-    '    ''' Covers all tiles on the board.
-    '    ''' </summary>
-    '    Public Sub cover_tiles()
-    '        For Each t As tile In _tile_groups.tiles
-    '            t.cover()
-    '        Next
-    '    End Sub
+        ''' <summary>
+        ''' Returns the number of positions on the board.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property Count As Integer Implements IReadOnlyCollection(Of tile).Count
+            Get
+                Return _mapping.Count
+            End Get
+        End Property
 
-    '    ''' <summary>
-    '    ''' Returns the tile at the specified column and row.
-    '    ''' </summary>
-    '    ''' <param name="column">A zero-based column index.</param>
-    '    ''' <param name="row">A zero-based row index.</param>
-    '    ''' <returns></returns>
-    '    Public Function tile_at(column As Integer, row As Integer) As tile
+        ''' <summary>
+        ''' Shuffles the tiles on the board.
+        ''' Empty positions are left as is.
+        ''' </summary>
+        Public Sub shuffle_tiles()
 
-    '        If column >= num_cols OrElse column < 0 Then Throw New ArgumentOutOfRangeException(
-    '            "Attempted to get a tile in an invalid column."
-    '            )
-    '        If row >= num_rows OrElse row < 0 Then Throw New ArgumentOutOfRangeException(
-    '            "Attempted to get a tile in an invalid row."
-    '            )
+            Dim shuffled_tiles As List(Of tile) =
+                utility.functions.shuffle_collection(tiles)
 
-    '        Return _tile_groups.tiles(column + row * num_cols)
+            Dim index_shuffled As Integer = 0
+            For Each t As tile In _mapping
+                If t IsNot Nothing Then
+                    t = shuffled_tiles(index_shuffled)
+                    index_shuffled = index_shuffled + 1
+                End If
+            Next
 
-    '    End Function
+        End Sub
 
-    '    ''' <summary>
-    '    ''' Returns the tile at the specified index.
-    '    ''' For this the tiles are arranged in a list that results from all rows being concatenated.
-    '    ''' </summary>
-    '    ''' <param name="index">A zero-based index.</param>
-    '    ''' <returns></returns>
-    '    Public Function tile_at(index As Integer) As tile
+        ''' <summary>
+        ''' Shuffles the positions on the board.
+        ''' </summary>
+        Public Sub shuffle_positions()
 
-    '        If index >= _tile_groups.count_of_single_tiles OrElse index < 0 Then Throw New ArgumentOutOfRangeException(
-    '            "Attempted to get a tile at an invalid index."
-    '            )
+            _mapping = utility.functions.shuffle_collection(Of tile)(_mapping)
 
-    '        Return _tile_groups.tiles(index)
+        End Sub
 
-    '    End Function
+        ''' <summary>
+        ''' Covers all tiles on the board.
+        ''' </summary>
+        Public Sub cover_tiles()
+            For Each t As tile In tiles
+                t.cover()
+            Next
+        End Sub
 
-    'End Class
+        ''' <summary>
+        ''' Remove tiles from the board at the zero-based
+        ''' <paramref name="positions"/> by setting them to Nothing.
+        ''' </summary>
+        ''' <param name="positions"></param>
+        ''' <returns>The removed tiles.</returns>
+        Public Function remove_matching_tiles(positions As IEnumerable(Of Integer)) As matching_tiles
+
+            Dim removal_candidates As New List(Of tile)(positions.Count)
+
+            ' Collect all the candidates for removal
+            For Each index As Integer In positions
+                removal_candidates.Add(_mapping(index))
+            Next
+
+            ' Try to put them into a set of matching tiles
+            Dim to_be_removed As matching_tiles
+            Try
+                to_be_removed = New matching_tiles(removal_candidates)
+            Catch ex As Exception
+                ' If doesn't work rethrow the risen exception.
+                Throw
+            End Try
+
+            ' If it worked, set the removed tiles on the board
+            ' to Nothing.
+            For Each index As Integer In positions
+                _mapping(index) = Nothing
+            Next
+
+            Return to_be_removed
+
+        End Function
+
+        Public Function GetEnumerator() As IEnumerator(Of tile) Implements IEnumerable(Of tile).GetEnumerator
+            Return _mapping.GetEnumerator()
+        End Function
+
+        Private Function IEnumerable_GetEnumerator() As IEnumerator Implements IEnumerable.GetEnumerator
+            Return _mapping.GetEnumerator()
+        End Function
+    End Class
 
 End Namespace

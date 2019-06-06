@@ -1,7 +1,7 @@
 ﻿Namespace game_logic
 
     ''' <summary>
-    ''' Models a set of tiles that all match with each other.
+    ''' Models a set of tiles that all match each other.
     ''' </summary>
     Public Class matching_tiles
 
@@ -37,7 +37,7 @@
 
                 For Each t As tile In tiles
 
-                    If Not common_item.Equals(t.undercover_item) Then
+                    If Not common_item.matches(t.undercover_item) Then
                         Throw New ArgumentException(EXCEPTION_MESSAGE_ADDED_NON_MATCHING_TILE)
                     ElseIf Not _tiles.Add(t) Then
                         Throw New ArgumentException(EXCEPTION_MESSAGE_ADDED_ALREADY_EXISTING_TILE)

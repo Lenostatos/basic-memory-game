@@ -82,7 +82,6 @@
     <Compile Include="GameLogic\matching_tiles_set.vb" />
     <Compile Include="GameLogic\tile_item.vb" />
     <Compile Include="GameLogic\tile_item_design.vb" />
-    <Compile Include="GameLogic\tile_tuple.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>

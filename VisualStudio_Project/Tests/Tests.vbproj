@@ -78,6 +78,7 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameLogicTests\board_test.vb" />
     <Compile Include="GameLogicTests\matching_tiles_test.vb" />
     <Compile Include="GameLogicTests\matching_tiles_set_test.vb" />
     <Compile Include="GameLogicTests\tile_item_test.vb" />

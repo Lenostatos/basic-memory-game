@@ -1,6 +1,4 @@
-﻿Imports System.Text
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
-Imports MainFormsApp.game_logic
+﻿Imports MainFormsApp.game_logic
 
 Namespace game_logic_test
 

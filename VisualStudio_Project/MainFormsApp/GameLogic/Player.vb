@@ -1,9 +1,21 @@
 ﻿Namespace game_logic
 
     ''' <summary>
-    ''' Models a player that can find matching tiles.
+    ''' Models a player that can collect matching tiles.
     ''' </summary>
     Public Class player
+
+        Private Property _name As String
+        Private Property _won_tiles As matching_tiles_set
+
+        Public Sub New(name As String)
+
+            If name Is Nothing Then Throw New ArgumentNullException()
+
+            _name = name
+            _won_tiles = New matching_tiles_set()
+
+        End Sub
 
         Public ReadOnly Property name As String
             Get
@@ -11,19 +23,13 @@
             End Get
         End Property
 
-        Private Property _name As String
-        Private Property _won_tiles As HashSet(Of matching_tiles)
+        Public ReadOnly Property won_tiles As matching_tiles_set
+            Get
+                Return _won_tiles
+            End Get
+        End Property
 
-        Public Sub New(name As String)
-
-            If name Is Nothing Then Throw New ArgumentNullException()
-
-            _name = name
-            _won_tiles = New HashSet(Of matching_tiles)
-
-        End Sub
-
-        Public Sub find_match(tiles As tile_tuple)
+        Public Sub collect_tiles(tiles As matching_tiles)
             If tiles Is Nothing Then Throw New ArgumentNullException()
             _won_tiles.Add(tiles)
         End Sub

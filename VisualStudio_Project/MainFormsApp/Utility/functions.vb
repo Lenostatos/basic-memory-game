@@ -8,7 +8,7 @@
         ''' <typeparam name="t"></typeparam>
         ''' <param name="collection"></param>
         ''' <returns></returns>
-        Public Function shuffle_collection(Of t)(collection As ICollection(Of t)) As ICollection(Of t)
+        Public Function shuffle_collection(Of t)(collection As IEnumerable(Of t)) As IEnumerable(Of t)
 
             ' Create a sequence of indices.
             Dim indices As New List(Of UInteger)(collection.Count)

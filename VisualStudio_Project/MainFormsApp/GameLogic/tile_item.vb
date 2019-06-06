@@ -3,7 +3,7 @@
     Public Class tile_item
 
         Implements i_tile_item
-        Implements IEquatable(Of tile_item)
+        Implements IEquatable(Of i_tile_item)
 
         Private Property _id As Integer
         Private Property _design As i_tile_item_design
@@ -33,14 +33,13 @@
             Return id.Equals(other.id)
         End Function
 
-        Public Shadows Function Equals(other As tile_item) As Boolean Implements IEquatable(Of tile_item).Equals
-            Return matches(other)
-        End Function
-
         Public Overrides Function GetHashCode() As Integer
             Return id
         End Function
 
+        Public Shadows Function Equals(other As i_tile_item) As Boolean Implements IEquatable(Of i_tile_item).Equals
+            Return matches(other)
+        End Function
     End Class
 
 End Namespace
