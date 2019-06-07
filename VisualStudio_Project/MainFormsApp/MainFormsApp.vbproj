@@ -72,6 +72,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameLogic\board_layout.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_count_of_tiles.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_tile_item.vb" />
     <Compile Include="GameLogic\game.vb" />

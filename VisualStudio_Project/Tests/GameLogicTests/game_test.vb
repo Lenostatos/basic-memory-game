@@ -8,14 +8,16 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub test_construction()
 
-            Dim players As List(Of player)
-            Dim tiles As matching_tiles_set
+            'Dim players As List(Of player)
+            'Dim tiles As matching_tiles_set
 
-            Dim my_game As New game(players, tiles)
+            'Dim my_game As New game(players, tiles)
 
-            For Each p As player In players
-                Assert.IsTrue(my_game.players.Contains(p))
-            Next
+            'For Each p As player In players
+            '    Assert.IsTrue(my_game.players.Contains(p))
+            'Next
+
+            'my_game.tiles
 
         End Sub
 
