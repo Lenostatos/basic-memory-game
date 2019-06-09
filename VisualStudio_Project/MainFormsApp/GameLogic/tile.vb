@@ -116,6 +116,10 @@
             End If
         End Function
 
+        Public Overrides Function ToString() As String
+            Return id.ToString()
+        End Function
+
         Public Class equality_comparer_of_tiles_by_item
 
             Implements IEqualityComparer(Of tile)

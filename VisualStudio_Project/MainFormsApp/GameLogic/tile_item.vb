@@ -40,6 +40,10 @@
         Public Shadows Function Equals(other As i_tile_item) As Boolean Implements IEquatable(Of i_tile_item).Equals
             Return matches(other)
         End Function
+
+        Public Overrides Function ToString() As String
+            Return id.ToString()
+        End Function
     End Class
 
 End Namespace

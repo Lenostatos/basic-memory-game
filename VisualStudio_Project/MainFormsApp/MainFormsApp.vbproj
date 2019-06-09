@@ -72,13 +72,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameLogic\board_layout.vb" />
+    <Compile Include="GameLogic\game_board_layout.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_count_of_tiles.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_tile_item.vb" />
     <Compile Include="GameLogic\game.vb" />
     <Compile Include="GameLogic\matching_tiles.vb" />
-    <Compile Include="GameLogic\mechanic.vb" />
-    <Compile Include="GameLogic\moderator.vb" />
     <Compile Include="GameLogic\player.vb" />
     <Compile Include="GameLogic\matching_tiles_set.vb" />
     <Compile Include="GameLogic\tile_item.vb" />
@@ -90,7 +88,7 @@
       <DependentUpon>MainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GameLogic\board.vb" />
+    <Compile Include="GameLogic\game_board.vb" />
     <Compile Include="GameLogic\i_tile_item.vb" />
     <Compile Include="GameLogic\i_tile_item_design.vb" />
     <Compile Include="GameLogic\tile.vb" />

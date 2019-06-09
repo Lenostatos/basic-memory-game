@@ -7,7 +7,7 @@
     ''' There are also at least two different items
     ''' on the tiles.
     ''' </summary>
-    Public Class board
+    Public Class game_board
 
         Implements IReadOnlyList(Of tile)
 
@@ -17,24 +17,34 @@
             "Attempted to use sets of matching tiles with overall less than two different items."
 
         Private _mapping As List(Of tile)
+        Private _layout As game_board_layout
+        Private ReadOnly _size_of_matching_tile_groups As Integer
 
         ''' <summary>
         ''' Places all the tiles on the board.
         ''' </summary>
-        ''' <param name="tiles"></param>
-        Public Sub New(tiles As matching_tiles_set)
+        ''' <param name="tile_set">A set of tiles with at least two
+        ''' different items in the whole set and at least two tiles
+        ''' per item. For every item there should be the same number
+        ''' of tiles.</param>
+        Public Sub New(tile_set As matching_tiles_set,
+                       fixed_dimension As game_board_layout.dimension,
+                       fixed_dimension_length As Integer)
 
-            If tiles Is Nothing Then Throw New ArgumentNullException()
+            If tile_set Is Nothing Then Throw New ArgumentNullException()
 
-            If tiles.Count < 2 Then
+            If tile_set.Count < 2 Then
                 Throw New ArgumentException(EXCEPTION_MESSAGE_NOT_ENOUGH_DIFFERENT_ITEMS)
             End If
 
-            If tiles.size_of_matching_tile_groups < 2 Then
+            If tile_set.size_of_matching_tile_groups < 2 Then
                 Throw New ArgumentException(EXCEPTION_MESSAGE_NOT_ENOUGH_MATCHING_TILES)
             End If
 
-            _mapping = tiles.tiles
+            _mapping = tile_set.tiles
+            _size_of_matching_tile_groups = tile_set.size_of_matching_tile_groups
+
+            _layout = New game_board_layout(_mapping.Count, fixed_dimension, fixed_dimension_length)
 
         End Sub
 
@@ -47,6 +57,16 @@
 
                 Return _mapping.Where(Function(t As tile) t IsNot Nothing)
 
+            End Get
+        End Property
+
+        ''' <summary>
+        ''' Returns the number of tiles that share the same item.
+        ''' </summary>
+        ''' <returns></returns>
+        Public ReadOnly Property size_of_matching_tile_groups As Integer
+            Get
+                Return _size_of_matching_tile_groups
             End Get
         End Property
 
@@ -64,6 +84,12 @@
         Default Public ReadOnly Property Item(index As Integer) As tile Implements IReadOnlyList(Of tile).Item
             Get
                 Return _mapping(index)
+            End Get
+        End Property
+
+        Public ReadOnly Property item_at_matrix_position(row_index As Integer, column_index As Integer) As tile
+            Get
+                Return _mapping.Item(_layout.get_array_position(row_index, column_index))
             End Get
         End Property
 
@@ -147,6 +173,14 @@
             Return to_be_removed
 
         End Function
+
+        Public Sub change_fixed_dimension(new_dimension As game_board_layout.dimension)
+            _layout.fixed_dimension = new_dimension
+        End Sub
+
+        Public Sub change_fixed_dimension_length(new_dimension_length As Integer)
+            _layout.fixed_dimension_length = new_dimension_length
+        End Sub
 
         Public Function GetEnumerator() As IEnumerator(Of tile) Implements IEnumerable(Of tile).GetEnumerator
             Return _mapping.GetEnumerator()

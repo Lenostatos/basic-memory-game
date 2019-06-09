@@ -3,7 +3,7 @@
     ''' <summary>
     ''' Models the rows and columns of a near-rectangular matrix of positions.
     ''' </summary>
-    Public Class board_layout
+    Public Class game_board_layout
 
         Public Const EXCEPTION_MESSAGE_LESS_THAN_FOUR_POSITIONS As String =
             "Attempted to set the number of positions to less than four."
@@ -19,15 +19,15 @@
         Public Sub New(position_count As Integer, fixed_dimension As dimension, fixed_dimension_length As Integer)
 
             If position_count < 4 Then
-                Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_LESS_THAN_FOUR_POSITIONS)
+                Throw New ArgumentOutOfRangeException("position_count", EXCEPTION_MESSAGE_LESS_THAN_FOUR_POSITIONS)
             End If
 
             If fixed_dimension_length < 1 Then
-                Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_LESS_THAN_ONE_DIMENSION)
+                Throw New ArgumentOutOfRangeException("fixed_dimension_length", EXCEPTION_MESSAGE_LESS_THAN_ONE_DIMENSION)
             End If
 
             If fixed_dimension_length > position_count Then
-                Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_DIMENSION_LENGTH_HIGHER_THAN_POSITION_COUNT)
+                Throw New ArgumentOutOfRangeException("fixed_dimension_length", EXCEPTION_MESSAGE_DIMENSION_LENGTH_HIGHER_THAN_POSITION_COUNT)
             End If
 
             _position_count = position_count
@@ -43,11 +43,11 @@
             Set(value As Integer)
 
                 If value < 4 Then
-                    Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_LESS_THAN_FOUR_POSITIONS)
+                    Throw New ArgumentOutOfRangeException("value", EXCEPTION_MESSAGE_LESS_THAN_FOUR_POSITIONS)
                 End If
 
                 If fixed_dimension_length > value Then
-                    Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_DIMENSION_LENGTH_HIGHER_THAN_POSITION_COUNT)
+                    Throw New ArgumentOutOfRangeException("fixed_dimension_length", EXCEPTION_MESSAGE_DIMENSION_LENGTH_HIGHER_THAN_POSITION_COUNT)
                 End If
 
                 _position_count = value
@@ -73,11 +73,11 @@
             Set(value As Integer)
 
                 If value < 1 Then
-                    Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_LESS_THAN_ONE_DIMENSION)
+                    Throw New ArgumentOutOfRangeException("value", value, EXCEPTION_MESSAGE_LESS_THAN_ONE_DIMENSION)
                 End If
 
                 If value > position_count Then
-                    Throw New ArgumentOutOfRangeException(EXCEPTION_MESSAGE_DIMENSION_LENGTH_HIGHER_THAN_POSITION_COUNT)
+                    Throw New ArgumentOutOfRangeException("value", value, EXCEPTION_MESSAGE_DIMENSION_LENGTH_HIGHER_THAN_POSITION_COUNT)
                 End If
 
                 _fixed_dimension_length = value

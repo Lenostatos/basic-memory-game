@@ -3,7 +3,7 @@
 Namespace game_logic_test
 
     <TestClass()>
-    Public Class board_test
+    Public Class game_board_test
 
         Private t_1 As New tile(0, New tile_item(0, New tile_item_design()))
         Private t_2 As New tile(1, New tile_item(1, New tile_item_design()))
@@ -31,6 +31,7 @@ Namespace game_logic_test
                 _m_3_t_1, _m_3_t_2, _m_3_t_3
         }
 
+        ' Just to make sure that one can have Nothing at those positions were tiles have been removed.
         <TestMethod>
         Public Sub test_lists_and_nothings()
 
@@ -50,7 +51,7 @@ Namespace game_logic_test
 
             Dim my_tiles As matching_tiles_set = _tiles
 
-            Dim my_board As New board(my_tiles)
+            Dim my_board As New game_board(my_tiles, game_board_layout.dimension.row, 3)
 
             Assert.AreEqual(0, my_board(0).undercover_item.id)
             Assert.AreEqual(0, my_board(1).undercover_item.id)
@@ -60,12 +61,15 @@ Namespace game_logic_test
             Assert.AreEqual(1, my_board(1).id)
             Assert.AreEqual(2, my_board(2).id)
 
+            Assert.AreEqual(3, my_board.size_of_matching_tile_groups)
+
             my_tiles = New matching_tiles_set() From {
                 _m_3_t_1
             }
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_board = New board(my_tiles), board.EXCEPTION_MESSAGE_NOT_ENOUGH_DIFFERENT_ITEMS)
+                Sub() my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3),
+                game_board.EXCEPTION_MESSAGE_NOT_ENOUGH_DIFFERENT_ITEMS)
 
             my_tiles = New matching_tiles_set() From {
                 New matching_tiles() From {t_1},
@@ -74,14 +78,15 @@ Namespace game_logic_test
             }
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_board = New board(my_tiles), board.EXCEPTION_MESSAGE_NOT_ENOUGH_MATCHING_TILES)
+                Sub() my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3),
+                game_board.EXCEPTION_MESSAGE_NOT_ENOUGH_MATCHING_TILES)
 
         End Sub
 
         <TestMethod>
         Public Sub test_tile_removal()
 
-            Dim my_board As New board(_tiles)
+            Dim my_board As New game_board(_tiles, game_board_layout.dimension.row, 3)
 
             Dim removed_tiles As matching_tiles =
                 my_board.remove_matching_tiles({0, 1, 2})
@@ -97,7 +102,7 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub test_filtering_existing_tiles()
 
-            Dim my_board As New board(_tiles)
+            Dim my_board As New game_board(_tiles, game_board_layout.dimension.row, 3)
 
             Dim removed_tiles As matching_tiles =
                 my_board.remove_matching_tiles({0, 1, 2})
@@ -122,7 +127,7 @@ Namespace game_logic_test
 
             Dim my_tiles As matching_tiles_set = _tiles
 
-            Dim my_board As New board(my_tiles)
+            Dim my_board As New game_board(my_tiles, game_board_layout.dimension.row, 3)
 
             my_board.shuffle_positions()
 
@@ -136,7 +141,7 @@ Namespace game_logic_test
                 Assert.IsTrue(my_board.Contains(t))
             Next
 
-            my_board = New board(my_tiles)
+            my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3)
             my_board.remove_matching_tiles({0, 1, 2})
 
             my_board.shuffle_tiles()
@@ -145,7 +150,7 @@ Namespace game_logic_test
             Assert.IsNull(my_board(1))
             Assert.IsNull(my_board(2))
 
-            my_board = New board(my_tiles)
+            my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3)
             my_board.remove_matching_tiles({3, 4, 5})
 
             my_board.shuffle_tiles()
