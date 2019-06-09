@@ -3,12 +3,12 @@
 ## General Philosophy
 * Readability
 * Documentation
-* Single responsibility
-* Interface over 
+* Single Responsibility
+* Interface over Inheritance
 
 ## Project Structure
 ### Code
-* Game logic
+* Game model
 * Database
 	* An Entity Framework (EF)
 	* A register for SQL statements
