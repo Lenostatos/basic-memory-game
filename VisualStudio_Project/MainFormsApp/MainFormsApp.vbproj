@@ -72,6 +72,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\choose_database_help_formvb.Designer.vb">
+      <DependentUpon>choose_database_help_formvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\choose_database_help_formvb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\game_setup_form.Designer.vb">
+      <DependentUpon>game_setup_form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\game_setup_form.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GameLogic\game_board_layout.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_count_of_tiles.vb" />
     <Compile Include="GameLogic\equality_comparer_of_matching_tiles_by_tile_item.vb" />
@@ -81,11 +93,11 @@
     <Compile Include="GameLogic\matching_tiles_set.vb" />
     <Compile Include="GameLogic\tile_item.vb" />
     <Compile Include="GameLogic\tile_item_design.vb" />
-    <Compile Include="MainForm.vb">
+    <Compile Include="Forms\game_form.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.vb">
-      <DependentUpon>MainForm.vb</DependentUpon>
+    <Compile Include="Forms\game_form.Designer.vb">
+      <DependentUpon>game_form.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GameLogic\game_board.vb" />
@@ -110,8 +122,14 @@
     <Compile Include="Utility\functions.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MainForm.resx">
-      <DependentUpon>MainForm.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\choose_database_help_formvb.resx">
+      <DependentUpon>choose_database_help_formvb.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\game_setup_form.resx">
+      <DependentUpon>game_setup_form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\game_form.resx">
+      <DependentUpon>game_form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
