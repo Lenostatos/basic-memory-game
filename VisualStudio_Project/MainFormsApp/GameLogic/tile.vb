@@ -41,7 +41,7 @@
         End Property
 
         ''' <summary>
-        ''' Returns the tile's item iff the tile is uncovered.
+        ''' Returns the tile's item if the tile is uncovered.
         ''' </summary>
         ''' <returns></returns>
         Public ReadOnly Property item As i_tile_item

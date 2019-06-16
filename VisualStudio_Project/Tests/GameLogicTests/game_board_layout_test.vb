@@ -8,6 +8,7 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub test_construction_w_valid_arguments()
 
+
             Dim my_layout As New game_board_layout(4, game_board_layout.dimension.column, 4)
 
             Assert.AreEqual(game_board_layout.dimension.column, my_layout.fixed_dimension)

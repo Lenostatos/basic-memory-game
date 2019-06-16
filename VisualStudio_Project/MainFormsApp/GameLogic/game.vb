@@ -14,6 +14,8 @@
             "Attempted to initialize a game with at least one duplicate player."
         Public Const EXCEPTION_MESSAGE_GET_WINNERS_BEFORE_GAME_OVER As String =
             "Attempted to get winners before the game was over."
+        Public Const EXCEPTION_MESSAGE_UNCOVER_ALREADY_UNCOVERED_TILE As String =
+            "Attempted to uncover a tile that was already uncovered."
 
         Private Property _players As List(Of player)
         Private Property _moving_player As player
@@ -65,6 +67,7 @@
             _moving_player = starting_player
             _board = New game_board(tiles, fixed_dimension, fixed_dimension_length)
 
+            _board.cover_tiles()
             _board.shuffle_positions()
 
             _uncovered_positions = New List(Of Integer)
@@ -127,6 +130,10 @@
                 Throw New ArgumentOutOfRangeException("index", index, EXCEPTION_MESSAGE_UNCOVER_AT_EMPTY_POSITION)
             End If
 
+            If Not board(index).covered Then
+                Throw New InvalidOperationException(EXCEPTION_MESSAGE_UNCOVER_ALREADY_UNCOVERED_TILE)
+            End If
+
             board(index).uncover()
             apply_rules(index)
 
@@ -149,12 +156,12 @@
                     If _uncovered_positions.Count = board.size_of_matching_tile_groups Then
 
                         moving_player.collect_tiles(board.remove_matching_tiles(_uncovered_positions))
+                        _uncovered_positions.Clear()
 
                         ' If no tiles are left
                         If board.All(Function(t As tile) t Is Nothing) Then
                             _game_over = True
                         End If
-                        _uncovered_positions.Clear()
 
                     End If
 

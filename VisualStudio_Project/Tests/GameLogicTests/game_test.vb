@@ -173,16 +173,16 @@ Namespace game_logic_test
         End Sub
 
         <TestMethod>
-        Public Sub winning()
+        Public Sub play_trough_w_2_tiles_per_item()
 
             Dim tile_set As New matching_tiles_set() From {_m_2_t_1, _m_2_t_2}
 
             Dim my_kuba As New player("Kuba")
             Dim my_hernie As New player("Hernie")
             Dim my_jonny As New player("Jonny")
-            Dim players As New List(Of player)() From {my_kuba, my_hernie, my_jonny}
+            Dim my_players As New List(Of player)() From {my_kuba, my_hernie, my_jonny}
 
-            Dim my_game As New game(players, my_jonny, tile_set, game_board_layout.dimension.row, 2)
+            Dim my_game As New game(my_players, my_jonny, tile_set, game_board_layout.dimension.row, 2)
 
             While Not my_game.game_over
 
@@ -199,6 +199,82 @@ Namespace game_logic_test
                 Next
 
             End While
+
+            Assert.IsTrue(my_game.winners.All(Function(p As player) my_players.Contains(p)))
+
+        End Sub
+
+        <TestMethod>
+        Public Sub play_trough_w_3_tiles_per_item()
+
+            Dim tile_set As New matching_tiles_set() From {_m_3_t_1, _m_3_t_2}
+
+            Dim my_kuba As New player("Kuba")
+            Dim my_hernie As New player("Hernie")
+            Dim my_jonny As New player("Jonny")
+            Dim my_players As New List(Of player)() From {my_kuba, my_hernie, my_jonny}
+
+            Dim my_game As New game(my_players, my_jonny, tile_set, game_board_layout.dimension.row, 2)
+
+            ' Gets the zero-based index of the first covered tile that is encountered on the board.
+            ' Starts the search at starting_at.
+            Dim index_of_first_covered_tile As New Func(Of game, Integer, Integer)(
+                Function(the_game As game, starting_at As Integer) As Integer
+
+                    If starting_at >= the_game.board.Count Then
+                        Throw New ArgumentException()
+                    End If
+
+                    For index As Integer = starting_at To the_game.board.Count - 1
+                        If the_game.board(index) IsNot Nothing AndAlso the_game.board(index).covered Then Return index
+                    Next
+
+                    Throw New Exception()
+
+                End Function)
+
+            Dim second_tile_index_min_increment As Integer
+            Dim third_tile_index_min_increment As Integer
+
+            Dim moving_player As player
+
+            Dim tiles_matched As Boolean
+
+            While Not my_game.game_over
+
+                second_tile_index_min_increment = 1
+                third_tile_index_min_increment = 1
+
+                Do
+
+                    Do
+
+                        moving_player = my_game.moving_player
+
+                        my_game.uncover_tile(index_of_first_covered_tile(my_game, 0))
+                        my_game.uncover_tile(index_of_first_covered_tile(my_game, second_tile_index_min_increment))
+
+                        tiles_matched = True
+                        If Not my_game.moving_player.Equals(moving_player) Then
+                            tiles_matched = False
+                            second_tile_index_min_increment = second_tile_index_min_increment + 1
+                        End If
+
+                    Loop While Not tiles_matched
+
+                    my_game.uncover_tile(index_of_first_covered_tile(my_game, third_tile_index_min_increment))
+
+                    tiles_matched = True
+                    If Not my_game.moving_player.Equals(moving_player) Then
+                        tiles_matched = False
+                        third_tile_index_min_increment = third_tile_index_min_increment + 1
+                    End If
+
+                Loop While Not tiles_matched
+
+            End While
+
+            Assert.IsTrue(my_game.winners.All(Function(p As player) my_players.Contains(p)))
 
         End Sub
 
