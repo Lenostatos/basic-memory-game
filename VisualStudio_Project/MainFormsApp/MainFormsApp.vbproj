@@ -142,7 +142,7 @@
     <Compile Include="TileDatabase\DTOs\File_Info.vb" />
     <Compile Include="TileDatabase\DTOs\File_Type.vb" />
     <Compile Include="TileDatabase\DTOs\Item.vb" />
-    <Compile Include="TileDatabase\DTOs\Representation.vb" />
+    <Compile Include="TileDatabase\DTOs\Representation_Count.vb" />
     <Compile Include="TileDatabase\file_type.vb" />
     <Compile Include="TileDatabase\i_database.vb" />
     <Compile Include="TileDatabase\i_representation.vb" />
@@ -150,10 +150,11 @@
     <Compile Include="TileDatabase\Service\File_Info.vb" />
     <Compile Include="TileDatabase\Service\File_Type.vb" />
     <Compile Include="TileDatabase\Service\Item.vb" />
+    <Compile Include="TileDatabase\Service\Representation_Count.vb" />
     <Compile Include="TileDatabase\SQLRegister\File_Info.vb" />
     <Compile Include="TileDatabase\SQLRegister\File_Type.vb" />
     <Compile Include="TileDatabase\SQLRegister\Item.vb" />
-    <Compile Include="TileDatabase\SQLRegister\Representation.vb" />
+    <Compile Include="TileDatabase\SQLRegister\Representation_Count.vb" />
     <Compile Include="Utility\functions.vb" />
   </ItemGroup>
   <ItemGroup>

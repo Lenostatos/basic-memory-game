@@ -19,9 +19,27 @@ Namespace tile_database_test.service_test
 
             Dim my_infos As New List(Of DTOs.File_Info)(service.File_Info.all())
 
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 1, .path = "pine/english_name.txt"}))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 5, .path = "spruce/english_name.txt"}))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 10, .path = "birch/latin_name.txt"}))
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 1,
+                    .path = "pine/english_name.txt",
+                    .id_Item = 1,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 5,
+                    .path = "spruce/english_name.txt",
+                    .id_Item = 3,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 10,
+                    .path = "birch/latin_name.txt",
+                    .id_Item = 5,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
 
             Assert.AreEqual(10, my_infos.Count)
 
@@ -39,16 +57,40 @@ Namespace tile_database_test.service_test
 
             Dim my_infos As List(Of DTOs.File_Info)
 
-            my_infos = service.File_Info.get_for_Item(New DTOs.Item() With {.id = 0, .name = "Pine"})
+            my_infos = service.File_Info.get_for_Item_id(0)
             Assert.AreEqual(0, my_infos.Count)
 
-            my_infos = service.File_Info.get_for_Item(New DTOs.Item() With {.id = 1, .name = "Pine"})
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 1}))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 2}))
+            my_infos = service.File_Info.get_for_Item_id(1)
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 1,
+                    .path = "pine/english_name.txt",
+                    .id_Item = 1,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 2,
+                    .path = "pine/latin_name.txt",
+                    .id_Item = 1,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
 
-            my_infos = service.File_Info.get_for_Item(New DTOs.Item() With {.id = 2, .name = "Pine"})
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 3}))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With {.id = 4}))
+            my_infos = service.File_Info.get_for_Item_id(2)
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 3,
+                    .path = "oak/english_name.txt",
+                    .id_Item = 2,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
+            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+                {
+                    .id = 4,
+                    .path = "oak/latin_name.txt",
+                    .id_Item = 2,
+                    .id_File_Type = MainFormsApp.tile_database.file_type.text
+                }))
 
         End Sub
 

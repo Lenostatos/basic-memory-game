@@ -73,10 +73,15 @@ Namespace tile_database
             Dim custom_mapping_convention_settings As New Mapping.ConventionMappingSettings
 
             With custom_mapping_convention_settings
+
                 .UsePluralClassNameForTableName = False
-                .IsIdentifier = Function(ByVal prop_info As Reflection.PropertyInfo) As Boolean
-                                    Return prop_info.Name.Equals("id")
+                .IsIdentifier = Function(property_info As Reflection.PropertyInfo) As Boolean
+                                    Return property_info.Name.Equals("id")
                                 End Function
+                .ResolveColumnName = Function(property_info As Reflection.PropertyInfo) As String
+                                         Return property_info.Name
+                                     End Function
+
             End With
 
             Configure.Extensions().WithConventionBasedMapping(custom_mapping_convention_settings)

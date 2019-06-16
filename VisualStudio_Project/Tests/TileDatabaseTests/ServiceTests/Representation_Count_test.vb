@@ -29,7 +29,7 @@ Namespace tile_database_test.service_test
 
             Dim my_count As DTOs.Representation_Count
 
-            my_count = service.Representation_Count.get_for_item(New DTOs.Item() With {.id = 1, .name = "Pine"})
+            my_count = service.Representation_Count.get_for_Item_id(1)
             Assert.AreEqual(New DTOs.Representation_Count() With {.id_item = 1, .count = 2}, my_count)
 
         End Sub
@@ -37,8 +37,8 @@ Namespace tile_database_test.service_test
         <TestMethod>
         Public Sub get_min_max()
 
-            Dim my_max_count As New DTOs.Representation_Count(service.Representation_Count.get_max())
-            Dim my_min_count As New DTOs.Representation_Count(service.Representation_Count.get_min())
+            Dim my_max_count As DTOs.Representation_Count = service.Representation_Count.get_max()
+            Dim my_min_count As DTOs.Representation_Count = service.Representation_Count.get_min()
 
             Assert.AreEqual(New DTOs.Representation_Count() With {.id_item = 1, .count = 2}, my_max_count)
             Assert.AreEqual(New DTOs.Representation_Count() With {.id_item = 1, .count = 2}, my_min_count)

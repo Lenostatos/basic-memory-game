@@ -34,13 +34,13 @@ Namespace tile_database.service
 
         End Function
 
-        Public Function get_for_Item(item As DTOs.Item) As IEnumerable(Of DTOs.File_Info)
+        Public Function get_for_Item_id(id As Integer) As IEnumerable(Of DTOs.File_Info)
 
             Dim return_items As IEnumerable(Of DTOs.File_Info)
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_items = session.Fetch(Of DTOs.File_Info)(SQL_register.File_Info.select_by_item_id(item.id))
+                    return_items = session.Fetch(Of DTOs.File_Info)(SQL_register.File_Info.select_by_item_id(id))
                     transaction.Commit()
                 End Using
             End Using
