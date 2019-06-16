@@ -11,7 +11,7 @@ Namespace tile_database
         Public Const EXCEPTION_MESSAGE_COULD_NOT_FIND_FILE As String =
             "Could not find any file at the specified path."
         Public Const EXCEPTION_MESSAGE_COULD_NOT_CONNECT_TO_DATABASE As String =
-            "Could not connect to the database at the specified path."
+            "Could not connect to a database at the specified path."
 
         Public Const DEFAULT_PATH As String =
             "../../../../data/tree_species_tile_set/database.sqlite3"
@@ -36,6 +36,10 @@ Namespace tile_database
             End Get
         End Property
 
+        Private Shared Function build_connection_string(file_path As String) As String
+            Return "Data Source =" & file_path & "; Version = 3; ForeignKeyConstraints = On;"
+        End Function
+
         ''' <summary>
         ''' Returns a session factory that can be used by the database objects
         ''' to connect to a file database.
@@ -49,21 +53,39 @@ Namespace tile_database
                 Throw New ArgumentException(EXCEPTION_MESSAGE_COULD_NOT_FIND_FILE)
             End If
 
+            test_database_schema(build_connection_string(file_path))
+
             Dim return_factory As ISessionFactory
 
-            Try
-                return_factory =
+            return_factory =
                 Configure.Fluently().
-                ForSQLiteConnection("dummy", "Data Source =" & file_path &
-                    "; Version = 3; ForeignKeyConstraints = On;", "System.Data.SQLite").
+                ForSQLiteConnection("tile_database_connection",
+                                    build_connection_string(file_path),
+                                    "System.Data.SQLite").
                 CreateSessionFactory()
-            Catch ex As MicroLiteException
-                Throw New ArgumentException(EXCEPTION_MESSAGE_COULD_NOT_CONNECT_TO_DATABASE, ex)
-            End Try
 
             Return return_factory
 
         End Function
+
+        ''' <summary>
+        ''' Tests the structure of the database at the specified <paramref name="connection_string"/>.
+        ''' </summary>
+        ''' <TODO>Also test table names, column names and column types.</TODO>
+        ''' <param name="connection_string"></param>
+        Public Shared Sub test_database_schema(connection_string As String)
+
+            Dim test_connection As New SQLite.SQLiteConnection(connection_string)
+            test_connection.Open()
+            Try
+                test_connection.GetSchema("tables")
+            Catch ex As Exception
+                Throw New ArgumentException(EXCEPTION_MESSAGE_COULD_NOT_CONNECT_TO_DATABASE, ex)
+            Finally
+                test_connection.Close()
+            End Try
+
+        End Sub
 
         ''' <summary>
         ''' Customises the EF's mapping conventions to fit the database's naming scheme.
@@ -119,12 +141,6 @@ Namespace tile_database
             End Get
         End Property
 
-        Public ReadOnly Property representations As IEnumerable(Of Representation_Count) Implements i_database.representations
-            Get
-                Throw New NotImplementedException()
-            End Get
-        End Property
-
         Public ReadOnly Property representation_count As Integer Implements i_database.representation_count
             Get
                 Throw New NotImplementedException()
@@ -143,13 +159,27 @@ Namespace tile_database
             End Get
         End Property
 
-        Public ReadOnly Property tile_ids_with_representation_counts As IDictionary(Of Integer, Integer) Implements i_database.tile_ids_with_representation_counts
+        Public ReadOnly Property item_representations As IEnumerable(Of File_Info) Implements i_database.item_representations
             Get
                 Throw New NotImplementedException()
             End Get
         End Property
 
-        Public Function get_representations_by_item(item As Item) As IEnumerable(Of Representation_Count) Implements i_database.get_representations_by_item
+        Public ReadOnly Property tiles_with_representation_counts As IDictionary(Of Item, Integer) Implements i_database.tiles_with_representation_counts
+            Get
+                Throw New NotImplementedException()
+            End Get
+        End Property
+
+        Public Function get_representations_for_item(item As Item) As IEnumerable(Of Representation_Count) Implements i_database.get_representations_for_item
+            Throw New NotImplementedException()
+        End Function
+
+        Public Function get_item_with_least_representations() As Item Implements i_database.get_item_with_least_representations
+            Throw New NotImplementedException()
+        End Function
+
+        Public Function get_item_with_most_representations() As Item Implements i_database.get_item_with_most_representations
             Throw New NotImplementedException()
         End Function
     End Class

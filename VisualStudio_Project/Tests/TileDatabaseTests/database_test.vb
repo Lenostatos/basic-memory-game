@@ -34,6 +34,11 @@ Namespace tile_database_test
                     my_db.initialize("../../../../data/tree_species_tile_set/databas.sqlite3")
                 End Sub, database.EXCEPTION_MESSAGE_COULD_NOT_FIND_FILE)
 
+            Assert.ThrowsException(Of ArgumentException)(
+                Sub()
+                    my_db.initialize("../../../../data/tree_species_tile_set/pine/english_name.txt")
+                End Sub, database.EXCEPTION_MESSAGE_COULD_NOT_CONNECT_TO_DATABASE)
+
         End Sub
 
     End Class

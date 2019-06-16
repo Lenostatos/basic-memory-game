@@ -15,7 +15,11 @@
         ReadOnly Property items As IEnumerable(Of DTOs.Item)
         ReadOnly Property item_count As Integer
 
-        ReadOnly Property representations As IEnumerable(Of DTOs.Representation_Count)
+        ''' <summary>
+        ''' Returns all different representaions of all items in the database.
+        ''' </summary>
+        ''' <returns></returns>
+        ReadOnly Property item_representations As IEnumerable(Of DTOs.File_Info)
         ReadOnly Property representation_count As Integer
 
         ''' <summary>
@@ -23,8 +27,9 @@
         ''' </summary>
         ''' <param name="item"></param>
         ''' <returns></returns>
-        Function get_representations_by_item(item As DTOs.Item) As IEnumerable(Of DTOs.Representation_Count)
+        Function get_representations_for_item(item As DTOs.Item) As IEnumerable(Of DTOs.Representation_Count)
 
+        Function get_item_with_least_representations() As DTOs.Item
         ''' <summary>
         ''' Returns the number of representations for the tile item that
         ''' has the least representations associated with it.
@@ -32,6 +37,7 @@
         ''' <returns></returns>
         ReadOnly Property min_number_of_representations As Integer
 
+        Function get_item_with_most_representations() As DTOs.Item
         ''' <summary>
         ''' Returns the number of representations for the tile item that
         ''' has the most representations associated with it.
@@ -40,12 +46,12 @@
         ReadOnly Property max_number_of_representations As Integer
 
         ''' <summary>
-        ''' Returns a dictionary with the number of available
-        ''' representations for each tile.
+        ''' Returns a dictionary with tiles and the number of representations
+        ''' available for each of them.
         ''' </summary>
-        ''' <returns>A dictionary with tile ids as the keys and
-        ''' representation counts as the values.</returns>
-        ReadOnly Property tile_ids_with_representation_counts As IDictionary(Of Integer, Integer)
+        ''' <returns>A dictionary with tiles as the keys and counts of
+        ''' representations as the values.</returns>
+        ReadOnly Property tiles_with_representation_counts As IDictionary(Of DTOs.Item, Integer)
 
     End Interface
 
