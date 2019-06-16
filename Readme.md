@@ -4,7 +4,7 @@
 The purpose of this project is to create a simple memory game with tiles featuring different tree species and their properties. However the software will be designed in such a way that changing to other sets of tiles won't be a problem.
 
 ## Current State
-There is no working version of the application yet. Currently the game logic is being implemented.
+There is no working version of the application yet. Currently the GUI controllers are being implemented.
 
 ## Key Features
 * Matching tiles will not simply show the same content, but anything related to a common entity, e.g. a picture of a tree and a description of site requirements related to the same tree species.

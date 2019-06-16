@@ -16,7 +16,7 @@
         ReadOnly Property item_count As Integer
 
         ''' <summary>
-        ''' Returns all different representaions of all items in the database.
+        ''' Returns all different representations of the items in the database.
         ''' </summary>
         ''' <returns></returns>
         ReadOnly Property item_representations As IEnumerable(Of DTOs.File_Info)
