@@ -7,36 +7,35 @@ PRAGMA foreign_keys = ON;
 -- String literals should be enclosed in single quotes.
 
 -- TODO: find a command for dropping all the tables at once
+DROP VIEW IF EXISTS "Representation_Count";
+DROP TABLE IF EXISTS "File_Info";
 DROP TABLE IF EXISTS "Item";
-DROP TABLE IF EXISTS "File_Path";
 DROP TABLE IF EXISTS "File_Type";
-DROP VIEW IF EXISTS "Items";
 
 CREATE TABLE "Item"(
-	"id" INTEGER PRIMARY KEY, -- AUTOINCREMENT should not be used if possible because it imposes a performance overhead and "the purpose of AUTOINCREMENT is to prevent the reuse of ROWIDs from previously deleted rows" [SQLite docs]. For further information see the documentation.
+	"id" INTEGER PRIMARY KEY, -- AUTOINCREMENT should not be used if possible because it imposes a performance overhead and "the purpose of AUTOINCREMENT is to prevent the reuse of ROWIDs from previously deleted rows" [SQLite docs]. For further information see the SQLite documentation.
 	"name" TEXT UNIQUE NOT NULL
 );
+CREATE INDEX "Item_name_index" ON "Item"("name");
 
-CREATE TABLE "File_Path"(
+CREATE TABLE "File_Info"(
 	"id" INTEGER PRIMARY KEY,
-	"content" TEXT NOT NULL,
+	"path" TEXT NOT NULL,
 	"id_Item" INTEGER REFERENCES "Item" ON DELETE RESTRICT,
 	"id_File_Type" INTEGER REFERENCES "File_Type" ON DELETE RESTRICT
 );
-CREATE INDEX "File_Path_Item_index" ON "File_Path"("id_Item");
-CREATE INDEX "File_Path_File_Type_index" ON "File_Path"("id_File_Type");
+CREATE INDEX "File_Info_Item_index" ON "File_Info"("id_Item");
+CREATE INDEX "File_Info_File_Type_index" ON "File_Info"("id_File_Type");
 
 CREATE TABLE "File_Type"(
 	"id" INTEGER PRIMARY KEY,
 	"interpretation" TEXT UNIQUE NOT NULL
 );
 
-CREATE VIEW "Items" AS
+CREATE VIEW "Representation_Count" AS
 SELECT
-	"Item"."id" AS "item_id",
-	"Item"."name" AS "item_name",
-	"File_Path"."content" AS "file_path",
-	"File_Type"."interpretation" AS "file_type"
+	"Item"."id" AS "id_item",
+	COUNT (*) AS "count"
 FROM "Item"
-	JOIN "File_Path" ON "Item"."id" = "File_Path"."id_Item"
-	JOIN "File_Type" ON "File_Path"."id_File_Type" = "File_Type"."id";
+	JOIN "File_Info" ON "Item"."id" = "File_Info"."id_Item"
+GROUP BY "Item"."id";

@@ -49,13 +49,26 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="MicroLite, Version=6.3.0.0, Culture=neutral, PublicKeyToken=08410e6798c4fa37, processorArchitecture=MSIL">
       <HintPath>..\packages\MicroLite.6.3.4\lib\net45\MicroLite.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.111.0\lib\net45\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.111.0\lib\net45\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.111.0\lib\net45\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -126,13 +139,21 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="TileDatabase\database.vb" />
-    <Compile Include="TileDatabase\DTOs\File_Path.vb" />
+    <Compile Include="TileDatabase\DTOs\File_Info.vb" />
     <Compile Include="TileDatabase\DTOs\File_Type.vb" />
     <Compile Include="TileDatabase\DTOs\Item.vb" />
+    <Compile Include="TileDatabase\DTOs\Representation.vb" />
+    <Compile Include="TileDatabase\file_type.vb" />
     <Compile Include="TileDatabase\i_database.vb" />
     <Compile Include="TileDatabase\i_representation.vb" />
     <Compile Include="TileDatabase\i_item.vb" />
-    <Compile Include="TileDatabase\Service.vb" />
+    <Compile Include="TileDatabase\Service\File_Info.vb" />
+    <Compile Include="TileDatabase\Service\File_Type.vb" />
+    <Compile Include="TileDatabase\Service\Item.vb" />
+    <Compile Include="TileDatabase\SQLRegister\File_Info.vb" />
+    <Compile Include="TileDatabase\SQLRegister\File_Type.vb" />
+    <Compile Include="TileDatabase\SQLRegister\Item.vb" />
+    <Compile Include="TileDatabase\SQLRegister\Representation.vb" />
     <Compile Include="Utility\functions.vb" />
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +186,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TileDatabase\SQLRegister\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.111.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.111.0\build\net45\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

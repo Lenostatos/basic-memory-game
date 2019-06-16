@@ -7,7 +7,7 @@
 
         ReadOnly Property id As Integer
         ReadOnly Property name As String
-        ReadOnly Property number_of_representations As Integer
+        ReadOnly Property representations As IReadOnlyList(Of i_representation_file)
 
     End Interface
 

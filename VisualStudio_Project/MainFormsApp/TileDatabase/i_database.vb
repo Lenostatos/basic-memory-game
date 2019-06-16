@@ -3,10 +3,27 @@
     Public Interface i_database
 
         ''' <summary>
+        ''' Initializes a connection to the database used by all database objects.
+        ''' </summary>
+        ''' <param name="file_path"></param>
+        Sub initialize(file_path As String)
+
+        ''' <summary>
         ''' Returns the tile items stored in the database.
         ''' </summary>
         ''' <returns></returns>
-        ReadOnly Property items As HashSet(Of i_item)
+        ReadOnly Property items As IEnumerable(Of DTOs.Item)
+        ReadOnly Property item_count As Integer
+
+        ReadOnly Property representations As IEnumerable(Of DTOs.Representation_Count)
+        ReadOnly Property representation_count As Integer
+
+        ''' <summary>
+        ''' Returns all representations of a tile item.
+        ''' </summary>
+        ''' <param name="item"></param>
+        ''' <returns></returns>
+        Function get_representations_by_item(item As DTOs.Item) As IEnumerable(Of DTOs.Representation_Count)
 
         ''' <summary>
         ''' Returns the number of representations for the tile item that
@@ -23,11 +40,12 @@
         ReadOnly Property max_number_of_representations As Integer
 
         ''' <summary>
-        ''' Returns information on all representations of a tile item.
+        ''' Returns a dictionary with the number of available
+        ''' representations for each tile.
         ''' </summary>
-        ''' <param name="i_item"></param>
-        ''' <returns></returns>
-        Function get_representations(i_item As Integer) As HashSet(Of i_representation_file_info)
+        ''' <returns>A dictionary with tile ids as the keys and
+        ''' representation counts as the values.</returns>
+        ReadOnly Property tile_ids_with_representation_counts As IDictionary(Of Integer, Integer)
 
     End Interface
 
