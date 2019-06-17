@@ -124,7 +124,7 @@
     <Compile Include="TileDatabaseTests\ServiceTests\File_Info_test.vb" />
     <Compile Include="TileDatabaseTests\ServiceTests\File_Type_test.vb" />
     <Compile Include="TileDatabaseTests\ServiceTests\Item_test.vb" />
-    <Compile Include="TileDatabaseTests\ServiceTests\Representation_Count_test.vb" />
+    <Compile Include="TileDatabaseTests\ServiceTests\File_Count_test.vb" />
     <Compile Include="TileDatabaseTests\SQLRegisterTests\Item_test.vb" />
   </ItemGroup>
   <ItemGroup>

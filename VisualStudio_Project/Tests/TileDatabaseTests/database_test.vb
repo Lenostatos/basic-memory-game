@@ -2,6 +2,11 @@
 
 Namespace tile_database_test
 
+    ''' <summary>
+    ''' This class only tests the database methods that do more than just
+    ''' call a service method.
+    ''' <TODO>Implement more tests for this.</TODO>
+    ''' </summary>
     <TestClass>
     Public Class database_test
 

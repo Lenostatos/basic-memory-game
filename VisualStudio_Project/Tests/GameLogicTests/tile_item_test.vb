@@ -8,9 +8,9 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub test_matching()
 
-            Dim i_1 As New tile_item(0, New tile_item_design())
-            Dim i_2 As New tile_item(0, New tile_item_design())
-            Dim i_3 As New tile_item(1, New tile_item_design())
+            Dim i_1 As New tile_item(0, New tile_item_design(0))
+            Dim i_2 As New tile_item(0, New tile_item_design(0))
+            Dim i_3 As New tile_item(1, New tile_item_design(0))
 
             Assert.IsTrue(i_1.matches(i_2))
             Assert.IsFalse(i_1.matches(i_3))
@@ -20,9 +20,9 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub test_equality()
 
-            Dim i_1 As New tile_item(0, New tile_item_design())
-            Dim i_2 As New tile_item(0, New tile_item_design())
-            Dim i_3 As New tile_item(1, New tile_item_design())
+            Dim i_1 As New tile_item(0, New tile_item_design(0))
+            Dim i_2 As New tile_item(0, New tile_item_design(0))
+            Dim i_3 As New tile_item(1, New tile_item_design(0))
 
             Assert.IsTrue(i_1.Equals(i_2))
             Assert.IsFalse(i_1.Equals(i_3))

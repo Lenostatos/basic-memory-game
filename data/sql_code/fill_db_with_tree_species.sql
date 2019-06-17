@@ -39,4 +39,4 @@ INSERT INTO "File_Info" VALUES
 SELECT * FROM "Item";
 SELECT * FROM "File_Type";
 SELECT * FROM "File_Info";
-SELECT * FROM "Representation_Count";
+SELECT * FROM "File_Count";

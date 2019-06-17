@@ -137,50 +137,84 @@ Namespace tile_database
 
         Public ReadOnly Property item_count As Integer Implements i_database.item_count
             Get
-                Throw New NotImplementedException()
+                Return service.Item.count()
             End Get
         End Property
 
-        Public ReadOnly Property representation_count As Integer Implements i_database.representation_count
+        Public ReadOnly Property max_num_files_per_item As Integer Implements i_database.max_num_files_per_item
             Get
-                Throw New NotImplementedException()
+                Return service.File_Count.max_count()
             End Get
         End Property
 
-        Public ReadOnly Property min_number_of_representations As Integer Implements i_database.min_number_of_representations
+        Public ReadOnly Property min_num_files_per_item As Integer Implements i_database.min_num_files_per_item
             Get
-                Throw New NotImplementedException()
+                Return service.File_Count.min_count()
             End Get
         End Property
 
-        Public ReadOnly Property max_number_of_representations As Integer Implements i_database.max_number_of_representations
+        Public ReadOnly Property map_num_files_to_num_of_items_with_exactly_that_many As IDictionary(Of Integer, Integer) Implements i_database.map_num_files_to_num_of_items_with_exactly_that_many
             Get
-                Throw New NotImplementedException()
+
+                Dim return_dict As New Dictionary(Of Integer, Integer)
+
+                For file_count As Integer = min_num_files_per_item To max_num_files_per_item
+                    return_dict.Add(file_count, service.File_Count.count_items_with_file_count(file_count))
+                Next
+
+                Return return_dict
+
             End Get
         End Property
 
-        Public ReadOnly Property item_representations As IEnumerable(Of File_Info) Implements i_database.item_representations
+        Public ReadOnly Property map_num_files_to_num_of_items_with_at_least_that_many As IDictionary(Of Integer, Integer) Implements i_database.map_num_files_to_num_of_items_with_at_least_that_many
             Get
-                Throw New NotImplementedException()
+
+                Dim return_dict As New Dictionary(Of Integer, Integer)
+                Dim cumulative_item_count As Integer = 0
+                Dim num_items_with_file_count As Integer
+
+                For file_count As Integer = max_num_files_per_item To min_num_files_per_item
+                    num_items_with_file_count = service.File_Count.count_items_with_file_count(file_count)
+                    cumulative_item_count = cumulative_item_count + num_items_with_file_count
+                    return_dict.Add(file_count, cumulative_item_count)
+                Next
+
+                Return return_dict
+
             End Get
         End Property
 
-        Public ReadOnly Property tiles_with_representation_counts As IDictionary(Of Item, Integer) Implements i_database.tiles_with_representation_counts
-            Get
-                Throw New NotImplementedException()
-            End Get
-        End Property
-
-        Public Function get_representations_for_item(item As Item) As IEnumerable(Of Representation_Count) Implements i_database.get_representations_for_item
-            Throw New NotImplementedException()
+        Public Function files_for_item(item As Item) As IEnumerable(Of File_Info) Implements i_database.files_for_item
+            Return service.File_Info.get_for_Item_id(item.id)
         End Function
 
-        Public Function get_item_with_least_representations() As Item Implements i_database.get_item_with_least_representations
-            Throw New NotImplementedException()
+        Public Function items_with_exactly_that_many_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_exactly_that_many_files
+
+            Dim return_items As New List(Of DTOs.Item)
+
+            For Each file_count As DTOs.File_Count In service.File_Count.get_for_count(num_files)
+                return_items.Add(service.Item.get_by_id(file_count.id_Item))
+            Next
+
+            Return return_items
+
         End Function
 
-        Public Function get_item_with_most_representations() As Item Implements i_database.get_item_with_most_representations
-            Throw New NotImplementedException()
+        Public Function items_with_at_least_that_many_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_at_least_that_many_files
+
+            If num_files > max_num_files_per_item Then
+                Throw New ArgumentOutOfRangeException()
+            End If
+
+            Dim return_item As New List(Of DTOs.Item)
+
+            For file_Count As Integer = num_files To max_num_files_per_item
+                return_item.AddRange(items_with_exactly_that_many_files(file_Count))
+            Next
+
+            Return return_item
+
         End Function
     End Class
 

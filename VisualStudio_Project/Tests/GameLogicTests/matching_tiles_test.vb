@@ -16,8 +16,8 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub initialization_with_non_matching_tiles_should_throw_argumentexception()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
-            Dim t_2 As New tile(1, New tile_item(1, New tile_item_design()))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(1, New tile_item(1, New tile_item_design(0)))
 
             Try
                 Dim matches As New matching_tiles From {t_1, t_2}
@@ -33,8 +33,8 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub initialization_with_non_individual_tiles_should_throw_argumentexception()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
-            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design()))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design(0)))
 
             Try
                 Dim matches As New matching_tiles From {t_1, t_2}
@@ -50,8 +50,8 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub adding_non_matching_tiles_should_throw_argumentexception()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
-            Dim t_2 As New tile(1, New tile_item(1, New tile_item_design()))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(1, New tile_item(1, New tile_item_design(0)))
 
             Dim matches As New matching_tiles()
             matches.Add(t_1)
@@ -70,8 +70,8 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub adding_non_individual_tiles_should_throw_argumentexception()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
-            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design()))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design(0)))
 
             Dim matches As New matching_tiles()
             matches.Add(t_1)
@@ -90,14 +90,14 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub test_undercover_matching()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design()))
-            Dim t_2 As New tile(1, New tile_item(0, New tile_item_design()))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(1, New tile_item(0, New tile_item_design(0)))
 
-            Dim t_3 As New tile(2, New tile_item(1, New tile_item_design()))
+            Dim t_3 As New tile(2, New tile_item(1, New tile_item_design(0)))
 
-            Dim t_4 As New tile(3, New tile_item(0, New tile_item_design()))
+            Dim t_4 As New tile(3, New tile_item(0, New tile_item_design(0)))
 
-            Dim t_5 As New tile(0, New tile_item(0, New tile_item_design()))
+            Dim t_5 As New tile(0, New tile_item(0, New tile_item_design(0)))
 
             Dim mt_1 As New matching_tiles() From {t_1, t_2}
             Dim mt_2 As New matching_tiles() From {t_3}

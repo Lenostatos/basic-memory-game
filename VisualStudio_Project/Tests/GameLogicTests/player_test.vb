@@ -8,13 +8,13 @@ Namespace game_logic_test
         Private name As String = "Maax"
 
         Private _matching_2_t_1 As New matching_tiles() From {
-            New tile(0, New tile_item(0, New tile_item_design())),
-            New tile(1, New tile_item(0, New tile_item_design()))
+            New tile(0, New tile_item(0, New tile_item_design(0))),
+            New tile(1, New tile_item(0, New tile_item_design(0)))
         }
 
         Private _matching_2_t_2 As New matching_tiles() From {
-            New tile(2, New tile_item(1, New tile_item_design())),
-            New tile(3, New tile_item(1, New tile_item_design()))
+            New tile(2, New tile_item(1, New tile_item_design(0))),
+            New tile(3, New tile_item(1, New tile_item_design(0)))
         }
 
         <TestMethod>

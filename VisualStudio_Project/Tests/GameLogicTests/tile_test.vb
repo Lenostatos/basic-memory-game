@@ -16,7 +16,7 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub test_tile_covering()
 
-            Dim t As New tile(0, New tile_item(0, New tile_item_design))
+            Dim t As New tile(0, New tile_item(0, New tile_item_design(0)))
 
             Assert.IsTrue(t.covered, "Tile was not covered after construction.")
 
@@ -32,7 +32,7 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub get_item_from_covered_tile_should_throw_invalidoperationexception()
 
-            Dim t As New tile(0, New tile_item(0, New tile_item_design))
+            Dim t As New tile(0, New tile_item(0, New tile_item_design(0)))
 
             Try
                 Dim i As tile_item = t.item
@@ -48,9 +48,9 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub test_matching_uncovered_tiles()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design), False)
-            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design), False)
-            Dim t_3 As New tile(0, New tile_item(1, New tile_item_design), False)
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)), False)
+            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design(0)), False)
+            Dim t_3 As New tile(0, New tile_item(1, New tile_item_design(0)), False)
 
             Assert.IsTrue(t_1.matches(t_2))
             Assert.IsFalse(t_1.matches(t_3))
@@ -60,9 +60,9 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub test_undercover_matching()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design))
-            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design))
-            Dim t_3 As New tile(0, New tile_item(1, New tile_item_design))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_3 As New tile(0, New tile_item(1, New tile_item_design(0)))
 
             Assert.IsTrue(t_1.undercover_matches(t_2))
             Assert.IsFalse(t_1.undercover_matches(t_3))
@@ -72,8 +72,8 @@ Namespace game_logic_test
         <TestMethod()>
         Public Sub matching_covered_tiles_should_throw_invalidoperationexception()
 
-            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design))
-            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design))
+            Dim t_1 As New tile(0, New tile_item(0, New tile_item_design(0)))
+            Dim t_2 As New tile(0, New tile_item(0, New tile_item_design(0)))
 
             Try
                 t_1.matches(t_2)

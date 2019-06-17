@@ -8,50 +8,82 @@
         ''' <param name="file_path"></param>
         Sub initialize(file_path As String)
 
+
+        '' ------------------------------------------------------------------------------------------------------
+        '' Information on database content
+        '' ------------------------------------------------------------------------------------------------------
+
+        ''' <summary>
+        ''' Returns the number of tile items stored in the database.
+        ''' </summary>
+        ''' <returns></returns>
+        ReadOnly Property item_count As Integer
+
+        ''' <summary>
+        ''' Returns the highest number of representations that one or
+        ''' more items in the database are associated with.
+        ''' </summary>
+        ''' <returns></returns>
+        ReadOnly Property max_num_files_per_item As Integer
+
+        ''' <summary>
+        ''' Returns the lowest number of representations that one or
+        ''' more items in the database are associated with.
+        ''' </summary>
+        ''' <returns></returns>
+        ReadOnly Property min_num_files_per_item As Integer
+
+        ''' <summary>
+        ''' Maps numbers of files to the number of those items that are
+        ''' associated with at least that many files.
+        ''' </summary>
+        ''' <returns>A dictionary where the keys represent numbers of
+        ''' files and the values represent the number of those items
+        ''' that are associated with at least that many files.</returns>
+        ReadOnly Property map_num_files_to_num_of_items_with_at_least_that_many As IDictionary(Of Integer, Integer)
+
+        ''' <summary>
+        ''' Maps numbers of files to the number of those items that are
+        ''' associated with at exactly that many files.
+        ''' </summary>
+        ''' <returns>A dictionary where the keys represent numbers of
+        ''' files and the values represent the number of those items
+        ''' that are associated with exactly that many files.</returns>
+        ReadOnly Property map_num_files_to_num_of_items_with_exactly_that_many As IDictionary(Of Integer, Integer)
+
+
+        '' ------------------------------------------------------------------------------------------------------
+        '' Get actual data
+        '' ------------------------------------------------------------------------------------------------------
+
         ''' <summary>
         ''' Returns the tile items stored in the database.
         ''' </summary>
         ''' <returns></returns>
         ReadOnly Property items As IEnumerable(Of DTOs.Item)
-        ReadOnly Property item_count As Integer
 
         ''' <summary>
-        ''' Returns all different representations of the items in the database.
-        ''' </summary>
-        ''' <returns></returns>
-        ReadOnly Property item_representations As IEnumerable(Of DTOs.File_Info)
-        ReadOnly Property representation_count As Integer
-
-        ''' <summary>
-        ''' Returns all representations of a tile item.
+        ''' Returns information on all files that are associated with <paramref name="item"/>.
         ''' </summary>
         ''' <param name="item"></param>
         ''' <returns></returns>
-        Function get_representations_for_item(item As DTOs.Item) As IEnumerable(Of DTOs.Representation_Count)
+        Function files_for_item(item As DTOs.Item) As IEnumerable(Of DTOs.File_Info)
 
-        Function get_item_with_least_representations() As DTOs.Item
         ''' <summary>
-        ''' Returns the number of representations for the tile item that
-        ''' has the least representations associated with it.
+        ''' Returns all items that are associated with at least <paramref name="num_files"/>
+        ''' files.
         ''' </summary>
+        ''' <param name="num_files"></param>
         ''' <returns></returns>
-        ReadOnly Property min_number_of_representations As Integer
+        Function items_with_at_least_that_many_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
 
-        Function get_item_with_most_representations() As DTOs.Item
         ''' <summary>
-        ''' Returns the number of representations for the tile item that
-        ''' has the most representations associated with it.
+        ''' Returns all items that are associated with exactly <paramref name="num_files"/>
+        ''' files.
         ''' </summary>
+        ''' <param name="num_files"></param>
         ''' <returns></returns>
-        ReadOnly Property max_number_of_representations As Integer
-
-        ''' <summary>
-        ''' Returns a dictionary with tiles and the number of representations
-        ''' available for each of them.
-        ''' </summary>
-        ''' <returns>A dictionary with tiles as the keys and counts of
-        ''' representations as the values.</returns>
-        ReadOnly Property tiles_with_representation_counts As IDictionary(Of DTOs.Item, Integer)
+        Function items_with_exactly_that_many_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
 
     End Interface
 

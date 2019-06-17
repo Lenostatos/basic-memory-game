@@ -7,7 +7,7 @@ PRAGMA foreign_keys = ON;
 -- String literals should be enclosed in single quotes.
 
 -- TODO: find a command for dropping all the tables at once
-DROP VIEW IF EXISTS "Representation_Count";
+DROP VIEW IF EXISTS "File_Count";
 DROP TABLE IF EXISTS "File_Info";
 DROP TABLE IF EXISTS "Item";
 DROP TABLE IF EXISTS "File_Type";
@@ -32,9 +32,9 @@ CREATE TABLE "File_Type"(
 	"interpretation" TEXT UNIQUE NOT NULL
 );
 
-CREATE VIEW "Representation_Count" AS
+CREATE VIEW "File_Count" AS
 SELECT
-	"Item"."id" AS "id_item",
+	"Item"."id" AS "id_Item",
 	COUNT (*) AS "count"
 FROM "Item"
 	JOIN "File_Info" ON "Item"."id" = "File_Info"."id_Item"

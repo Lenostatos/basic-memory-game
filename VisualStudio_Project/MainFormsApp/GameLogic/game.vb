@@ -1,5 +1,10 @@
 ﻿Namespace game_logic
 
+    ''' <summary>
+    ''' Models a game of memory.
+    ''' </summary>
+    ''' <TODO>Create a constructor for any kind of game in any state
+    ''' and an extra function for initializing a new game.</TODO>
     Public Class game
 
         Public Const EXCEPTION_MESSAGE_INITIALIZED_GAME_WITHOUT_PLAYERS As String =
@@ -16,6 +21,8 @@
             "Attempted to get winners before the game was over."
         Public Const EXCEPTION_MESSAGE_UNCOVER_ALREADY_UNCOVERED_TILE As String =
             "Attempted to uncover a tile that was already uncovered."
+
+        Public Property database As tile_database.i_database
 
         Private Property _players As List(Of player)
         Private Property _moving_player As player
