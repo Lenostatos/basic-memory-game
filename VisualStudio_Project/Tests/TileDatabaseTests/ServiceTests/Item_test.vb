@@ -20,14 +20,15 @@ Namespace tile_database_test.service_test
             Dim my_items As New List(Of DTOs.Item)(Item.all())
 
             Assert.IsTrue(my_items.Contains(New DTOs.Item() With {.id = 1, .name = "Pine"}))
-            Assert.AreEqual(5, my_items.Count)
+            Assert.IsTrue(my_items.Contains(New DTOs.Item() With {.id = 6, .name = "Beech"}))
+            Assert.AreEqual(6, my_items.Count)
 
         End Sub
 
         <TestMethod>
         Public Sub count()
 
-            Assert.AreEqual(5, Item.count())
+            Assert.AreEqual(6, Item.count())
 
         End Sub
 
@@ -35,7 +36,7 @@ Namespace tile_database_test.service_test
         Public Sub get_by_id()
 
             Assert.IsNull(Item.get_by_id(0))
-            Assert.IsNull(Item.get_by_id(6))
+            Assert.IsNull(Item.get_by_id(7))
 
             Dim expected_item As DTOs.Item
 
@@ -47,6 +48,9 @@ Namespace tile_database_test.service_test
 
             expected_item = New DTOs.Item() With {.id = 5, .name = "Birch"}
             Assert.AreEqual(Item.get_by_id(5), expected_item)
+
+            expected_item = New DTOs.Item() With {.id = 6, .name = "Beech"}
+            Assert.AreEqual(Item.get_by_id(6), expected_item)
 
         End Sub
 

@@ -32,6 +32,10 @@ Namespace tile_database.service
         ''' <returns></returns>
         Public Function get_for_count(count As Integer) As IEnumerable(Of DTOs.File_Count)
 
+            If count < min_count OrElse count > max_count Then
+                Throw New ArgumentOutOfRangeException()
+            End If
+
             Dim return_counts As IEnumerable(Of DTOs.File_Count)
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
@@ -90,6 +94,8 @@ Namespace tile_database.service
         ''' <summary>
         ''' Returns the minimum number of files that an item is associated with.
         ''' </summary>
+        ''' <remarks>Does not return zero, even if there is an item without
+        ''' associated files.</remarks>
         ''' <returns></returns>
         Public ReadOnly Property min_count() As Integer
             Get
@@ -115,11 +121,16 @@ Namespace tile_database.service
         ''' <returns></returns>
         Public Function count_items_with_file_count(count As Integer) As Integer
 
+            If count < min_count OrElse count > max_count Then
+                Throw New ArgumentOutOfRangeException()
+            End If
+
             Dim return_count As Integer
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_count = session.Single(Of Integer)(SQL_register.File_Count.min_count())
+                    return_count = session.Single(Of Integer)(
+                        SQL_register.File_Count.count_of_specific_count(count))
                     transaction.Commit()
                 End Using
             End Using

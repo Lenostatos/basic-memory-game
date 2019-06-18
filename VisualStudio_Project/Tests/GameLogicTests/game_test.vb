@@ -42,7 +42,7 @@ Namespace game_logic_test
             Dim players As New List(Of player)() From {_kuba, _hernie}
             Dim tile_set As New matching_tiles_set() From {_m_3_t_1, _m_3_t_2, _m_3_t_3}
 
-            Dim my_game As New game(players, _hernie, tile_set, game_board_layout.dimension.row, 2)
+            Dim my_game As New game(players, _hernie, tile_set)
 
             For Each p As player In players
                 Assert.IsTrue(my_game.players.Contains(p))
@@ -65,21 +65,21 @@ Namespace game_logic_test
             Dim tile_set As New matching_tiles_set() From {_m_3_t_1, _m_3_t_2, _m_3_t_3}
 
             Assert.ThrowsException(Of ArgumentNullException)(
-                Sub() my_game = New game(Nothing, _kuba, tile_set, game_board_layout.dimension.column, 2))
+                Sub() my_game = New game(Nothing, _kuba, tile_set))
             Assert.ThrowsException(Of ArgumentNullException)(
-                Sub() my_game = New game(players, Nothing, tile_set, game_board_layout.dimension.column, 2))
+                Sub() my_game = New game(players, Nothing, tile_set))
             Assert.ThrowsException(Of ArgumentNullException)(
-                Sub() my_game = New game(players, _kuba, Nothing, game_board_layout.dimension.column, 2))
+                Sub() my_game = New game(players, _kuba, Nothing))
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_game = New game(New List(Of player), _kuba, tile_set, game_board_layout.dimension.column, 2),
+                Sub() my_game = New game(New List(Of player), _kuba, tile_set),
                 game.EXCEPTION_MESSAGE_INITIALIZED_GAME_WITHOUT_PLAYERS)
 
             Dim new_player As New player("Newbie")
             players = New List(Of player) From {new_player, _kuba}
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_game = New game(players, _hernie, tile_set, game_board_layout.dimension.column, 2),
+                Sub() my_game = New game(players, _hernie, tile_set),
                 game.EXCEPTION_MESSAGE_STARTING_PLAYER_NOT_AMONG_PLAYERS)
 
             Dim inv_player As New player("Invalid")
@@ -87,7 +87,7 @@ Namespace game_logic_test
             players = New List(Of player) From {inv_player, _kuba}
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_game = New game(players, _kuba, tile_set, game_board_layout.dimension.column, 2),
+                Sub() my_game = New game(players, _kuba, tile_set),
                 game.EXCEPTION_MESSAGE_INITIALIZED_GAME_WITH_INVALID_PLAYERS)
 
         End Sub
@@ -113,7 +113,7 @@ Namespace game_logic_test
                 my_hernie = New player("Hernie")
                 players = New List(Of player)() From {my_kuba, my_hernie}
 
-                my_game = New game(players, my_hernie, tile_set, game_board_layout.dimension.row, 2)
+                my_game = New game(players, my_hernie, tile_set)
 
                 my_game.uncover_tile(0)
                 my_game.uncover_tile(1)
@@ -182,7 +182,7 @@ Namespace game_logic_test
             Dim my_jonny As New player("Jonny")
             Dim my_players As New List(Of player)() From {my_kuba, my_hernie, my_jonny}
 
-            Dim my_game As New game(my_players, my_jonny, tile_set, game_board_layout.dimension.row, 2)
+            Dim my_game As New game(my_players, my_jonny, tile_set)
 
             While Not my_game.game_over
 
@@ -214,7 +214,7 @@ Namespace game_logic_test
             Dim my_jonny As New player("Jonny")
             Dim my_players As New List(Of player)() From {my_kuba, my_hernie, my_jonny}
 
-            Dim my_game As New game(my_players, my_jonny, tile_set, game_board_layout.dimension.row, 2)
+            Dim my_game As New game(my_players, my_jonny, tile_set)
 
             ' Gets the zero-based index of the first covered tile that is encountered on the board.
             ' Starts the search at starting_at.

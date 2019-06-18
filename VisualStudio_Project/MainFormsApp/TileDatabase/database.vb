@@ -14,7 +14,7 @@ Namespace tile_database
             "Could not connect to a database at the specified path."
 
         Public Const DEFAULT_PATH As String =
-            "../../../../data/tree_species_tile_set/database.sqlite3"
+            "../../../../data/test_tile_set/database.sqlite3"
 
         Private Shared Property _file_path As String
         Private Shared Property _session_factory As ISessionFactory

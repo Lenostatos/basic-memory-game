@@ -51,7 +51,7 @@ Namespace game_logic_test
 
             Dim my_tiles As matching_tiles_set = _tiles
 
-            Dim my_board As New game_board(my_tiles, game_board_layout.dimension.row, 3)
+            Dim my_board As New game_board(my_tiles)
 
             Assert.AreEqual(0, my_board(0).undercover_item.id)
             Assert.AreEqual(0, my_board(1).undercover_item.id)
@@ -68,7 +68,7 @@ Namespace game_logic_test
             }
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3),
+                Sub() my_board = New game_board(my_tiles),
                 game_board.EXCEPTION_MESSAGE_NOT_ENOUGH_DIFFERENT_ITEMS)
 
             my_tiles = New matching_tiles_set() From {
@@ -78,7 +78,7 @@ Namespace game_logic_test
             }
 
             Assert.ThrowsException(Of ArgumentException)(
-                Sub() my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3),
+                Sub() my_board = New game_board(my_tiles),
                 game_board.EXCEPTION_MESSAGE_NOT_ENOUGH_MATCHING_TILES)
 
         End Sub
@@ -86,7 +86,7 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub test_tile_removal()
 
-            Dim my_board As New game_board(_tiles, game_board_layout.dimension.row, 3)
+            Dim my_board As New game_board(_tiles)
 
             Dim removed_tiles As matching_tiles =
                 my_board.remove_matching_tiles({0, 1, 2})
@@ -102,7 +102,7 @@ Namespace game_logic_test
         <TestMethod>
         Public Sub test_filtering_existing_tiles()
 
-            Dim my_board As New game_board(_tiles, game_board_layout.dimension.row, 3)
+            Dim my_board As New game_board(_tiles)
 
             Dim removed_tiles As matching_tiles =
                 my_board.remove_matching_tiles({0, 1, 2})
@@ -127,7 +127,7 @@ Namespace game_logic_test
 
             Dim my_tiles As matching_tiles_set = _tiles
 
-            Dim my_board As New game_board(my_tiles, game_board_layout.dimension.row, 3)
+            Dim my_board As New game_board(my_tiles)
 
             my_board.shuffle_positions()
 
@@ -141,7 +141,7 @@ Namespace game_logic_test
                 Assert.IsTrue(my_board.Contains(t))
             Next
 
-            my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3)
+            my_board = New game_board(my_tiles)
             my_board.remove_matching_tiles({0, 1, 2})
 
             my_board.shuffle_tiles()
@@ -150,7 +150,7 @@ Namespace game_logic_test
             Assert.IsNull(my_board(1))
             Assert.IsNull(my_board(2))
 
-            my_board = New game_board(my_tiles, game_board_layout.dimension.row, 3)
+            my_board = New game_board(my_tiles)
             my_board.remove_matching_tiles({3, 4, 5})
 
             my_board.shuffle_tiles()

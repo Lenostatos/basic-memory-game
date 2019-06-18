@@ -17,7 +17,6 @@
             "Attempted to use sets of matching tiles with overall less than two different items."
 
         Private _mapping As List(Of tile)
-        Private _layout As game_board_layout
         Private ReadOnly _size_of_matching_tile_groups As Integer
 
         ''' <summary>
@@ -27,9 +26,7 @@
         ''' different items in the whole set and at least two tiles
         ''' per item. For every item there should be the same number
         ''' of tiles.</param>
-        Public Sub New(tile_set As matching_tiles_set,
-                       fixed_dimension As game_board_layout.dimension,
-                       fixed_dimension_length As Integer)
+        Public Sub New(tile_set As matching_tiles_set)
 
             If tile_set Is Nothing Then Throw New ArgumentNullException()
 
@@ -43,8 +40,6 @@
 
             _mapping = tile_set.tiles
             _size_of_matching_tile_groups = tile_set.size_of_matching_tile_groups
-
-            _layout = New game_board_layout(_mapping.Count, fixed_dimension, fixed_dimension_length)
 
         End Sub
 
@@ -84,12 +79,6 @@
         Default Public ReadOnly Property Item(index As Integer) As tile Implements IReadOnlyList(Of tile).Item
             Get
                 Return _mapping(index)
-            End Get
-        End Property
-
-        Public ReadOnly Property item_at_matrix_position(row_index As Integer, column_index As Integer) As tile
-            Get
-                Return _mapping.Item(_layout.get_array_position(row_index, column_index))
             End Get
         End Property
 
@@ -173,14 +162,6 @@
             Return to_be_removed
 
         End Function
-
-        Public Sub change_fixed_dimension(new_dimension As game_board_layout.dimension)
-            _layout.fixed_dimension = new_dimension
-        End Sub
-
-        Public Sub change_fixed_dimension_length(new_dimension_length As Integer)
-            _layout.fixed_dimension_length = new_dimension_length
-        End Sub
 
         Public Function GetEnumerator() As IEnumerator(Of tile) Implements IEnumerable(Of tile).GetEnumerator
             Return _mapping.GetEnumerator()

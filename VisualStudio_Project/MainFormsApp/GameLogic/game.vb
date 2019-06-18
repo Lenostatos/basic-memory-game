@@ -22,8 +22,6 @@
         Public Const EXCEPTION_MESSAGE_UNCOVER_ALREADY_UNCOVERED_TILE As String =
             "Attempted to uncover a tile that was already uncovered."
 
-        Public Property database As tile_database.i_database
-
         Private Property _players As List(Of player)
         Private Property _moving_player As player
         Private Property _board As game_board
@@ -41,9 +39,7 @@
         ''' <param name="fixed_dimension_length"></param>
         Public Sub New(players As List(Of player),
                        starting_player As player,
-                       tiles As matching_tiles_set,
-                       fixed_dimension As game_board_layout.dimension,
-                       fixed_dimension_length As Integer)
+                       tiles As matching_tiles_set)
 
             If players Is Nothing Then Throw New ArgumentNullException()
             If starting_player Is Nothing Then Throw New ArgumentNullException()
@@ -72,12 +68,18 @@
             Next
 
             _moving_player = starting_player
-            _board = New game_board(tiles, fixed_dimension, fixed_dimension_length)
+            _board = New game_board(tiles)
 
             _board.cover_tiles()
             _board.shuffle_positions()
 
             _uncovered_positions = New List(Of Integer)
+
+        End Sub
+
+        Public Sub New(game_setup_data As setup_new_game_data)
+
+            Me.New(game_setup_data.players, game_setup_data.starting_player, game_setup_data.tile_set)
 
         End Sub
 

@@ -24,17 +24,14 @@ Partial Class game_setup_form
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.text_box_add_player = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.add_player_help_ToolTip = New System.Windows.Forms.ToolTip(Me.components)
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TableLayoutPanel1.SuspendLayout()
+        Me.table_layout_panel_added_players = New System.Windows.Forms.TableLayoutPanel()
         Me.SuspendLayout()
         '
         'Label2
@@ -47,12 +44,12 @@ Partial Class game_setup_form
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Add Player:"
         '
-        'TextBox1
+        'text_box_add_player
         '
-        Me.TextBox1.Location = New System.Drawing.Point(12, 150)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(138, 22)
-        Me.TextBox1.TabIndex = 2
+        Me.text_box_add_player.Location = New System.Drawing.Point(12, 150)
+        Me.text_box_add_player.Name = "text_box_add_player"
+        Me.text_box_add_player.Size = New System.Drawing.Size(138, 22)
+        Me.text_box_add_player.TabIndex = 2
         '
         'Label3
         '
@@ -75,41 +72,6 @@ Partial Class game_setup_form
         Me.add_player_help_ToolTip.UseAnimation = False
         Me.add_player_help_ToolTip.UseFading = False
         '
-        'TableLayoutPanel1
-        '
-        Me.TableLayoutPanel1.ColumnCount = 2
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.95238!))
-        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 19.04762!))
-        Me.TableLayoutPanel1.Controls.Add(Me.Label4, 0, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Button1, 1, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(12, 178)
-        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
-        Me.TableLayoutPanel1.RowCount = 1
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(210, 36)
-        Me.TableLayoutPanel1.TabIndex = 4
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(3, 9)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(74, 17)
-        Me.Label4.TabIndex = 0
-        Me.Label4.Text = "test player"
-        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Button1
-        '
-        Me.Button1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Button1.Location = New System.Drawing.Point(172, 3)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(35, 30)
-        Me.Button1.TabIndex = 1
-        Me.Button1.Text = "X"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
@@ -131,7 +93,7 @@ Partial Class game_setup_form
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(192, 68)
+        Me.Button4.Location = New System.Drawing.Point(212, 68)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(30, 28)
         Me.Button4.TabIndex = 8
@@ -147,38 +109,50 @@ Partial Class game_setup_form
         Me.Label6.TabIndex = 9
         Me.Label6.Text = "NA"
         '
+        'table_layout_panel_added_players
+        '
+        Me.table_layout_panel_added_players.AutoSize = True
+        Me.table_layout_panel_added_players.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.table_layout_panel_added_players.BackColor = System.Drawing.SystemColors.Control
+        Me.table_layout_panel_added_players.ColumnCount = 2
+        Me.table_layout_panel_added_players.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195.0!))
+        Me.table_layout_panel_added_players.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
+        Me.table_layout_panel_added_players.Location = New System.Drawing.Point(12, 178)
+        Me.table_layout_panel_added_players.Name = "table_layout_panel_added_players"
+        Me.table_layout_panel_added_players.RowCount = 1
+        Me.table_layout_panel_added_players.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.table_layout_panel_added_players.Size = New System.Drawing.Size(230, 0)
+        Me.table_layout_panel_added_players.TabIndex = 13
+        '
         'game_setup_form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(238, 237)
+        Me.ClientSize = New System.Drawing.Size(254, 231)
+        Me.Controls.Add(Me.table_layout_panel_added_players)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.text_box_add_player)
         Me.Controls.Add(Me.Label2)
         Me.Name = "game_setup_form"
         Me.Text = "Game Settings"
-        Me.TableLayoutPanel1.ResumeLayout(False)
-        Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents Label2 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents text_box_add_player As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents add_player_help_ToolTip As ToolTip
-    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents Label4 As Label
-    Friend WithEvents Button1 As Button
     Friend WithEvents Label5 As Label
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Label6 As Label
+    Friend WithEvents table_layout_panel_added_players As TableLayoutPanel
 End Class

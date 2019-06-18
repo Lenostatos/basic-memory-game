@@ -9,7 +9,8 @@ INSERT INTO "Item" VALUES
 	(2, 'Oak'),
 	(3, 'Spruce'),
 	(4, 'Black Alder'),
-	(5, 'Birch')
+	(5, 'Birch'),
+	(6, 'Beech')
 ;
 
 INSERT INTO "File_Type" VALUES
