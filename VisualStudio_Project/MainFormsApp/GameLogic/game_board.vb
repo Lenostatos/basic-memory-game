@@ -99,7 +99,7 @@
         Public Sub shuffle_tiles()
 
             Dim shuffled_tiles As List(Of tile) =
-                utility.functions.shuffle_collection(tiles)
+                utility.functions.shuffle_enumerable(tiles)
 
             Dim index_shuffled As Integer = 0
             For Each t As tile In _mapping
@@ -116,7 +116,7 @@
         ''' </summary>
         Public Sub shuffle_positions()
 
-            _mapping = utility.functions.shuffle_collection(Of tile)(_mapping)
+            _mapping = utility.functions.shuffle_enumerable(Of tile)(_mapping)
 
         End Sub
 

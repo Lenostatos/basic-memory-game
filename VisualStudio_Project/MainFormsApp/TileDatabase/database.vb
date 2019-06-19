@@ -24,7 +24,7 @@ Namespace tile_database
         ''' </summary>
         Private Shared Property _customised_mapping_conventions As Boolean = False
 
-        Public Shared ReadOnly Property file_path As String
+        Public Shared ReadOnly Property shared_file_path As String
             Get
                 Return _file_path
             End Get
@@ -149,9 +149,17 @@ Namespace tile_database
 
         Public ReadOnly Property min_num_files_per_item As Integer Implements i_database.min_num_files_per_item
             Get
-                Return service.File_Count.min_count()
+                Return service.File_Count.min_but_not_zero_file_count()
             End Get
         End Property
+
+        Public Function get_num_items_with_exactly_num_files(num_files As Integer) As Integer Implements i_database.get_num_items_with_exactly_num_files
+            Return service.File_Count.count_items_with_num_files(num_files)
+        End Function
+
+        Public Function get_num_items_with_at_least_num_files(num_files As Integer) As Integer Implements i_database.get_num_items_with_at_least_num_files
+            Return service.File_Count.count_items_with_at_least_num_files(num_files)
+        End Function
 
         Public ReadOnly Property map_num_files_to_num_of_items_with_exactly_that_many As IDictionary(Of Integer, Integer) Implements i_database.map_num_files_to_num_of_items_with_exactly_that_many
             Get
@@ -159,7 +167,7 @@ Namespace tile_database
                 Dim return_dict As New Dictionary(Of Integer, Integer)
 
                 For file_count As Integer = min_num_files_per_item To max_num_files_per_item
-                    return_dict.Add(file_count, service.File_Count.count_items_with_file_count(file_count))
+                    return_dict.Add(file_count, service.File_Count.count_items_with_num_files(file_count))
                 Next
 
                 Return return_dict
@@ -175,7 +183,7 @@ Namespace tile_database
                 Dim num_items_with_file_count As Integer
 
                 For file_count As Integer = max_num_files_per_item To min_num_files_per_item
-                    num_items_with_file_count = service.File_Count.count_items_with_file_count(file_count)
+                    num_items_with_file_count = service.File_Count.count_items_with_num_files(file_count)
                     cumulative_item_count = cumulative_item_count + num_items_with_file_count
                     return_dict.Add(file_count, cumulative_item_count)
                 Next
@@ -185,11 +193,17 @@ Namespace tile_database
             End Get
         End Property
 
+        Public ReadOnly Property file_path As String Implements i_database.file_path
+            Get
+                Return database.shared_file_path
+            End Get
+        End Property
+
         Public Function files_for_item(item As Item) As IEnumerable(Of File_Info) Implements i_database.files_for_item
             Return service.File_Info.get_for_Item_id(item.id)
         End Function
 
-        Public Function items_with_exactly_that_many_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_exactly_that_many_files
+        Public Function items_with_exactly_num_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_exactly_num_files
 
             Dim return_items As New List(Of DTOs.Item)
 
@@ -201,7 +215,7 @@ Namespace tile_database
 
         End Function
 
-        Public Function items_with_at_least_that_many_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_at_least_that_many_files
+        Public Function items_with_at_least_num_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_at_least_num_files
 
             If num_files > max_num_files_per_item Then
                 Throw New ArgumentOutOfRangeException()
@@ -210,7 +224,7 @@ Namespace tile_database
             Dim return_item As New List(Of DTOs.Item)
 
             For file_Count As Integer = num_files To max_num_files_per_item
-                return_item.AddRange(items_with_exactly_that_many_files(file_Count))
+                return_item.AddRange(items_with_exactly_num_files(file_Count))
             Next
 
             Return return_item

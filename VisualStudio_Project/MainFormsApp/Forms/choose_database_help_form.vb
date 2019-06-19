@@ -1,4 +1,4 @@
-﻿Public Class choose_database_help_formvb
+﻿Public Class choose_database_help_form
     Private Sub choose_database_help_formvb_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         ' Counts the characters of all lines in a string array until_line_index.

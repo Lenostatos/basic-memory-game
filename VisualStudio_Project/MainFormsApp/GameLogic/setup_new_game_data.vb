@@ -24,12 +24,13 @@
             Get
                 Return _starting_player
             End Get
-            Set(value As player)
+            Set(p As player)
 
-                If value Is Nothing Then Throw New ArgumentNullException()
-                If Not players.Contains(value) Then Throw New ArgumentException()
+                If p IsNot Nothing AndAlso Not players.Contains(p) Then
+                    Throw New ArgumentException()
+                End If
 
-                _starting_player = value
+                _starting_player = p
 
             End Set
         End Property
@@ -62,6 +63,10 @@
 
         End Function
 
+        ''' <summary>
+        ''' Indicates whether the stored the data is sufficient for starting a new game.
+        ''' </summary>
+        ''' <returns></returns>
         Public ReadOnly Property ready_to_go As Boolean
             Get
 

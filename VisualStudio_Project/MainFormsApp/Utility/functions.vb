@@ -2,25 +2,22 @@
 
     Module functions
 
-        ''' <summary>
-        ''' Returns a shuffled copy of <paramref name="collection"/>.
-        ''' </summary>
-        ''' <typeparam name="t"></typeparam>
-        ''' <param name="collection"></param>
-        ''' <returns></returns>
-        Public Function shuffle_collection(Of t)(collection As IEnumerable(Of t)) As IEnumerable(Of t)
+        Public Function sample_enumerable(Of t)(enumerable As IEnumerable(Of t), size As Integer) As IEnumerable(Of t)
+
+            If size < 1 Then Throw New ArgumentOutOfRangeException("size", size)
 
             ' Create a sequence of indices.
-            Dim indices As New List(Of UInteger)(collection.Count)
-            For i As UInteger = 0 To collection.Count - 1
+            Dim indices As New List(Of Integer)(enumerable.Count)
+            For i As Integer = 0 To enumerable.Count - 1
                 indices.Add(i)
             Next
 
             ' Pick random indices to create a new shuffled collection.
             Dim rand As New System.Random   ' RNG used for the shuffling
-            Dim random_number As UInteger
-            Dim picked_index As UInteger
-            Dim shuffled_collection As New List(Of t)(collection.Count)
+
+            Dim random_number As Integer
+            Dim picked_index As Integer
+            Dim sample As New List(Of t)(enumerable.Count)
 
             While indices.Count > 0
 
@@ -31,7 +28,47 @@
                 picked_index = indices(random_number)
 
                 ' Use the index to add an element to the shuffled collection
-                shuffled_collection.Add(collection(picked_index))
+                sample.Add(enumerable(picked_index))
+
+                ' Remove the index from the "list of candidates"
+                indices.RemoveAt(random_number)
+
+            End While
+
+            Return sample
+
+        End Function
+
+        ''' <summary>
+        ''' Returns a shuffled copy of <paramref name="enumerable"/>.
+        ''' </summary>
+        ''' <typeparam name="t"></typeparam>
+        ''' <param name="enumerable"></param>
+        ''' <returns></returns>
+        Public Function shuffle_enumerable(Of t)(enumerable As IEnumerable(Of t)) As IEnumerable(Of t)
+
+            ' Create a sequence of indices.
+            Dim indices As New List(Of UInteger)(enumerable.Count)
+            For i As UInteger = 0 To enumerable.Count - 1
+                indices.Add(i)
+            Next
+
+            ' Pick random indices to create a new shuffled collection.
+            Dim rand As New System.Random   ' RNG used for the shuffling
+            Dim random_number As UInteger
+            Dim picked_index As UInteger
+            Dim shuffled_collection As New List(Of t)(enumerable.Count)
+
+            While indices.Count > 0
+
+                ' Generate a random number.
+                random_number = rand.Next(maxValue:=indices.Count)
+
+                ' Pick an index with it.
+                picked_index = indices(random_number)
+
+                ' Use the index to add an element to the shuffled collection
+                shuffled_collection.Add(enumerable(picked_index))
 
                 ' Remove the index from the "list of candidates"
                 indices.RemoveAt(random_number)

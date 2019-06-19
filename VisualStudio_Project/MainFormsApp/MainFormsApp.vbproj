@@ -93,19 +93,31 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\GUI\game_setup_form\add_player.vb" />
-    <Compile Include="Controller\UI\game_setup\add_player.vb" />
+    <Compile Include="Controller\GUI\game_setup_form\database_selection.vb" />
+    <Compile Include="Controller\GUI\game_setup_form\player_selection.vb" />
+    <Compile Include="Controller\GUI\tile_set_options_form\tile_set_composition.vb" />
+    <Compile Include="Controller\UI\game_setup\database_selection.vb" />
+    <Compile Include="Controller\UI\game_setup\Enums\design_selection_pattern.vb" />
+    <Compile Include="Controller\UI\game_setup\player_selection.vb" />
+    <Compile Include="Controller\UI\game_setup\Enums\selection_method.vb" />
+    <Compile Include="Controller\UI\game_setup\tile_set_composition.vb" />
     <Compile Include="Controller\UI\tile_set_builder.vb" />
-    <Compile Include="Forms\choose_database_help_formvb.Designer.vb">
-      <DependentUpon>choose_database_help_formvb.vb</DependentUpon>
+    <Compile Include="Forms\choose_database_help_form.Designer.vb">
+      <DependentUpon>choose_database_help_form.vb</DependentUpon>
     </Compile>
-    <Compile Include="Forms\choose_database_help_formvb.vb">
+    <Compile Include="Forms\choose_database_help_form.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\game_setup_form.Designer.vb">
       <DependentUpon>game_setup_form.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\game_setup_form.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\tile_set_options_form.Designer.vb">
+      <DependentUpon>tile_set_options_form.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\tile_set_options_form.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GameLogic\game_board_layout.vb" />
@@ -162,14 +174,17 @@
     <Compile Include="Utility\functions.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\choose_database_help_formvb.resx">
-      <DependentUpon>choose_database_help_formvb.vb</DependentUpon>
+    <EmbeddedResource Include="Forms\choose_database_help_form.resx">
+      <DependentUpon>choose_database_help_form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\game_setup_form.resx">
       <DependentUpon>game_setup_form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\game_form.resx">
       <DependentUpon>game_form.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\tile_set_options_form.resx">
+      <DependentUpon>tile_set_options_form.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

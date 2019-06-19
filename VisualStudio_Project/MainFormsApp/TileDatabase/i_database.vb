@@ -8,6 +8,8 @@
         ''' <param name="file_path"></param>
         Sub initialize(file_path As String)
 
+        ReadOnly Property file_path As String
+
 
         '' ------------------------------------------------------------------------------------------------------
         '' Information on database content
@@ -32,6 +34,22 @@
         ''' </summary>
         ''' <returns></returns>
         ReadOnly Property min_num_files_per_item As Integer
+
+        ''' <summary>
+        ''' Returns the number of items that are associated with exactly
+        ''' <paramref name="num_files"/> files in the database.
+        ''' </summary>
+        ''' <param name="num_files"></param>
+        ''' <returns></returns>
+        Function get_num_items_with_exactly_num_files(num_files As Integer) As Integer
+
+        ''' <summary>
+        ''' Returns the number of items that are associated with at least
+        ''' <paramref name="num_files"/> files in the database.
+        ''' </summary>
+        ''' <param name="num_files"></param>
+        ''' <returns></returns>
+        Function get_num_items_with_at_least_num_files(num_files As Integer) As Integer
 
         ''' <summary>
         ''' Maps numbers of files to the number of those items that are
@@ -75,7 +93,7 @@
         ''' </summary>
         ''' <param name="num_files"></param>
         ''' <returns></returns>
-        Function items_with_at_least_that_many_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
+        Function items_with_at_least_num_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
 
         ''' <summary>
         ''' Returns all items that are associated with exactly <paramref name="num_files"/>
@@ -83,7 +101,7 @@
         ''' </summary>
         ''' <param name="num_files"></param>
         ''' <returns></returns>
-        Function items_with_exactly_that_many_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
+        Function items_with_exactly_num_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
 
     End Interface
 

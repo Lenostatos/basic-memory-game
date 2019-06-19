@@ -28,17 +28,19 @@ Partial Class game_setup_form
         Me.Label3 = New System.Windows.Forms.Label()
         Me.add_player_help_ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
+        Me.button_choose_tile_set = New System.Windows.Forms.Button()
+        Me.button_display_database_choosing_help = New System.Windows.Forms.Button()
+        Me.label_database_file_path = New System.Windows.Forms.Label()
         Me.table_layout_panel_added_players = New System.Windows.Forms.TableLayoutPanel()
+        Me.button_tile_set_options = New System.Windows.Forms.Button()
+        Me.button_start_game = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(9, 121)
+        Me.Label2.Location = New System.Drawing.Point(9, 199)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(92, 17)
         Me.Label2.TabIndex = 1
@@ -46,16 +48,17 @@ Partial Class game_setup_form
         '
         'text_box_add_player
         '
-        Me.text_box_add_player.Location = New System.Drawing.Point(12, 150)
+        Me.text_box_add_player.Location = New System.Drawing.Point(12, 228)
+        Me.text_box_add_player.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.text_box_add_player.Name = "text_box_add_player"
-        Me.text_box_add_player.Size = New System.Drawing.Size(138, 22)
+        Me.text_box_add_player.Size = New System.Drawing.Size(137, 22)
         Me.text_box_add_player.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(133, 121)
+        Me.Label3.Location = New System.Drawing.Point(133, 199)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(17, 17)
         Me.Label3.TabIndex = 3
@@ -82,32 +85,34 @@ Partial Class game_setup_form
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "The tile set to be used:"
         '
-        'Button3
+        'button_choose_tile_set
         '
-        Me.Button3.Location = New System.Drawing.Point(12, 68)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(173, 28)
-        Me.Button3.TabIndex = 7
-        Me.Button3.Text = "Choose another tile set"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.button_choose_tile_set.Location = New System.Drawing.Point(12, 68)
+        Me.button_choose_tile_set.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.button_choose_tile_set.Name = "button_choose_tile_set"
+        Me.button_choose_tile_set.Size = New System.Drawing.Size(173, 28)
+        Me.button_choose_tile_set.TabIndex = 7
+        Me.button_choose_tile_set.Text = "Choose another tile set"
+        Me.button_choose_tile_set.UseVisualStyleBackColor = True
         '
-        'Button4
+        'button_display_database_choosing_help
         '
-        Me.Button4.Location = New System.Drawing.Point(212, 68)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(30, 28)
-        Me.Button4.TabIndex = 8
-        Me.Button4.Text = "?"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.button_display_database_choosing_help.Location = New System.Drawing.Point(212, 68)
+        Me.button_display_database_choosing_help.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.button_display_database_choosing_help.Name = "button_display_database_choosing_help"
+        Me.button_display_database_choosing_help.Size = New System.Drawing.Size(29, 28)
+        Me.button_display_database_choosing_help.TabIndex = 8
+        Me.button_display_database_choosing_help.Text = "?"
+        Me.button_display_database_choosing_help.UseVisualStyleBackColor = True
         '
-        'Label6
+        'label_database_file_path
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(15, 39)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(27, 17)
-        Me.Label6.TabIndex = 9
-        Me.Label6.Text = "NA"
+        Me.label_database_file_path.AutoSize = True
+        Me.label_database_file_path.Location = New System.Drawing.Point(15, 39)
+        Me.label_database_file_path.Name = "label_database_file_path"
+        Me.label_database_file_path.Size = New System.Drawing.Size(27, 17)
+        Me.label_database_file_path.TabIndex = 9
+        Me.label_database_file_path.Text = "NA"
         '
         'table_layout_panel_added_players
         '
@@ -117,12 +122,34 @@ Partial Class game_setup_form
         Me.table_layout_panel_added_players.ColumnCount = 2
         Me.table_layout_panel_added_players.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 195.0!))
         Me.table_layout_panel_added_players.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 35.0!))
-        Me.table_layout_panel_added_players.Location = New System.Drawing.Point(12, 178)
+        Me.table_layout_panel_added_players.Location = New System.Drawing.Point(12, 256)
+        Me.table_layout_panel_added_players.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.table_layout_panel_added_players.Name = "table_layout_panel_added_players"
         Me.table_layout_panel_added_players.RowCount = 1
         Me.table_layout_panel_added_players.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.table_layout_panel_added_players.Size = New System.Drawing.Size(230, 0)
         Me.table_layout_panel_added_players.TabIndex = 13
+        '
+        'button_tile_set_options
+        '
+        Me.button_tile_set_options.Location = New System.Drawing.Point(12, 110)
+        Me.button_tile_set_options.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.button_tile_set_options.Name = "button_tile_set_options"
+        Me.button_tile_set_options.Size = New System.Drawing.Size(229, 28)
+        Me.button_tile_set_options.TabIndex = 14
+        Me.button_tile_set_options.Text = "Advanced tile set options"
+        Me.button_tile_set_options.UseVisualStyleBackColor = True
+        '
+        'button_start_game
+        '
+        Me.button_start_game.Enabled = False
+        Me.button_start_game.Location = New System.Drawing.Point(12, 153)
+        Me.button_start_game.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.button_start_game.Name = "button_start_game"
+        Me.button_start_game.Size = New System.Drawing.Size(89, 28)
+        Me.button_start_game.TabIndex = 15
+        Me.button_start_game.Text = "Start"
+        Me.button_start_game.UseVisualStyleBackColor = True
         '
         'game_setup_form
         '
@@ -131,16 +158,20 @@ Partial Class game_setup_form
         Me.AutoScroll = True
         Me.AutoSize = True
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.ClientSize = New System.Drawing.Size(254, 231)
+        Me.ClientSize = New System.Drawing.Size(260, 271)
+        Me.Controls.Add(Me.button_start_game)
+        Me.Controls.Add(Me.button_tile_set_options)
         Me.Controls.Add(Me.table_layout_panel_added_players)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
+        Me.Controls.Add(Me.label_database_file_path)
+        Me.Controls.Add(Me.button_display_database_choosing_help)
+        Me.Controls.Add(Me.button_choose_tile_set)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.text_box_add_player)
         Me.Controls.Add(Me.Label2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "game_setup_form"
+        Me.Padding = New System.Windows.Forms.Padding(0, 0, 9, 9)
         Me.Text = "Game Settings"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -151,8 +182,10 @@ Partial Class game_setup_form
     Friend WithEvents Label3 As Label
     Friend WithEvents add_player_help_ToolTip As ToolTip
     Friend WithEvents Label5 As Label
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
-    Friend WithEvents Label6 As Label
+    Friend WithEvents button_choose_tile_set As Button
+    Friend WithEvents button_display_database_choosing_help As Button
+    Friend WithEvents label_database_file_path As Label
     Friend WithEvents table_layout_panel_added_players As TableLayoutPanel
+    Friend WithEvents button_tile_set_options As Button
+    Friend WithEvents button_start_game As Button
 End Class
