@@ -193,7 +193,38 @@ Namespace tile_database.service
                     Return return_count
 
             End Select
+        End Function
 
+        ''' <summary>
+        ''' Counts the number of files that is shared among the <paramref name="num_items"/>
+        ''' items with the highest file counts.
+        ''' </summary>
+        ''' <param name="num_items"></param>
+        ''' <returns></returns>
+        Public Function shared_num_files_among_num_items_items_with_highest_file_count(num_items As Integer) As Integer
+
+            Select Case num_items
+                Case < 1
+                    Throw New ArgumentOutOfRangeException("num_items", num_items)
+                Case > Item.count
+                    Throw New ArgumentOutOfRangeException("num_items", num_items)
+                Case > count_items_with_files
+                    Return 0
+                Case Else
+
+                    Dim return_count As Integer
+
+                    Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
+                        Using transaction As ITransaction = session.BeginTransaction()
+                            return_count = session.Single(Of Integer)(
+                                SQL_register.File_Count.select_shared_num_files_from_num_items_items_with_highest_file_count(num_items))
+                            transaction.Commit()
+                        End Using
+                    End Using
+
+                    Return return_count
+
+            End Select
         End Function
 
     End Module

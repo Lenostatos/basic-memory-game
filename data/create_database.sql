@@ -38,4 +38,5 @@ SELECT
 	COUNT (*) AS "count"
 FROM "Item"
 	JOIN "File_Info" ON "Item"."id" = "File_Info"."id_Item"
-GROUP BY "Item"."id";
+GROUP BY "Item"."id"
+ORDER BY "count" DESC; -- In case you want to make your own database: This ORDER BY clause is crucial for a correct execution of the program!

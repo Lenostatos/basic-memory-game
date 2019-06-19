@@ -101,6 +101,8 @@
     <Compile Include="Controller\UI\game_setup\player_selection.vb" />
     <Compile Include="Controller\UI\game_setup\Enums\selection_method.vb" />
     <Compile Include="Controller\UI\game_setup\tile_set_composition.vb" />
+    <Compile Include="Controller\UI\game_setup\tile_set_composition\design_combination_choice.vb" />
+    <Compile Include="Controller\UI\game_setup\tile_set_composition\item_choice.vb" />
     <Compile Include="Controller\UI\tile_set_builder.vb" />
     <Compile Include="Forms\choose_database_help_form.Designer.vb">
       <DependentUpon>choose_database_help_form.vb</DependentUpon>

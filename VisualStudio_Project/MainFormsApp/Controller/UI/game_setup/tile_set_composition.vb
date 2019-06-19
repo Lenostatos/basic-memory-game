@@ -4,13 +4,15 @@ Namespace controller.UI.game_setup
 
     ''' <summary>
     ''' Models the user interface for choosing the composition of the tile set.
+    ''' This process is designed as a multi-step procedure where one step has
+    ''' to be completed before the next one can be done.
     ''' </summary>
-    Public Class tile_set_composition
+    Public Class tile_set_composition_class
 
         Private _database As tile_database.i_database
 
-        Private Property _num_tiles_per_item As Integer
         Private Property _selection_pattern As design_selection_pattern
+        Private Property _num_tiles_per_item As Integer
 
         Private Property _tile_selection_method As selection_method
         Private Property _design_selection_method As selection_method
@@ -22,8 +24,9 @@ Namespace controller.UI.game_setup
 
             _database = tile_database
 
+            _selection_pattern = design_selection_pattern.None
+
             _num_tiles_per_item = 0
-            _selection_pattern = design_selection_pattern.unselected
 
             _tile_selection_method = selection_method.unselected
             _design_selection_method = selection_method.unselected
@@ -36,17 +39,21 @@ Namespace controller.UI.game_setup
             End Get
         End Property
 
-        Public ReadOnly Property filtered_items As IReadOnlyList(Of DTOs.Item)
+        Public ReadOnly Property selected_selection_pattern As design_selection_pattern
             Get
-                Return _filtered_items
+                Return _selection_pattern
             End Get
         End Property
 
-        Public ReadOnly Property selected_items As IReadOnlyList(Of DTOs.Item)
-            Get
-                Return _selected_items
-            End Get
-        End Property
+        ''' <summary>
+        ''' First step: Choose how the designs for each tile item should be selected.
+        ''' </summary>
+        ''' <param name="pattern"></param>
+        Public Sub first_choose_selection_pattern(pattern As design_selection_pattern)
+
+
+
+        End Sub
 
         ''' <summary>
         ''' Returns the highest number of tiles that the user can choose
@@ -78,7 +85,7 @@ Namespace controller.UI.game_setup
         Public Sub general_tile_choice(num_tiles_per_item As Integer,
                                        design_selection_pattern As design_selection_pattern)
 
-            If design_selection_pattern = design_selection_pattern.unselected Then
+            If design_selection_pattern = design_selection_pattern.None Then
                 Throw New ArgumentException()
             End If
             If num_tiles_per_item < 1 Then
@@ -133,6 +140,18 @@ Namespace controller.UI.game_setup
             _tile_selection_method = selection_method.manual
 
         End Sub
+
+        Public ReadOnly Property filtered_items As IReadOnlyList(Of DTOs.Item)
+            Get
+                Return _filtered_items
+            End Get
+        End Property
+
+        Public ReadOnly Property selected_items As IReadOnlyList(Of DTOs.Item)
+            Get
+                Return _selected_items
+            End Get
+        End Property
 
     End Class
 

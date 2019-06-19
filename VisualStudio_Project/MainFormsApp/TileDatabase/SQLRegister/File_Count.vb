@@ -73,6 +73,18 @@ Namespace tile_database.SQL_register
             Return New SqlQuery("SELECT MIN(""count"") FROM ""File_Count""")
         End Function
 
+        ''' <summary>
+        ''' Selects the lowest file count from the <paramref name="num_items"/>
+        ''' items with the highest file counts.
+        ''' </summary>
+        ''' <param name="num_items"></param>
+        ''' <returns></returns>
+        Public Function select_shared_num_files_from_num_items_items_with_highest_file_count(num_items As Integer) As SqlQuery
+            Return New SqlQuery(
+                "SELECT MIN(""count"") FROM (SELECT ""count"" FROM ""File_Count"" LIMIT @p0)",
+                num_items)
+        End Function
+
     End Module
 
 End Namespace

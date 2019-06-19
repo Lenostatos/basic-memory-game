@@ -2,9 +2,9 @@
 
     Public Class tile_set_composition
 
-        Private Property _UI_set_composer As UI.game_setup.tile_set_composition
+        Private Property _UI_set_composer As UI.game_setup.tile_set_composition_class
 
-        Public Sub New(UI_set_composer As UI.game_setup.tile_set_composition)
+        Public Sub New(UI_set_composer As UI.game_setup.tile_set_composition_class)
             _UI_set_composer = UI_set_composer
         End Sub
 

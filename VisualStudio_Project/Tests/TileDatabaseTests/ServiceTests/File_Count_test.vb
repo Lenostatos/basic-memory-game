@@ -113,6 +113,23 @@ Namespace tile_database_test.service_test
 
         End Sub
 
+        <TestMethod>
+        Public Sub get_shared_file_count_for_items_with_highest_file_counts()
+
+            Assert.ThrowsException(Of ArgumentOutOfRangeException)(
+                Sub() File_Count.shared_num_files_among_num_items_items_with_highest_file_count(0))
+            Assert.ThrowsException(Of ArgumentOutOfRangeException)(
+                Sub() File_Count.shared_num_files_among_num_items_items_with_highest_file_count(7))
+
+            Assert.AreEqual(4, File_Count.shared_num_files_among_num_items_items_with_highest_file_count(1))
+            Assert.AreEqual(4, File_Count.shared_num_files_among_num_items_items_with_highest_file_count(2))
+            Assert.AreEqual(3, File_Count.shared_num_files_among_num_items_items_with_highest_file_count(3))
+            Assert.AreEqual(2, File_Count.shared_num_files_among_num_items_items_with_highest_file_count(4))
+            Assert.AreEqual(1, File_Count.shared_num_files_among_num_items_items_with_highest_file_count(5))
+            Assert.AreEqual(0, File_Count.shared_num_files_among_num_items_items_with_highest_file_count(6))
+
+        End Sub
+
     End Class
 
 End Namespace

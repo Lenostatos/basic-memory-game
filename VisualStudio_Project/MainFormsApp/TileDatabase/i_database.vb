@@ -49,7 +49,15 @@
         ''' </summary>
         ''' <param name="num_files"></param>
         ''' <returns></returns>
-        Function get_num_items_with_at_least_num_files(num_files As Integer) As Integer
+        Function count_items_with_at_least_num_files(num_files As Integer) As Integer
+
+        ''' <summary>
+        ''' Returns the maximum number of files that the <paramref name="num_items"/> items with the
+        ''' highest numbers of files can all provide.
+        ''' </summary>
+        ''' <param name="num_items"></param>
+        ''' <returns></returns>
+        Function get_shared_num_files_among_num_items_items_with_highest_file_count(num_items) As Integer
 
         ''' <summary>
         ''' Maps numbers of files to the number of those items that are

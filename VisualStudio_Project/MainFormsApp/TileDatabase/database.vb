@@ -157,8 +157,12 @@ Namespace tile_database
             Return service.File_Count.count_items_with_num_files(num_files)
         End Function
 
-        Public Function get_num_items_with_at_least_num_files(num_files As Integer) As Integer Implements i_database.get_num_items_with_at_least_num_files
+        Public Function count_items_with_at_least_num_files(num_files As Integer) As Integer Implements i_database.count_items_with_at_least_num_files
             Return service.File_Count.count_items_with_at_least_num_files(num_files)
+        End Function
+
+        Public Function get_shared_num_files_among_num_items_items_with_highest_file_count(num_items As Object) As Integer Implements i_database.get_shared_num_files_among_num_items_items_with_highest_file_count
+            Return service.File_Count.shared_num_files_among_num_items_items_with_highest_file_count(num_items)
         End Function
 
         Public ReadOnly Property map_num_files_to_num_of_items_with_exactly_that_many As IDictionary(Of Integer, Integer) Implements i_database.map_num_files_to_num_of_items_with_exactly_that_many
