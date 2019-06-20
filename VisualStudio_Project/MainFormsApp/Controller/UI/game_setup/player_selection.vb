@@ -1,6 +1,6 @@
 ﻿Imports MainFormsApp.game_logic
 
-Namespace controller.UI.game_setup
+Namespace controller.ui.game_setup
 
     ''' <summary>
     ''' Models the user interface for creating players for a game.

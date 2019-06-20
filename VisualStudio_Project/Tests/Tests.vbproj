@@ -97,14 +97,18 @@
     <Import Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameLogicTests\game_board_layout_test.vb" />
-    <Compile Include="GameLogicTests\game_board_test.vb" />
-    <Compile Include="GameLogicTests\game_test.vb" />
-    <Compile Include="GameLogicTests\matching_tiles_test.vb" />
-    <Compile Include="GameLogicTests\matching_tiles_set_test.vb" />
-    <Compile Include="GameLogicTests\player_test.vb" />
-    <Compile Include="GameLogicTests\tile_item_test.vb" />
-    <Compile Include="GameLogicTests\tile_test.vb" />
+    <Compile Include="controller_tests\ui\design_choice_test.vb" />
+    <Compile Include="controller_tests\ui\design_combination_choice_test.vb" />
+    <Compile Include="controller_tests\ui\item_choice_test.vb" />
+    <Compile Include="controller_tests\ui\num_tiles_per_item_choice_test.vb" />
+    <Compile Include="game_logic_tests\game_board_layout_test.vb" />
+    <Compile Include="game_logic_tests\game_board_test.vb" />
+    <Compile Include="game_logic_tests\game_test.vb" />
+    <Compile Include="game_logic_tests\matching_tiles_test.vb" />
+    <Compile Include="game_logic_tests\matching_tiles_set_test.vb" />
+    <Compile Include="game_logic_tests\player_test.vb" />
+    <Compile Include="game_logic_tests\tile_item_test.vb" />
+    <Compile Include="game_logic_tests\tile_test.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -120,12 +124,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TileDatabaseTests\database_test.vb" />
-    <Compile Include="TileDatabaseTests\ServiceTests\File_Info_test.vb" />
-    <Compile Include="TileDatabaseTests\ServiceTests\File_Type_test.vb" />
-    <Compile Include="TileDatabaseTests\ServiceTests\Item_test.vb" />
-    <Compile Include="TileDatabaseTests\ServiceTests\File_Count_test.vb" />
-    <Compile Include="TileDatabaseTests\SQLRegisterTests\Item_test.vb" />
+    <Compile Include="tile_database_tests\database_test.vb" />
+    <Compile Include="tile_database_tests\ServiceTests\File_Info_test.vb" />
+    <Compile Include="tile_database_tests\ServiceTests\File_Type_test.vb" />
+    <Compile Include="tile_database_tests\ServiceTests\Item_test.vb" />
+    <Compile Include="tile_database_tests\ServiceTests\File_Count_test.vb" />
+    <Compile Include="tile_database_tests\SQLRegisterTests\Item_test.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -137,7 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="GameLogicTests\App.config" />
+    <None Include="game_logic_tests\App.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

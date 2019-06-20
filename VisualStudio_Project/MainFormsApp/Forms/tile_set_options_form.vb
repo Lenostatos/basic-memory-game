@@ -1,13 +1,13 @@
 ﻿Public Class tile_set_options_form
 
-    Private _UI_tile_set_composer As controller.UI.game_setup.tile_set_composition_class
-    Private _GUI_tile_set_composer As controller.GUI.game_setup.tile_set_composition
+    Private _UI_tile_set_composer As controller.ui.game_setup.tile_set_composition_class
+    Private _GUI_tile_set_composer As controller.gui.game_setup.tile_set_composition
 
     Private Sub tile_set_options_form_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        _UI_tile_set_composer = New controller.UI.game_setup.tile_set_composition_class(
+        _UI_tile_set_composer = New controller.ui.game_setup.tile_set_composition_class(
             game_setup_form.UI_controler_database_selection.database)
-        _GUI_tile_set_composer = New controller.GUI.game_setup.tile_set_composition(_UI_tile_set_composer)
+        _GUI_tile_set_composer = New controller.gui.game_setup.tile_set_composition(_UI_tile_set_composer)
 
         _GUI_tile_set_composer.list_design_selection_patterns(combo_box_tile_selection_pattern)
 

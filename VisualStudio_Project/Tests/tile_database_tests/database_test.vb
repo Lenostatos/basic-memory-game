@@ -13,7 +13,7 @@ Namespace tile_database_test
         <TestMethod>
         Public Sub initialize_w_valid_arguments()
             Dim my_db As New database()
-            my_db.initialize(database.DEFAULT_PATH)
+            my_db.initialize(database.TEST_PATH)
         End Sub
 
         <TestMethod>

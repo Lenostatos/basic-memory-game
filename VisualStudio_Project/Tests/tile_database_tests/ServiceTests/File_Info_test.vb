@@ -10,30 +10,30 @@ Namespace tile_database_test.service_test
 
         Private Function initialize_database() As i_database
             Dim return_db As New database()
-            return_db.initialize(database.DEFAULT_PATH)
+            return_db.initialize(database.TEST_PATH)
             Return return_db
         End Function
 
         <TestMethod>
         Public Sub get_all()
 
-            Dim my_infos As New List(Of DTOs.File_Info)(service.File_Info.all())
+            Dim my_infos As New List(Of dto.File_Info)(service.File_Info.all())
 
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 1,
                     .path = "pine/english_name.txt",
                     .id_Item = 1,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 9,
                     .path = "spruce/english_name.txt",
                     .id_Item = 3,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 14,
                     .path = "birch/latin_name.txt",
@@ -55,32 +55,32 @@ Namespace tile_database_test.service_test
         <TestMethod>
         Public Sub get_for_item()
 
-            Dim my_infos As List(Of DTOs.File_Info)
+            Dim my_infos As List(Of dto.File_Info)
 
             my_infos = service.File_Info.get_for_Item_id(1)
             Assert.AreEqual(4, my_infos.Count)
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 1,
                     .path = "pine/english_name.txt",
                     .id_Item = 1,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 2,
                     .path = "pine/latin_name.txt",
                     .id_Item = 1,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 3,
                     .path = "pine/whole_tree.jpg",
                     .id_Item = 1,
                     .id_File_Type = MainFormsApp.tile_database.file_type.jpeg
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 4,
                     .path = "pine/leaves_and_cones.jpg",
@@ -90,28 +90,28 @@ Namespace tile_database_test.service_test
 
             my_infos = service.File_Info.get_for_Item_id(2)
             Assert.AreEqual(4, my_infos.Count)
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 5,
                     .path = "oak/english_name.txt",
                     .id_Item = 2,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 6,
                     .path = "oak/latin_name.txt",
                     .id_Item = 2,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 7,
                     .path = "oak/whole_tree.jpg",
                     .id_Item = 2,
                     .id_File_Type = MainFormsApp.tile_database.file_type.jpeg
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 8,
                     .path = "oak/leaves_and_acorns.jpg",
@@ -121,14 +121,14 @@ Namespace tile_database_test.service_test
 
             my_infos = service.File_Info.get_for_Item_id(3)
             Assert.AreEqual(2, my_infos.Count)
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 9,
                     .path = "spruce/english_name.txt",
                     .id_Item = 3,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 10,
                     .path = "spruce/whole_tree.jpg",
@@ -138,21 +138,21 @@ Namespace tile_database_test.service_test
 
             my_infos = service.File_Info.get_for_Item_id(4)
             Assert.AreEqual(3, my_infos.Count)
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 11,
                     .path = "black_alder/english_name.txt",
                     .id_Item = 4,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 12,
                     .path = "black_alder/latin_name.txt",
                     .id_Item = 4,
                     .id_File_Type = MainFormsApp.tile_database.file_type.text
                 }))
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 13,
                     .path = "black_alder/leaves_and_fruits.jpg",
@@ -162,7 +162,7 @@ Namespace tile_database_test.service_test
 
             my_infos = service.File_Info.get_for_Item_id(5)
             Assert.AreEqual(1, my_infos.Count)
-            Assert.IsTrue(my_infos.Contains(New DTOs.File_Info() With
+            Assert.IsTrue(my_infos.Contains(New dto.File_Info() With
                 {
                     .id = 14,
                     .path = "birch/latin_name.txt",

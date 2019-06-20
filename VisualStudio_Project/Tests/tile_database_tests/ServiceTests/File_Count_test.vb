@@ -10,19 +10,19 @@ Namespace tile_database_test.service_test
 
         Private Function initialize_database() As database
             Dim return_db As New database()
-            return_db.initialize(database.DEFAULT_PATH)
+            return_db.initialize(database.TEST_PATH)
             Return return_db
         End Function
 
         <TestMethod>
         Public Sub get_all()
 
-            Dim my_counts As New List(Of DTOs.File_Count)(File_Count.all)
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 1, .count = 4}))
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 2, .count = 4}))
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 3, .count = 2}))
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 4, .count = 3}))
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 5, .count = 1}))
+            Dim my_counts As New List(Of dto.File_Count)(File_Count.all)
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 1, .count = 4}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 2, .count = 4}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 3, .count = 2}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 4, .count = 3}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 5, .count = 1}))
 
         End Sub
 
@@ -39,27 +39,27 @@ Namespace tile_database_test.service_test
             'Assert.ThrowsException(Of ArgumentOutOfRangeException)(
             '    Sub() File_Count.get_for_count(File_Count.min_count() - 1))
 
-            Dim my_counts As List(Of DTOs.File_Count)
+            Dim my_counts As List(Of dto.File_Count)
 
             my_counts = File_Count.get_for_count(0)
             Assert.AreEqual(0, my_counts.Count)
 
             my_counts = File_Count.get_for_count(1)
             Assert.AreEqual(1, my_counts.Count)
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 5, .count = 1}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 5, .count = 1}))
 
             my_counts = File_Count.get_for_count(2)
             Assert.AreEqual(1, my_counts.Count)
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 3, .count = 2}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 3, .count = 2}))
 
             my_counts = File_Count.get_for_count(3)
             Assert.AreEqual(1, my_counts.Count)
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 4, .count = 3}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 4, .count = 3}))
 
             my_counts = File_Count.get_for_count(4)
             Assert.AreEqual(2, my_counts.Count)
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 1, .count = 4}))
-            Assert.IsTrue(my_counts.Contains(New DTOs.File_Count() With {.id_Item = 2, .count = 4}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 1, .count = 4}))
+            Assert.IsTrue(my_counts.Contains(New dto.File_Count() With {.id_Item = 2, .count = 4}))
 
         End Sub
 

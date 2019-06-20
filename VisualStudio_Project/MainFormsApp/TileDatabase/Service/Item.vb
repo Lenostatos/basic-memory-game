@@ -8,14 +8,14 @@ Namespace tile_database.service
         ''' Returns all items stored in the database.
         ''' </summary>
         ''' <returns></returns>
-        Public ReadOnly Property all() As IEnumerable(Of DTOs.Item)
+        Public ReadOnly Property all() As IEnumerable(Of dto.Item)
             Get
 
-                Dim return_items As IEnumerable(Of DTOs.Item)
+                Dim return_items As IEnumerable(Of dto.Item)
 
                 Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                     Using transaction As ITransaction = session.BeginTransaction()
-                        return_items = session.Fetch(Of DTOs.Item)(SQL_register.Item.select_all())
+                        return_items = session.Fetch(Of dto.Item)(SQL_register.Item.select_all())
                         transaction.Commit()
                     End Using
                 End Using
@@ -51,13 +51,13 @@ Namespace tile_database.service
         ''' </summary>
         ''' <param name="id"></param>
         ''' <returns></returns>
-        Public Function get_by_id(id As Integer) As DTOs.Item
+        Public Function get_by_id(id As Integer) As dto.Item
 
-            Dim return_item As DTOs.Item
+            Dim return_item As dto.Item
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_item = session.Single(Of DTOs.Item)(id)
+                    return_item = session.Single(Of dto.Item)(id)
                     transaction.Commit()
                 End Using
             End Using
@@ -71,15 +71,15 @@ Namespace tile_database.service
         ''' </summary>
         ''' <param name="name"></param>
         ''' <returns></returns>
-        Public Function get_by_name(name As String) As DTOs.Item
+        Public Function get_by_name(name As String) As dto.Item
 
             If name = "" Then Throw New ArgumentException()
 
-            Dim return_item As DTOs.Item
+            Dim return_item As dto.Item
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_item = session.Single(Of DTOs.Item)(SQL_register.Item.select_by_name(name))
+                    return_item = session.Single(Of dto.Item)(SQL_register.Item.select_by_name(name))
                     transaction.Commit()
                 End Using
             End Using

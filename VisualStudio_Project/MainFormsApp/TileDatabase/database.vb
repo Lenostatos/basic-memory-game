@@ -1,4 +1,4 @@
-﻿Imports MainFormsApp.tile_database.DTOs
+﻿Imports MainFormsApp.tile_database.dto
 Imports MicroLite
 Imports MicroLite.Configuration
 
@@ -13,8 +13,10 @@ Namespace tile_database
         Public Const EXCEPTION_MESSAGE_COULD_NOT_CONNECT_TO_DATABASE As String =
             "Could not connect to a database at the specified path."
 
-        Public Const DEFAULT_PATH As String =
+        Public Const TEST_PATH As String =
             "../../../../data/test_tile_set/database.sqlite3"
+        Public Const DEFAULT_PATH As String =
+            "../../../../data/tree_species_tile_set/database.sqlite3"
 
         Private Shared Property _file_path As String
         Private Shared Property _session_factory As ISessionFactory
@@ -209,9 +211,9 @@ Namespace tile_database
 
         Public Function items_with_exactly_num_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_exactly_num_files
 
-            Dim return_items As New List(Of DTOs.Item)
+            Dim return_items As New List(Of dto.Item)
 
-            For Each file_count As DTOs.File_Count In service.File_Count.get_for_count(num_files)
+            For Each file_count As dto.File_Count In service.File_Count.get_for_count(num_files)
                 return_items.Add(service.Item.get_by_id(file_count.id_Item))
             Next
 
@@ -225,7 +227,7 @@ Namespace tile_database
                 Throw New ArgumentOutOfRangeException()
             End If
 
-            Dim return_item As New List(Of DTOs.Item)
+            Dim return_item As New List(Of dto.Item)
 
             For file_Count As Integer = num_files To max_num_files_per_item
                 return_item.AddRange(items_with_exactly_num_files(file_Count))

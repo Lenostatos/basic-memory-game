@@ -4,13 +4,13 @@ Namespace tile_database.service
 
     Public Module File_Type
 
-        Public Function all() As IEnumerable(Of DTOs.File_Type)
+        Public Function all() As IEnumerable(Of dto.File_Type)
 
-            Dim return_types As IEnumerable(Of DTOs.File_Type)
+            Dim return_types As IEnumerable(Of dto.File_Type)
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_types = session.Fetch(Of DTOs.File_Type)(SQL_register.File_Type.select_all())
+                    return_types = session.Fetch(Of dto.File_Type)(SQL_register.File_Type.select_all())
                     transaction.Commit()
                 End Using
             End Using
@@ -34,13 +34,13 @@ Namespace tile_database.service
 
         End Function
 
-        Public Function get_by_id(id As Integer) As DTOs.File_Type
+        Public Function get_by_id(id As Integer) As dto.File_Type
 
-            Dim return_type As DTOs.File_Type
+            Dim return_type As dto.File_Type
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_type = session.Single(Of DTOs.File_Type)(id)
+                    return_type = session.Single(Of dto.File_Type)(id)
                     transaction.Commit()
                 End Using
             End Using

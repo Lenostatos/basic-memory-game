@@ -8,14 +8,14 @@ Namespace tile_database.service
         ''' Returns all File_Info records.
         ''' </summary>
         ''' <returns></returns>
-        Public ReadOnly Property all() As IEnumerable(Of DTOs.File_Info)
+        Public ReadOnly Property all() As IEnumerable(Of dto.File_Info)
             Get
 
-                Dim return_items As IEnumerable(Of DTOs.File_Info)
+                Dim return_items As IEnumerable(Of dto.File_Info)
 
                 Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                     Using transaction As ITransaction = session.BeginTransaction()
-                        return_items = session.Fetch(Of DTOs.File_Info)(SQL_register.File_Info.select_all())
+                        return_items = session.Fetch(Of dto.File_Info)(SQL_register.File_Info.select_all())
                         transaction.Commit()
                     End Using
                 End Using
@@ -51,13 +51,13 @@ Namespace tile_database.service
         ''' </summary>
         ''' <param name="id"></param>
         ''' <returns></returns>
-        Public Function get_for_Item_id(id As Integer) As IEnumerable(Of DTOs.File_Info)
+        Public Function get_for_Item_id(id As Integer) As IEnumerable(Of dto.File_Info)
 
-            Dim return_items As IEnumerable(Of DTOs.File_Info)
+            Dim return_items As IEnumerable(Of dto.File_Info)
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_items = session.Fetch(Of DTOs.File_Info)(SQL_register.File_Info.select_by_item_id(id))
+                    return_items = session.Fetch(Of dto.File_Info)(SQL_register.File_Info.select_by_item_id(id))
                     transaction.Commit()
                 End Using
             End Using

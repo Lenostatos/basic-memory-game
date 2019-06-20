@@ -1,13 +1,13 @@
-﻿Namespace controller.GUI.game_setup_form
+﻿Namespace controller.gui.game_setup_form
 
     Public Class database_selection
 
         Public Const MESSAGE_INVALID_FILE_PATH_WITH_EXCEPTION As String =
             "There was an error while accessing the database at the path you gave:"
 
-        Private Property _UI_database_selection_control As controller.UI.game_setup.database_selection
+        Private Property _UI_database_selection_control As controller.ui.game_setup.database_selection
 
-        Public Sub New(UI_database_selection_control As controller.UI.game_setup.database_selection)
+        Public Sub New(UI_database_selection_control As controller.ui.game_setup.database_selection)
             _UI_database_selection_control = UI_database_selection_control
         End Sub
 

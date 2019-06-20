@@ -1,6 +1,6 @@
 ﻿Imports MainFormsApp.game_logic
 
-Namespace controller.UI.game_setup
+Namespace controller.ui.game_setup
 
     Public Class database_selection
 
@@ -18,7 +18,7 @@ Namespace controller.UI.game_setup
 
         Public ReadOnly Property default_database_path As String
             Get
-                Return tile_database.database.DEFAULT_PATH
+                Return tile_database.database.TEST_PATH
             End Get
         End Property
 

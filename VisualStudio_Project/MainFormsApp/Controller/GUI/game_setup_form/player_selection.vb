@@ -1,7 +1,7 @@
 ﻿Imports System.Windows
 Imports MainFormsApp.game_logic
 
-Namespace controller.GUI.game_setup_form
+Namespace controller.gui.game_setup_form
 
     Public Class player_selection
 
@@ -13,9 +13,9 @@ Namespace controller.GUI.game_setup_form
         Public Const MESSAGE_COULD_NOT_REMOVE_PLAYER As String =
             "Could not remove that player."
 
-        Private Property _UI_add_player_control As UI.game_setup.player_selection
+        Private Property _UI_add_player_control As ui.game_setup.player_selection
 
-        Public Sub New(ByRef UI_add_player_controller As UI.game_setup.player_selection)
+        Public Sub New(ByRef UI_add_player_controller As ui.game_setup.player_selection)
             If UI_add_player_controller Is Nothing Then Throw New ArgumentNullException()
             _UI_add_player_control = UI_add_player_controller
         End Sub

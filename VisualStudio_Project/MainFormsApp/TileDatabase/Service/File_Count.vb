@@ -8,14 +8,14 @@ Namespace tile_database.service
         ''' Returns all File_Count records in the database.
         ''' </summary>
         ''' <returns></returns>
-        Public ReadOnly Property all As IEnumerable(Of DTOs.File_Count)
+        Public ReadOnly Property all As IEnumerable(Of dto.File_Count)
             Get
 
-                Dim return_counts As IEnumerable(Of DTOs.File_Count)
+                Dim return_counts As IEnumerable(Of dto.File_Count)
 
                 Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                     Using transaction As ITransaction = session.BeginTransaction()
-                        return_counts = session.Fetch(Of DTOs.File_Count)(SQL_register.File_Count.all())
+                        return_counts = session.Fetch(Of dto.File_Count)(SQL_register.File_Count.all())
                         transaction.Commit()
                     End Using
                 End Using
@@ -51,17 +51,17 @@ Namespace tile_database.service
         ''' </summary>
         ''' <param name="count"></param>
         ''' <returns></returns>
-        Public Function get_for_count(count As Integer) As IEnumerable(Of DTOs.File_Count)
+        Public Function get_for_count(count As Integer) As IEnumerable(Of dto.File_Count)
 
             If count < 0 OrElse count > max_count Then
                 Throw New ArgumentOutOfRangeException()
             End If
 
-            Dim return_counts As IEnumerable(Of DTOs.File_Count)
+            Dim return_counts As IEnumerable(Of dto.File_Count)
 
             Using session As IReadOnlySession = database.session_factory.OpenReadOnlySession()
                 Using transaction As ITransaction = session.BeginTransaction()
-                    return_counts = session.Fetch(Of DTOs.File_Count)(
+                    return_counts = session.Fetch(Of dto.File_Count)(
                         SQL_register.File_Count.by_file_count(count))
                     transaction.Commit()
                 End Using

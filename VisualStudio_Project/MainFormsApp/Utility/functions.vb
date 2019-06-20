@@ -2,9 +2,10 @@
 
     Module functions
 
-        Public Function sample_enumerable(Of t)(enumerable As IEnumerable(Of t), size As Integer) As IEnumerable(Of t)
+        Public Function sample_enumerable(Of t)(enumerable As IEnumerable(Of t), size As Integer, Optional replace As Boolean = False) As IEnumerable(Of t)
 
             If size < 1 Then Throw New ArgumentOutOfRangeException("size", size)
+            If Not replace AndAlso size > enumerable.Count Then Throw New ArgumentOutOfRangeException("size", size)
 
             ' Create a sequence of indices.
             Dim indices As New List(Of Integer)(enumerable.Count)
@@ -17,9 +18,10 @@
 
             Dim random_number As Integer
             Dim picked_index As Integer
-            Dim sample As New List(Of t)(enumerable.Count)
 
-            While indices.Count > 0
+            Dim sample As New List(Of t)(size)
+
+            For i As Integer = 1 To size
 
                 ' Generate a random number.
                 random_number = rand.Next(maxValue:=indices.Count)
@@ -30,10 +32,12 @@
                 ' Use the index to add an element to the shuffled collection
                 sample.Add(enumerable(picked_index))
 
-                ' Remove the index from the "list of candidates"
-                indices.RemoveAt(random_number)
+                If Not replace Then
+                    ' Remove the index from the "list of candidates"
+                    indices.RemoveAt(random_number)
+                End If
 
-            End While
+            Next
 
             Return sample
 

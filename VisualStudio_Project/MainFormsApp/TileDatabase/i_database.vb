@@ -86,14 +86,14 @@
         ''' Returns the tile items stored in the database.
         ''' </summary>
         ''' <returns></returns>
-        ReadOnly Property items As IEnumerable(Of DTOs.Item)
+        ReadOnly Property items As IEnumerable(Of dto.Item)
 
         ''' <summary>
         ''' Returns information on all files that are associated with <paramref name="item"/>.
         ''' </summary>
         ''' <param name="item"></param>
         ''' <returns></returns>
-        Function files_for_item(item As DTOs.Item) As IEnumerable(Of DTOs.File_Info)
+        Function files_for_item(item As dto.Item) As IEnumerable(Of dto.File_Info)
 
         ''' <summary>
         ''' Returns all items that are associated with at least <paramref name="num_files"/>
@@ -101,7 +101,7 @@
         ''' </summary>
         ''' <param name="num_files"></param>
         ''' <returns></returns>
-        Function items_with_at_least_num_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
+        Function items_with_at_least_num_files(num_files As Integer) As IEnumerable(Of dto.Item)
 
         ''' <summary>
         ''' Returns all items that are associated with exactly <paramref name="num_files"/>
@@ -109,7 +109,7 @@
         ''' </summary>
         ''' <param name="num_files"></param>
         ''' <returns></returns>
-        Function items_with_exactly_num_files(num_files As Integer) As IEnumerable(Of DTOs.Item)
+        Function items_with_exactly_num_files(num_files As Integer) As IEnumerable(Of dto.Item)
 
     End Interface
 

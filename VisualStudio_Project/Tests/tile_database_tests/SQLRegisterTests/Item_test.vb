@@ -15,7 +15,7 @@ Namespace tile_database_test.SQL_register_test
         Public Sub get_item_by_name()
 
             Dim my_db As New database()
-            my_db.initialize(database.DEFAULT_PATH)
+            my_db.initialize(database.TEST_PATH)
 
             Assert.AreEqual("SELECT * FROM ""Item"" WHERE ""name"" = @p0", Item.select_by_name("oak").CommandText)
             Assert.AreEqual("oak", Item.select_by_name("oak").Arguments(0).Value)

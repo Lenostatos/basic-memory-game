@@ -1,4 +1,4 @@
-﻿Namespace tile_database.DTOs
+﻿Namespace tile_database.dto
 
     Public Class Item
 
