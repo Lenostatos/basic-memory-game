@@ -83,6 +83,8 @@ Namespace controller.gui.game_setup_form
 
         Private Sub remove_button_click(sender As Button, e As EventArgs)
 
+            Dim parent_form As MainFormsApp.game_setup_form = sender.Parent.Parent
+
             Dim player_table As TableLayoutPanel = sender.Parent
             Dim player_label As Label = player_table.GetControlFromPosition(0, player_table.GetRow(sender))
 
@@ -93,6 +95,8 @@ Namespace controller.gui.game_setup_form
             Else
                 refresh_player_list(player_table)
             End If
+
+            parent_form.refresh_form()
 
         End Sub
 

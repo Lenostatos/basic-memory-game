@@ -52,7 +52,7 @@ Partial Class game_setup_form
         Me.text_box_add_player.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.text_box_add_player.Name = "text_box_add_player"
         Me.text_box_add_player.Size = New System.Drawing.Size(137, 22)
-        Me.text_box_add_player.TabIndex = 2
+        Me.text_box_add_player.TabIndex = 4
         '
         'Label3
         '
@@ -91,7 +91,7 @@ Partial Class game_setup_form
         Me.button_choose_tile_set.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.button_choose_tile_set.Name = "button_choose_tile_set"
         Me.button_choose_tile_set.Size = New System.Drawing.Size(173, 28)
-        Me.button_choose_tile_set.TabIndex = 7
+        Me.button_choose_tile_set.TabIndex = 0
         Me.button_choose_tile_set.Text = "Choose another tile set"
         Me.button_choose_tile_set.UseVisualStyleBackColor = True
         '
@@ -101,7 +101,7 @@ Partial Class game_setup_form
         Me.button_display_database_choosing_help.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.button_display_database_choosing_help.Name = "button_display_database_choosing_help"
         Me.button_display_database_choosing_help.Size = New System.Drawing.Size(29, 28)
-        Me.button_display_database_choosing_help.TabIndex = 8
+        Me.button_display_database_choosing_help.TabIndex = 1
         Me.button_display_database_choosing_help.Text = "?"
         Me.button_display_database_choosing_help.UseVisualStyleBackColor = True
         '
@@ -136,7 +136,7 @@ Partial Class game_setup_form
         Me.button_tile_set_options.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.button_tile_set_options.Name = "button_tile_set_options"
         Me.button_tile_set_options.Size = New System.Drawing.Size(229, 28)
-        Me.button_tile_set_options.TabIndex = 14
+        Me.button_tile_set_options.TabIndex = 2
         Me.button_tile_set_options.Text = "Advanced tile set options"
         Me.button_tile_set_options.UseVisualStyleBackColor = True
         '
@@ -147,7 +147,7 @@ Partial Class game_setup_form
         Me.button_start_game.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.button_start_game.Name = "button_start_game"
         Me.button_start_game.Size = New System.Drawing.Size(89, 28)
-        Me.button_start_game.TabIndex = 15
+        Me.button_start_game.TabIndex = 3
         Me.button_start_game.Text = "Start"
         Me.button_start_game.UseVisualStyleBackColor = True
         '

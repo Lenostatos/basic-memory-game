@@ -209,6 +209,10 @@ Namespace tile_database
             Return service.File_Info.get_for_Item_id(item.id)
         End Function
 
+        Public Function files_for_item_id(id As Integer) As IEnumerable(Of File_Info) Implements i_database.files_for_item_id
+            Return service.File_Info.get_for_Item_id(id)
+        End Function
+
         Public Function items_with_exactly_num_files(num_files As Integer) As IEnumerable(Of Item) Implements i_database.items_with_exactly_num_files
 
             Dim return_items As New List(Of dto.Item)

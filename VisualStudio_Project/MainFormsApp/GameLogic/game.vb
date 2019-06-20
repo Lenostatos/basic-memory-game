@@ -35,8 +35,6 @@
         ''' <param name="players"></param>
         ''' <param name="starting_player"></param>
         ''' <param name="tiles"></param>
-        ''' <param name="fixed_dimension"></param>
-        ''' <param name="fixed_dimension_length"></param>
         Public Sub New(players As List(Of player),
                        starting_player As player,
                        tiles As matching_tiles_set)

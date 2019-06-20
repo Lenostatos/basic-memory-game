@@ -93,18 +93,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\GUI\game_form\board_filler.vb" />
     <Compile Include="Controller\GUI\game_setup_form\database_selection.vb" />
     <Compile Include="Controller\GUI\game_setup_form\player_selection.vb" />
     <Compile Include="Controller\GUI\tile_set_options_form\tile_set_composition.vb" />
     <Compile Include="Controller\UI\game_setup\database_selection.vb" />
     <Compile Include="Controller\UI\game_setup\tile_set_composition\how_to_select_designs.vb" />
     <Compile Include="Controller\UI\game_setup\player_selection.vb" />
-    <Compile Include="Controller\UI\game_setup\tile_set_composition_class.vb" />
     <Compile Include="Controller\UI\game_setup\tile_set_composition\design_choice.vb" />
     <Compile Include="Controller\UI\game_setup\tile_set_composition\design_combination_choice.vb" />
     <Compile Include="Controller\UI\game_setup\tile_set_composition\item_choice.vb" />
     <Compile Include="Controller\UI\game_setup\tile_set_composition\num_tiles_per_item_choice.vb" />
-    <Compile Include="Controller\UI\tile_set_builder.vb" />
+    <Compile Include="Controller\UI\game_setup\tile_set_builder.vb" />
     <Compile Include="Forms\choose_database_help_form.Designer.vb">
       <DependentUpon>choose_database_help_form.vb</DependentUpon>
     </Compile>

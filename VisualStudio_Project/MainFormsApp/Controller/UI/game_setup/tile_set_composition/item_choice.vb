@@ -76,7 +76,6 @@
 
         Public ReadOnly Property candidate_items As IEnumerable(Of tile_database.dto.Item)
             Get
-                If Not choice_was_made Then Throw New InvalidOperationException()
                 Return _candidate_items
             End Get
         End Property

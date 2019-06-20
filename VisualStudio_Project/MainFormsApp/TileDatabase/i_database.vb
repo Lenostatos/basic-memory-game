@@ -96,6 +96,14 @@
         Function files_for_item(item As dto.Item) As IEnumerable(Of dto.File_Info)
 
         ''' <summary>
+        ''' Returns information on all files that are associated with
+        ''' an item with a certain <paramref name="id"/>.
+        ''' </summary>
+        ''' <param name="id"></param>
+        ''' <returns></returns>
+        Function files_for_item_id(id As Integer) As IEnumerable(Of dto.File_Info)
+
+        ''' <summary>
         ''' Returns all items that are associated with at least <paramref name="num_files"/>
         ''' files.
         ''' </summary>

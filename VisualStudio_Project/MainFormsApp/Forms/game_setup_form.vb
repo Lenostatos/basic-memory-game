@@ -71,4 +71,9 @@ Public Class game_setup_form
     Private Sub button_tile_set_options_Click(sender As Object, e As EventArgs) Handles button_tile_set_options.Click
         tile_set_options_form.Show()
     End Sub
+
+    Private Sub button_start_game_Click(sender As Object, e As EventArgs) Handles button_start_game.Click
+        Me.Hide()
+        MainFormsApp.game_form.Show()
+    End Sub
 End Class

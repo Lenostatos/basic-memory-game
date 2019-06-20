@@ -38,7 +38,7 @@
                         design_list.Clear()
 
                         randomly_chosen_design = utility.functions.sample_enumerable(Of tile_database.dto.File_Info)(
-                            _database.files_for_item(item), size:=1)
+                            _database.files_for_item(item), size:=1)(0)
 
                         For i As Integer = 1 To _num_tiles_to_choose
                             design_list.Add(randomly_chosen_design)

@@ -28,7 +28,7 @@ Partial Class tile_set_options_form
         Me.combo_box_tile_selection_pattern = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.button_submit_tile_options = New System.Windows.Forms.Button()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.combo_box_num_random_items = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'combo_box_num_tiles_per_item
@@ -38,17 +38,17 @@ Partial Class tile_set_options_form
         Me.combo_box_num_tiles_per_item.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.combo_box_num_tiles_per_item.Enabled = False
         Me.combo_box_num_tiles_per_item.FormattingEnabled = True
-        Me.combo_box_num_tiles_per_item.Location = New System.Drawing.Point(631, 63)
+        Me.combo_box_num_tiles_per_item.Location = New System.Drawing.Point(631, 97)
         Me.combo_box_num_tiles_per_item.Name = "combo_box_num_tiles_per_item"
         Me.combo_box_num_tiles_per_item.Size = New System.Drawing.Size(59, 24)
         Me.combo_box_num_tiles_per_item.Sorted = True
-        Me.combo_box_num_tiles_per_item.TabIndex = 0
+        Me.combo_box_num_tiles_per_item.TabIndex = 2
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 66)
+        Me.Label1.Location = New System.Drawing.Point(12, 100)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(305, 17)
         Me.Label1.TabIndex = 1
@@ -58,7 +58,7 @@ Partial Class tile_set_options_form
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(12, 94)
+        Me.Label3.Location = New System.Drawing.Point(12, 71)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(315, 17)
         Me.Label3.TabIndex = 3
@@ -74,7 +74,7 @@ Partial Class tile_set_options_form
         Me.combo_box_tile_selection_pattern.Name = "combo_box_tile_selection_pattern"
         Me.combo_box_tile_selection_pattern.Size = New System.Drawing.Size(281, 24)
         Me.combo_box_tile_selection_pattern.Sorted = True
-        Me.combo_box_tile_selection_pattern.TabIndex = 6
+        Me.combo_box_tile_selection_pattern.TabIndex = 0
         '
         'Label2
         '
@@ -91,29 +91,29 @@ Partial Class tile_set_options_form
         Me.button_submit_tile_options.Location = New System.Drawing.Point(12, 142)
         Me.button_submit_tile_options.Name = "button_submit_tile_options"
         Me.button_submit_tile_options.Size = New System.Drawing.Size(77, 32)
-        Me.button_submit_tile_options.TabIndex = 7
+        Me.button_submit_tile_options.TabIndex = 3
         Me.button_submit_tile_options.Text = "OK"
         Me.button_submit_tile_options.UseVisualStyleBackColor = True
         '
-        'ComboBox1
+        'combo_box_num_random_items
         '
-        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboBox1.Enabled = False
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(631, 91)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(59, 24)
-        Me.ComboBox1.Sorted = True
-        Me.ComboBox1.TabIndex = 8
+        Me.combo_box_num_random_items.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.combo_box_num_random_items.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.combo_box_num_random_items.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.combo_box_num_random_items.Enabled = False
+        Me.combo_box_num_random_items.FormattingEnabled = True
+        Me.combo_box_num_random_items.Location = New System.Drawing.Point(631, 68)
+        Me.combo_box_num_random_items.Name = "combo_box_num_random_items"
+        Me.combo_box_num_random_items.Size = New System.Drawing.Size(59, 24)
+        Me.combo_box_num_random_items.Sorted = True
+        Me.combo_box_num_random_items.TabIndex = 1
         '
         'tile_set_options_form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(702, 186)
-        Me.Controls.Add(Me.ComboBox1)
+        Me.Controls.Add(Me.combo_box_num_random_items)
         Me.Controls.Add(Me.button_submit_tile_options)
         Me.Controls.Add(Me.combo_box_tile_selection_pattern)
         Me.Controls.Add(Me.Label2)
@@ -133,5 +133,5 @@ Partial Class tile_set_options_form
     Friend WithEvents combo_box_tile_selection_pattern As ComboBox
     Friend WithEvents Label2 As Label
     Friend WithEvents button_submit_tile_options As Button
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents combo_box_num_random_items As ComboBox
 End Class
