@@ -21,7 +21,7 @@ Namespace controller_tests
         <TestMethod>
         Public Sub construction_w_valid_arguments()
 
-            _design_choice.choose(how_to_select_designs.only_identical_designs_per_item)
+            _design_choice.choose(design_combination.only_identical_designs_per_item)
 
             Dim my_item_choice As New item_choice(_design_choice)
 
@@ -29,7 +29,7 @@ Namespace controller_tests
 
             Dim dummy
             Assert.ThrowsException(Of InvalidOperationException)(
-                Sub() dummy = my_item_choice.candidate_items)
+                Sub() dummy = my_item_choice.chosen_items)
 
             Assert.ThrowsException(Of ArgumentOutOfRangeException)(
                 Sub() my_item_choice.choose_randomly(1))
@@ -39,7 +39,7 @@ Namespace controller_tests
         <TestMethod>
         Public Sub choose_randomly()
 
-            _design_choice.choose(how_to_select_designs.only_identical_designs_per_item)
+            _design_choice.choose(design_combination.only_identical_designs_per_item)
             Dim my_item_choice As New item_choice(_design_choice)
 
             my_item_choice.choose_randomly(2)

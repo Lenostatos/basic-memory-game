@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\GUI\game_form\board_filler.vb" />
+    <Compile Include="Controller\GUI\game_form\uncoverer.vb" />
     <Compile Include="Controller\GUI\game_setup_form\database_selection.vb" />
     <Compile Include="Controller\GUI\game_setup_form\player_selection.vb" />
     <Compile Include="Controller\GUI\tile_set_options_form\tile_set_composition.vb" />

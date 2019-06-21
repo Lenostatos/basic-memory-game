@@ -48,7 +48,7 @@ Partial Class game_form
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(755, 24)
+        Me.Label1.Location = New System.Drawing.Point(762, 24)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(115, 17)
         Me.Label1.TabIndex = 1
@@ -83,10 +83,10 @@ Partial Class game_form
         '
         'Label2
         '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(26, 16)
+        Me.Label2.Location = New System.Drawing.Point(3, 16)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(54, 17)
         Me.Label2.TabIndex = 0
@@ -96,7 +96,7 @@ Partial Class game_form
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(755, 51)
+        Me.Label4.Location = New System.Drawing.Point(762, 51)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(27, 17)
         Me.Label4.TabIndex = 3
@@ -106,7 +106,7 @@ Partial Class game_form
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(769, 456)
+        Me.Label5.Location = New System.Drawing.Point(762, 456)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(143, 17)
         Me.Label5.TabIndex = 4
@@ -116,7 +116,7 @@ Partial Class game_form
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(769, 541)
+        Me.Label6.Location = New System.Drawing.Point(762, 523)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(102, 17)
         Me.Label6.TabIndex = 5
@@ -125,7 +125,7 @@ Partial Class game_form
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(769, 571)
+        Me.Label7.Location = New System.Drawing.Point(769, 555)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(27, 17)
         Me.Label7.TabIndex = 6
@@ -134,7 +134,7 @@ Partial Class game_form
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(771, 498)
+        Me.Label8.Location = New System.Drawing.Point(769, 484)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(27, 17)
         Me.Label8.TabIndex = 7
@@ -144,7 +144,7 @@ Partial Class game_form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(992, 706)
+        Me.ClientSize = New System.Drawing.Size(992, 750)
         Me.Controls.Add(Me.Label8)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.Label6)

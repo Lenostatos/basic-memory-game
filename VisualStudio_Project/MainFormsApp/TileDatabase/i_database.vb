@@ -89,6 +89,13 @@
         ReadOnly Property items As IEnumerable(Of dto.Item)
 
         ''' <summary>
+        ''' Returns the item with the specified <paramref name="id"/>.
+        ''' </summary>
+        ''' <param name="id"></param>
+        ''' <returns></returns>
+        Function item_with_id(id As Integer) As dto.Item
+
+        ''' <summary>
         ''' Returns information on all files that are associated with <paramref name="item"/>.
         ''' </summary>
         ''' <param name="item"></param>

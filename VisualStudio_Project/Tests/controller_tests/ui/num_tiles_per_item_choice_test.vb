@@ -23,7 +23,7 @@ Namespace controller_tests
         <TestMethod>
         Public Sub construction_w_valid_arguments()
 
-            _design_choice.choose(how_to_select_designs.only_identical_designs_per_item)
+            _design_choice.choose(design_combination.only_identical_designs_per_item)
             _item_choice = New item_choice(_design_choice)
             _item_choice.choose_randomly(3)
 
@@ -37,7 +37,7 @@ Namespace controller_tests
             Assert.ThrowsException(Of InvalidOperationException)(
                 Sub() dummy = _num_tiles_choice.chosen_number)
 
-            _design_choice.choose(how_to_select_designs.identical_and_unique_designs_per_item)
+            _design_choice.choose(design_combination.identical_and_unique_designs_per_item)
             _item_choice = New item_choice(_design_choice)
             _item_choice.choose_randomly(2)
 
@@ -51,7 +51,7 @@ Namespace controller_tests
             Assert.ThrowsException(Of InvalidOperationException)(
                 Sub() dummy = _num_tiles_choice.chosen_number)
 
-            _design_choice.choose(how_to_select_designs.only_unique_designs_per_item)
+            _design_choice.choose(design_combination.only_unique_designs_per_item)
             _item_choice = New item_choice(_design_choice)
             _item_choice.choose_randomly(3)
 
@@ -65,7 +65,7 @@ Namespace controller_tests
             Assert.ThrowsException(Of InvalidOperationException)(
                 Sub() dummy = _num_tiles_choice.chosen_number)
 
-            _design_choice.choose(how_to_select_designs.only_unique_designs_per_item)
+            _design_choice.choose(design_combination.only_unique_designs_per_item)
             _item_choice = New item_choice(_design_choice)
             _item_choice.choose_randomly(4)
 
@@ -79,7 +79,7 @@ Namespace controller_tests
             Assert.ThrowsException(Of InvalidOperationException)(
                 Sub() dummy = _num_tiles_choice.chosen_number)
 
-            _design_choice.choose(how_to_select_designs.only_unique_designs_per_item)
+            _design_choice.choose(design_combination.only_unique_designs_per_item)
             _item_choice = New item_choice(_design_choice)
             _item_choice.choose_randomly(2)
 

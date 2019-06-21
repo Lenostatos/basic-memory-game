@@ -4,8 +4,8 @@ Namespace controller.gui.game_setup
 
     Public Class tile_set_composition
 
-        Public Const DEFAULT_DESIGN_SELECTION_PATTERN As how_to_select_designs =
-            how_to_select_designs.only_identical_designs_per_item
+        Public Const DEFAULT_DESIGN_SELECTION_PATTERN As design_combination =
+            design_combination.only_identical_designs_per_item
         Public Const DEFAULT_NUM_RANDOM_ITEMS As Integer = 2
         Public Const DEFAULT_NUM_TILES_PER_ITEM As Integer = 2
 
@@ -38,27 +38,27 @@ Namespace controller.gui.game_setup
 
         ''' <summary>
         ''' Displays the available options for the selection of design
-        ''' selection patterns in a combobox. The combo box is cleared
-        ''' before that.
+        ''' combination patterns in a combobox. The combo box is cleared
+        ''' before that. Also enables the combo box.
         ''' </summary>
         ''' <param name="combo_box"></param>
-        Public Sub list_design_selection_patterns(combo_box As ComboBox)
+        Public Sub list_design_combination_patterns(combo_box As ComboBox)
 
             combo_box.Enabled = True
             combo_box.Items.Clear()
 
-            For Each pattern As how_to_select_designs In _ui_design_combi_choice.available_options
+            For Each combination As design_combination In _ui_design_combi_choice.available_combinations
 
-                Select Case pattern
-                    Case how_to_select_designs.only_identical_designs_per_item
-                        combo_box.Items.Add(New KeyValuePair(Of how_to_select_designs, String)(
-                                pattern, "Only identical tiles per item"))
-                    Case how_to_select_designs.identical_and_unique_designs_per_item
-                        combo_box.Items.Add(New KeyValuePair(Of how_to_select_designs, String)(
-                                pattern, "Both identical and different tiles per item"))
-                    Case how_to_select_designs.only_unique_designs_per_item
-                        combo_box.Items.Add(New KeyValuePair(Of how_to_select_designs, String)(
-                                pattern, "Only unique tiles per item"))
+                Select Case combination
+                    Case design_combination.only_identical_designs_per_item
+                        combo_box.Items.Add(New KeyValuePair(Of design_combination, String)(
+                                combination, "Only identical tiles per item"))
+                    Case design_combination.identical_and_unique_designs_per_item
+                        combo_box.Items.Add(New KeyValuePair(Of design_combination, String)(
+                                combination, "Both identical and different tiles per item"))
+                    Case design_combination.only_unique_designs_per_item
+                        combo_box.Items.Add(New KeyValuePair(Of design_combination, String)(
+                                combination, "Only unique tiles per item"))
                 End Select
 
             Next
@@ -68,7 +68,7 @@ Namespace controller.gui.game_setup
         End Sub
 
         ''' <summary>
-        ''' Chooses a new design selection pattern.
+        ''' Chooses a new design combination pattern.
         ''' </summary>
         ''' <param name="combo_box_obj">An object from a combo
         ''' box that has been filled by this controller before.</param>
@@ -82,18 +82,29 @@ Namespace controller.gui.game_setup
 
         End Sub
 
+        ''' <summary>
+        ''' Fills a combo box with the numbers of items that are available
+        ''' to be chosen with a random selection.
+        ''' Also Enables The combo box.
+        ''' </summary>
+        ''' <param name="combo_box"></param>
         Public Sub list_available_num_items_for_random_selection(combo_box As ComboBox)
 
             combo_box.Enabled = True
             combo_box.Items.Clear()
 
-            For num As Integer = 2 To _ui_item_choice.candidate_items.Count
+            For num As Integer = 2 To _ui_design_combi_choice.items_available_with_chosen_combination.Count
                 combo_box.Items.Add(num)
             Next
 
         End Sub
 
-        Public Sub choose_num_items_for_random_selection(num_items As Integer)
+        ''' <summary>
+        ''' Chooses <paramref name="num_items"/> items from the candidates given
+        ''' by the previous design combination choice
+        ''' </summary>
+        ''' <param name="num_items"></param>
+        Public Sub choose_num_items_items_randomly(num_items As Integer)
 
             _ui_item_choice.choose_randomly(num_items)
             _ui_num_tiles_per_item_choice = New num_tiles_per_item_choice(_ui_item_choice)
@@ -102,6 +113,12 @@ Namespace controller.gui.game_setup
 
         End Sub
 
+        ''' <summary>
+        ''' Fills a combo box with the possible numbers of tiles per#
+        ''' item based on the chosen design combination and items.
+        ''' Also enables the combo box.
+        ''' </summary>
+        ''' <param name="combo_box"></param>
         Public Sub list_available_num_tiles(combo_box As ComboBox)
 
             combo_box.Enabled = True

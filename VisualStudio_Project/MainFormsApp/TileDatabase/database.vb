@@ -143,6 +143,10 @@ Namespace tile_database
             End Get
         End Property
 
+        Public Function item_with_id(id As Integer) As Item Implements i_database.item_with_id
+            Return service.Item.get_by_id(id)
+        End Function
+
         Public ReadOnly Property max_num_files_per_item As Integer Implements i_database.max_num_files_per_item
             Get
                 Return service.File_Count.max_count()

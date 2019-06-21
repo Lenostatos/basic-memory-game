@@ -21,17 +21,17 @@ Namespace controller.ui.game_setup
             Dim new_tile_item_design As tile_item_design
             Dim new_tile_item As tile_item
             Dim new_tile As tile
-            Dim new_tiles As New List(Of tile)
+            Dim new_tiles As List(Of tile)
             Dim return_set As New matching_tiles_set()
 
             For Each item_with_designs As KeyValuePair(Of Item, List(Of File_Info)) In dict_of_item_and_file_info_dtos
 
-                new_tiles.Clear()
+                new_tiles = New List(Of tile)
 
                 For Each design As File_Info In item_with_designs.Value
 
                     new_tile_item_design = New tile_item_design(design.id)
-                    new_tile_item = New tile_item(item_with_designs.Key.id, new_tile_item_design)
+                    new_tile_item = New tile_item(design.id_Item, new_tile_item_design)
                     new_tile = New tile(tile_counter, new_tile_item)
                     new_tiles.Add(new_tile)
 

@@ -25,7 +25,7 @@ Namespace controller_tests
         <TestMethod>
         Public Sub construction_w_valid_arguments()
 
-            _design_combi_choice.choose(how_to_select_designs.identical_and_unique_designs_per_item)
+            _design_combi_choice.choose(design_combination.identical_and_unique_designs_per_item)
             _item_choice = New item_choice(_design_combi_choice)
             _item_choice.choose_randomly(5)
             _num_tiles_choice = New num_tiles_per_item_choice(_item_choice)
@@ -42,7 +42,7 @@ Namespace controller_tests
         <TestMethod>
         Public Sub choose()
 
-            _design_combi_choice.choose(how_to_select_designs.identical_and_unique_designs_per_item)
+            _design_combi_choice.choose(design_combination.identical_and_unique_designs_per_item)
             _item_choice = New item_choice(_design_combi_choice)
             _item_choice.choose_randomly(5)
             _num_tiles_choice = New num_tiles_per_item_choice(_item_choice)

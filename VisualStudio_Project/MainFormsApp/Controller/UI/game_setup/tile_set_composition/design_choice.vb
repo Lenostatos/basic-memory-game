@@ -3,7 +3,7 @@
     Public Class design_choice
 
         Private Property _database As tile_database.i_database
-        Private Property _pattern As how_to_select_designs
+        Private Property _pattern As design_combination
         Private Property _items_to_choose_for As List(Of tile_database.dto.Item)
         Private Property _num_tiles_to_choose As Integer
 
@@ -13,7 +13,7 @@
         Public Sub New(previous_choice As num_tiles_per_item_choice)
 
             _database = previous_choice.database
-            _pattern = previous_choice.design_selection_pattern
+            _pattern = previous_choice.design_combination
             _items_to_choose_for = previous_choice.items_to_choose_for
             _num_tiles_to_choose = previous_choice.chosen_number
 
@@ -27,15 +27,15 @@
 
             _chosen_designs = New Dictionary(Of tile_database.dto.Item, List(Of tile_database.dto.File_Info))
 
-            Dim design_list As New List(Of tile_database.dto.File_Info)
+            Dim design_list As List(Of tile_database.dto.File_Info)
             Dim randomly_chosen_design As tile_database.dto.File_Info
 
             Select Case _pattern
-                Case how_to_select_designs.only_identical_designs_per_item
+                Case design_combination.only_identical_designs_per_item
 
                     For Each item As tile_database.dto.Item In _items_to_choose_for
 
-                        design_list.Clear()
+                        design_list = New List(Of tile_database.dto.File_Info)
 
                         randomly_chosen_design = utility.functions.sample_enumerable(Of tile_database.dto.File_Info)(
                             _database.files_for_item(item), size:=1)(0)
@@ -48,11 +48,11 @@
 
                     Next
 
-                Case how_to_select_designs.identical_and_unique_designs_per_item
+                Case design_combination.identical_and_unique_designs_per_item
 
                     For Each item As tile_database.dto.Item In _items_to_choose_for
 
-                        design_list.Clear()
+                        design_list = New List(Of tile_database.dto.File_Info)
 
                         design_list.AddRange(utility.functions.sample_enumerable(Of tile_database.dto.File_Info)(
                             _database.files_for_item(item), size:=_num_tiles_to_choose, replace:=True))
@@ -61,11 +61,11 @@
 
                     Next
 
-                Case how_to_select_designs.only_unique_designs_per_item
+                Case design_combination.only_unique_designs_per_item
 
                     For Each item As tile_database.dto.Item In _items_to_choose_for
 
-                        design_list.Clear()
+                        design_list = New List(Of tile_database.dto.File_Info)
 
                         design_list.AddRange(utility.functions.sample_enumerable(Of tile_database.dto.File_Info)(
                             _database.files_for_item(item), size:=_num_tiles_to_choose, replace:=False))

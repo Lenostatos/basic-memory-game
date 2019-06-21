@@ -6,7 +6,7 @@
 
         Private Property _database As tile_database.i_database
         Private Property _items_to_choose_for As List(Of tile_database.dto.Item)
-        Private Property _design_selection_pattern As how_to_select_designs
+        Private Property _design_selection_pattern As design_combination
 
         Private Property _available_choices As List(Of Integer)
 
@@ -54,11 +54,11 @@
             Dim max_possible_num_tiles As Integer
 
             Select Case _design_selection_pattern
-                Case how_to_select_designs.only_identical_designs_per_item
+                Case design_combination.only_identical_designs_per_item
                     max_possible_num_tiles = MAX_MEANINGFUL_NUM_TILES_PER_ITEM
-                Case how_to_select_designs.identical_and_unique_designs_per_item
+                Case design_combination.identical_and_unique_designs_per_item
                     max_possible_num_tiles = MAX_MEANINGFUL_NUM_TILES_PER_ITEM
-                Case how_to_select_designs.only_unique_designs_per_item
+                Case design_combination.only_unique_designs_per_item
                     Dim file_counts As New List(Of Integer)
                     For Each i As tile_database.dto.Item In _items_to_choose_for
                         file_counts.Add(_database.files_for_item(i).Count)
@@ -84,7 +84,7 @@
             End Get
         End Property
 
-        Public ReadOnly Property design_selection_pattern As how_to_select_designs
+        Public ReadOnly Property design_combination As design_combination
             Get
                 Return _design_selection_pattern
             End Get

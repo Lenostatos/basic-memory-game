@@ -6,6 +6,7 @@ Public Class game_form
     Private Property _game As game
     Private Property _database As tile_database.i_database
 
+    Private Property _uncoverer As uncoverer
     Private Property _board_painter As board_painter
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -15,6 +16,18 @@ Public Class game_form
 
         _board_painter = New board_painter(flow_layout_panel_board, _game.board, _database)
         _board_painter.fill_board()
+        _board_painter.paint_tiles(Me)
+
+    End Sub
+
+    Public Sub uncover_tile(sender As Control, e As EventArgs)
+
+        Dim position As Integer = flow_layout_panel_board.Controls.IndexOf(sender.Parent)
+
+        If _game.board.positions(position) IsNot Nothing Then
+            _game.uncover_tile(position)
+            _board_painter.paint_tiles(Me)
+        End If
 
     End Sub
 
