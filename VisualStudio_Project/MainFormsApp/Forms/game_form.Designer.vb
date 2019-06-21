@@ -26,7 +26,7 @@ Partial Class game_form
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.label_player_table_player_header = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -60,7 +60,7 @@ Partial Class game_form
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Controls.Add(Me.Label3, 1, 0)
-        Me.TableLayoutPanel1.Controls.Add(Me.Label2, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.label_player_table_player_header, 0, 0)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(759, 163)
         Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -81,17 +81,19 @@ Partial Class game_form
         Me.Label3.Text = "# Tiles Collected"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'Label2
+        'label_player_table_player_header
         '
-        Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(3, 16)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(54, 17)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Player"
-        Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.label_player_table_player_header.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.label_player_table_player_header.AutoSize = True
+        Me.label_player_table_player_header.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label_player_table_player_header.Location = New System.Drawing.Point(3, 0)
+        Me.label_player_table_player_header.Name = "label_player_table_player_header"
+        Me.label_player_table_player_header.Size = New System.Drawing.Size(100, 49)
+        Me.label_player_table_player_header.TabIndex = 0
+        Me.label_player_table_player_header.Text = "Player"
+        Me.label_player_table_player_header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label4
         '
@@ -166,7 +168,7 @@ Partial Class game_form
     Friend WithEvents flow_layout_panel_board As FlowLayoutPanel
     Friend WithEvents Label1 As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
-    Friend WithEvents Label2 As Label
+    Friend WithEvents label_player_table_player_header As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label

@@ -30,7 +30,7 @@ Namespace controller.gui.game_form
             Dim tile_width As Integer = _gui_board.Size.Width / 4 * 0.91
             Dim new_panel As Panel
 
-            For i As Integer = 1 To _board.Count
+            For i As Integer = 0 To _board.Count - 1
 
                 new_panel = New Panel() With {
                         .Name = i,
@@ -53,6 +53,7 @@ Namespace controller.gui.game_form
             Dim item_info As dto.Item
             Dim new_control As Control
             Dim panel_at_tile As Panel
+            Dim database_directory_path As String
 
             For i As Integer = 0 To _board.Count - 1
 
@@ -61,10 +62,13 @@ Namespace controller.gui.game_form
                 panel_at_tile.Controls.Clear()
 
                 If tile IsNot Nothing Then
+
                     If tile.covered Then
 
                         new_control = New Label() With {
+                            .TextAlign = ContentAlignment.MiddleCenter,
                             .BorderStyle = BorderStyle.FixedSingle,
+                            .Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right,
                             .Dock = DockStyle.Fill
                         }
 
@@ -80,23 +84,38 @@ Namespace controller.gui.game_form
                             Case file_type.text
                                 new_control = New Label() With {
                                     .Text = item_info.name,
+                                    .TextAlign = ContentAlignment.MiddleCenter,
                                     .BorderStyle = BorderStyle.FixedSingle,
+                                    .Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right,
                                     .Dock = DockStyle.Fill
                                 }
                             Case file_type.jpeg, file_type.png
+                                database_directory_path = My.Computer.FileSystem.GetParentPath(_database.file_path)
                                 new_control = New PictureBox() With {
                                     .ImageLocation =
-                                        My.Computer.FileSystem.CombinePath(_database.file_path, tile_info.path)}
+                                        My.Computer.FileSystem.CombinePath(database_directory_path, tile_info.path),
+                                    .Dock = DockStyle.Fill,
+                                    .SizeMode = PictureBoxSizeMode.StretchImage
+                                }
                             Case Else
                                 Throw New NotImplementedException() ' TODO
                         End Select
 
                     End If
 
-                    AddHandler new_control.Click, AddressOf click_handler.uncover_tile
-                    panel_at_tile.Controls.Add(new_control)
+                Else
+
+                    new_control = New Label() With {
+                        .TextAlign = ContentAlignment.MiddleCenter,
+                        .BorderStyle = BorderStyle.None,
+                        .Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right,
+                        .Dock = DockStyle.Fill
+                    }
 
                 End If
+
+                AddHandler new_control.Click, AddressOf click_handler.uncover_tile
+                panel_at_tile.Controls.Add(new_control)
 
             Next
 

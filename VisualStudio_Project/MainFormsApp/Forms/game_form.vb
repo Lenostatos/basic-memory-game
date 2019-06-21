@@ -24,7 +24,8 @@ Public Class game_form
 
         Dim position As Integer = flow_layout_panel_board.Controls.IndexOf(sender.Parent)
 
-        If _game.board.positions(position) IsNot Nothing Then
+        If _game.board.positions(position) IsNot Nothing AndAlso
+            (_game.board.positions(position).covered OrElse _game.cover_before_next_uncover) Then
             _game.uncover_tile(position)
             _board_painter.paint_tiles(Me)
         End If

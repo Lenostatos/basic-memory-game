@@ -119,20 +119,26 @@ Namespace game_logic_test
                 my_game.uncover_tile(1)
 
                 ' If tiles did not match
-                If my_game.board(0).covered Then
+                If Not my_game.board(0).undercover_matches(my_game.board(1)) Then
 
-                    first_matched = True
+                    first_not_matched = True
 
-                    Assert.IsTrue(my_game.board(1).covered)
-                    Assert.IsFalse(my_game.board(0).undercover_matches(my_game.board(1)))
+                    Assert.IsFalse(my_game.board(0).covered)
+                    Assert.IsFalse(my_game.board(1).covered)
+                    Assert.IsFalse(my_game.board(0).matches(my_game.board(1)))
+
+                    Assert.IsTrue(my_game.cover_before_next_uncover)
                     Assert.AreEqual(my_kuba, my_game.moving_player)
 
                 Else ' If tiles matched
 
-                    first_not_matched = True
+                    first_matched = True
 
+                    Assert.IsFalse(my_game.board(0).covered)
                     Assert.IsFalse(my_game.board(1).covered)
                     Assert.IsTrue(my_game.board(0).matches(my_game.board(1)))
+
+                    Assert.IsFalse(my_game.cover_before_next_uncover)
                     Assert.AreEqual(my_hernie, my_game.moving_player)
 
                     Dim tried_tiles As New List(Of tile) From {
@@ -141,27 +147,33 @@ Namespace game_logic_test
                     my_game.uncover_tile(2)
 
                     ' If the third tile also matched
-                    If my_game.board(0) Is Nothing Then
+                    If tried_tiles(1).undercover_matches(tried_tiles(2)) Then
 
                         third_matched = True
 
+                        Assert.IsTrue(my_game.board(0) Is Nothing)
                         Assert.IsTrue(my_game.board(1) Is Nothing)
                         Assert.IsTrue(my_game.board(2) Is Nothing)
+
+                        Assert.IsFalse(my_game.cover_before_next_uncover)
+
                         Assert.AreEqual(0, my_kuba.won_tile_sets.Count)
                         Assert.AreEqual(1, my_hernie.won_tile_sets.Count)
+
                         Assert.AreEqual(3, my_hernie.won_tile_sets.count_of_single_tiles)
                         Assert.IsTrue(my_hernie.won_tile_sets.tiles.All(Function(t As tile) tried_tiles.Contains(t)))
+
                         Assert.AreEqual(my_hernie, my_game.moving_player)
 
                     Else ' If the third tile did not match
 
                         third_not_matched = True
 
-                        Assert.IsTrue(my_game.board(0).covered)
-                        Assert.IsTrue(my_game.board(1).covered)
-                        Assert.IsTrue(my_game.board(2).covered)
+                        Assert.IsTrue(my_game.cover_before_next_uncover)
+
                         Assert.AreEqual(0, my_kuba.won_tile_sets.Count)
                         Assert.AreEqual(0, my_hernie.won_tile_sets.Count)
+
                         Assert.AreEqual(my_kuba, my_game.moving_player)
 
                     End If
